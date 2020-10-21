@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link id='rel-theme' rel='stylesheet'/>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  
+  <!--$head-->
+  <link rel='stylesheet' href='css/core.css' type='text/css'>
+  <script defer src='js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96580670-3"></script>
+  <script>
+    if(localStorage.cfg_theme === 'dark' || (localStorage.cfg_theme === 'match' && window.matchMedia('(prefers-color-scheme: dark)').matches) || (!localStorage.cfg_theme && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.getElementById('rel-theme').href = 'css/materialize/dark.css'}
+    else{
+      document.getElementById('rel-theme').href = 'css/materialize/light.css'}
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div class='navbar-fixed'>
+    <nav class='nav svue-navblue' style='height: 48px'>
+      <div class='nav-wrapper'>
+        <a href='dashboard'>
+          <i class='fas fa-arrow-left nav-comp' style='float: left; margin-left: 16px; font-size: 20px'></i></a>
+        <span class='brand-logo nw'><img src='images/icon-sm.png'/> OpenVUE </span>
+      </div>
+    </nav>
+  </div>
+  <!--$body-->
+</body>
+</html>

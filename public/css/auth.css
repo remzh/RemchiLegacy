@@ -1,0 +1,202 @@
+::selection{
+  background: #cde;
+}
+
+body{
+  user-select: none;
+}
+
+label{
+  color: #565656;
+}
+
+.dropdown-content li{
+  transition: background-color 0.15s;
+}
+
+#imgbk{
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/sun-dark.jpg);
+}
+
+#title-icon{
+  height: 28px;
+  vertical-align: text-bottom;
+}
+
+#login-outer{
+  position: absolute;
+  top: calc(40% - 150px);
+  width: 100%;
+}
+
+#login-div{
+  max-width: 480px;
+  margin: auto;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+#login-footer{
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  padding: 3px 6px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 12px;
+}
+
+#div-msg, #div-msg2{
+  background: #fed;
+  border: 1px solid #fca;
+  padding: 0px 6px;
+  margin: 0px 0;
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#div-msg.msg-success{
+  background-color: #efe; 
+  border-color: #3a3;
+}
+
+#div-loadbar{
+  position: absolute;
+  width: 0%;
+  top: 0px;
+  left: 0px;
+  height: 4px;
+  background: #2196F3;
+  box-shadow: 2px 0px 2px #57f;
+}
+
+#div-domain{
+  border-bottom: 1px solid #4CAF50;
+  box-shadow: 0 1px 0 0 #4CAF50;
+  cursor: pointer;
+  line-height: 1.15;
+  padding: 8px 0;
+  transition: color 0.3s; 
+}
+
+.domain{
+  margin: 0 0 5px;
+  padding: 2px 6px;
+}
+
+#wa-signin{
+  margin: 0 0 12px; 
+  padding: 2px 0; 
+}
+
+.domain, .wa-option{
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.domain:hover, .domain:focus, .wa-option:hover, .wa-option:focus{
+  background-color: #ebeff3;
+  cursor: pointer;
+  outline: none;
+}
+
+.domain:focus{
+  border: 1px solid #57f;
+}
+
+.wa-option:focus{
+  border: 1px solid #5df;
+}
+
+#div-domain:focus {
+  outline: none; 
+  color: #2bc02b; 
+}
+
+label ~ #div-domain:focus {
+  color: #4CAF50; 
+}
+
+/* .domain.current{
+  background-color: #cfe9ff;
+} */
+
+#s-domain, .domainName{
+  font-size: 16px; 
+  display: block;
+}
+
+#s-domainURL, .domainURL{
+  font-size: 14px;
+  color: #888;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn, .btn-large, .btn-small, .btn-flat{
+  text-transform: none;
+  border: 1px solid transparent; 
+}
+
+.btn:focus{
+  border: 1px solid #070720; 
+  box-shadow: 0px 0px 4px rgb(156, 194, 238);
+}
+
+.gray{
+  color: #888;
+}
+
+#ft-right{
+  float: right;
+}
+
+#ccD, #cc2, #cc3, #cc4, #ccT, #ccWA{
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #login-outer{
+    top: 0; 
+    height: 100%;
+  }
+  #login-div{
+    height: 100%;
+    max-width: 600px;
+    margin-bottom: 0;
+  }
+  #login-footer{
+    background: none;
+    color: #000;
+  }
+  #ft{
+    margin-left: 12px;
+  }
+  #ft-right{
+    float: left;
+    margin-left: 12px;
+    margin-bottom: 12px;
+  }
+  #ccD{
+    overflow-y: scroll;
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #login-outer{
+    min-height: 720px; /*Prevents text from getting clipped off on really small displays (i.e. iPhone SE)*/
+  }
+  #ft, #ft-right{
+    background: rgba(255, 255, 255, 0.6);
+  }
+}

@@ -1,0 +1,200 @@
+
+  
+  <script>
+    window.onload = () => {
+      M.AutoInit(); 
+    }
+  </script>
+
+  <div class>
+    <h1>Changelog</h1>
+    <p><i>You&apos;re viewing the summarized changelogs for previous major releases. For a full, technical changelog, <a href="changelog/full">click/tap here</a>.</i></p>
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header"><b>Release 2.0.0</b>&#xA0;&#x2022; Build 1232 &#x2022; October 20, 2020</div>
+        <div class="collapsible-body">
+          <p><b class="green-text text-accent-bw">New Things!</b></p>
+          <ul class="browser-default selectable">
+            <li>OpenVUE is now <b>open source</b>! Named OpenVUE, you can find the <a target="_blank" href="https://github.com/Ryan778/OpenVUE">full source code on GitHub</a>.</li>
+            <li>Complete refactoring of the OpenVUE core:</li>
+            <ul class="browser-default">
+              <li>This is the portion OpenVUE uses to communicate with Synergy, and it has been slowly accumulating bugs ever since its rocky start back in February 2019.</li>
+              <li>By redoing it from scratch using modern APIs, it now <b>fully supports concurrent enrollment schools</b>, has <b>better caching and more detailed errors</b>, and is <b>significantly less prone to bugs</b>.</li>
+            </ul>
+            <li>Redesigned dashboard:</li>
+            <ul class="browser-default">
+              <li>See the weather, date, and time (on desktop) at a glance</li>
+              <li>Concurrently enrolled with another school? See all of your classes at once!</li>
+              <li>Unobtrusive banner messages (in contrast to the obnoxious popups in the past)</li>
+            </ul>
+            <li>Significantly better accessibility:</li>
+            <ul class="browser-default">
+              <li>Almost all of OpenVUE can now be navigated with just a keyboard!</li>
+              <li>Better &quot;Reduced Motion&quot; setting removes even more optional animations</li>
+            </ul>
+            <li>Data Exporting:</li>
+            <ul class="browser-default">
+              <li>You can now download your grades in a variety of formats!</li>
+              <li>Currently XML, JSON, and XLSX are supported</li>
+            </ul>
+          </ul>
+          <p><b class="yellow-text text-accent-bw">Improvements!</b></p>
+          <ul class="browser-default selectable">
+            <li>Performance improvements:</li>
+            <ul class="browser-default">
+              <li>Code optimization and dead code cleanup means pages should load even faster than before</li>
+              <li>The legacy, buggy course list loading system has been thrown out and replaced with a proper VueJS implementation</li>
+            </ul>
+            <li>Greatly improved &quot;Welcome&quot; carousel for the new user onboarding experience</li>
+            <li>Lots and lots and lots of bug fixes:</li>
+            <ul class="browser-default">
+              <li>Far too many to list here, but they can be found in the full changelog!</li>
+            </ul>
+          </ul>
+          <p><b class="teal-text bw">What&apos;s next?</b></p>
+          <ul class="browser-default selectable">
+            <li>Potential notifier overhaul:</li>
+            <ul class="browser-default">
+              <li>Reintroduce text notifications to the general public if possible?</li>
+              <li>Plans to greatly improve stability and customization options</li>
+            </ul>
+            <li><b class="light-blue-text bw">You tell me!</b> We&apos;re always looking for suggestions on how OpenVUE can be further improved.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><b>Interim Release 2.0.0-pre-1</b>&#xA0;&#x2022; Build 1109 &#x2022; August 16, 2020</div>
+        <div class="collapsible-body">
+          <h4>Prerelease Build</h4>
+          <ul class="browser-default">
+            <li>Massive backend changes and cleanup in preparation for something still very much in progress. Without divulging too much, it&apos;s nothing that&apos;ll cause too much change for users, but was a) an end-goal since the start of this project and b) crucial to keeping OpenVUE alive after this year.</li>
+            <li>Front-end <b>should</b> look and feel similar to before, but with much fewer issues. Please let me know if you encounter any bugs or errors!</li>
+            <li>/export is now in a working state, and as such, can be tried out if you&apos;re intrested.</li>
+            <li>Hopefully, v2.0.0 will be released sometime later this semester.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><b>Release 1.1.0</b>&#xA0;&#x2022; Build 1004 &#x2022; April 21, 2020</div>
+        <div class="collapsible-body">
+          <h4>Minor Update</h4>
+          <ul class="browser-default selectable">
+            <li>Several bug fixes, including one that caused some classes to give blank screens.</li>
+            <li>All messages should be readable in dark mode now thanks to a few rendering tweaks.</li>
+            <li>New settings for further customization and improved error handling.</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><b>Release 1.0.0</b>&#xA0;&#x2022; Build 1,000 &#x2022; January 6, 2020</div>
+        <div class="collapsible-body">
+        <h4>What&apos;s New</h4>
+        <p><b>Release 1.0.0 &#x2022; Build 1000 &#x2022; January 1, 2020</b><br>Missed a release? <a href="changelog">See Previous and/or Full Changelog</a></p>
+        <hr style="border: none; border-bottom: 1px solid #888">
+        <p><b class="teal-text bw">And a quick PSA...</b></p>
+        <ul class="browser-default">
+          <li class="light-blue-text ascs bw"><b>Heads Up!</b> Due to the size of this release, some features have been partially rolling out to users since December. You may have already seen some of these new features!</li>
+          <li><b>Thanks again to everyone who took the second survey!</b> Got lots of valuable feedback; check the <span class="light-blue-text bw">Roadmap</span> tab (under &quot;More Actions&quot;) to see the data.</li>
+        </ul>
+        <p><b class="green-text text-accent-bw">Fancy New Stuff</b></p>
+        <ul class="browser-default selectable">
+          <li><b>GPA and Course History!</b> Very very heavily requested, but was rather difficult from a technological standpoint. But hey, it works now!</li>
+          <li><b>Full What-If Support!</b> Not only can you edit any existing assignment, you can also add new ones now.</li>
+          <li><b>New Pages</b>: Account and Full Changelog (/account and /changelog respectively). </li>
+          <ul class="browser-default">
+            <li>Use the &quot;Account&quot; page to see where you&apos;ve logged in, how often you check gradebook, and (as a bonus) how that compares to everyone else! Link in the &quot;More Actions&quot; dropdown. </li>
+            <li>Changelog is pretty self-explanatory, link at the top of this dialog.</li>
+            <li>Not technically new, but the landing page has been completely redone. Check it out sometime!</li>
+          </ul>
+          <li><b>Attendance Improvements</b>: The attendance page now features a calendar, with a dot on any day you have attendance marks.</li>
+          <li><b>A Welcome Screen!</b> New users can choose to get a quick crash course now. Want to see it for yourself? Go to Settings -&gt; About -&gt; Show Welcome Screen.</li>
+          <li><b>Any district support</b> which won&apos;t affect current users, but OpenVUE should now work with <b>any</b> district using Synergy!</li>
+        </ul>
+        <p><b class="bw yellow-text">Other Changes</b></p>
+        <ul class="browser-default selectable">
+          <li><b>A heaping pile</b> of bugfixes and optimizations. Feeling nerdy? A technical description of every change is listed under the new <a href="changelog/full">full changelog</a>. Here&apos;s some of the more notable ones: 
+          </li>
+          <ul class="browser-default">
+            <li>Replaced the up arrow in a course with a left &quot;return&quot; arrow, since most people didn&apos;t use the up arrow.</li>
+            <li>Pending items now a) show their total point value and b) can be directly used in Grade Calculator</li>
+            <li>OpenVUE looks a lot better on mobile in general, especially on really small screens (where previously text was constantly cut off)</li>
+            <li>Behind the scenes: Fixed a months-long issue with weird dropdowns on iOS, users being asked to sign in twice, gradebook not updating, and many other obscure (but critical) bugs.</li>
+          </ul>
+        </ul>
+        <p><b class="bw light-blue-text">What Else?</b></p>
+        <ul class="browser-default selectable">
+          <li>Able/want to help? <b>Share the app with your friends</b> especially if you&apos;re an underclassmen. Having interested users means I&apos;m not throwing money at hosting/domains for nothing :D <br><i class="fas fa-caret-right"></i> If you&apos;re curious, currently (as of this release) <b>12.4% of Fossil students</b> have used OVUE in December, almost double compared to May last school year!</li>
+        </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><b>Open Beta 5.0.0</b>&#xA0;&#x2022; Build 921 &#x2022; October 20, 2019</div>
+        <div class="collapsible-body">
+          <p><b class="bw green-text">Fancy New Stuff</b></p>
+          <ul class="browser-default selectable">
+            <li><b>Thanks to everyone who took the survey!</b> The two most requested features were <b>trends and editing</b>, both of which are now features along with some other things.</li>
+            <li><b>Trends!</b> See how your grade changed over time with the new Trends tool! Click/tap on the number to show your grade at the time.</li>
+            <li><b>Editing!</b> See how changing your grade on a particular assignment (or two) affects your overall grade. You can even edit pending items!</li>
+            <li><b>Pending indicators</b> which show ungraded items as &quot;pending&quot; rather than &quot;new&quot;- requested quite a bit in the past. These will switch to &quot;new&quot; once they&apos;re graded.</li>
+            <li><b>Adaptive color scheme</b> matching your system&apos;s, so OpenVUE will be more consistent the rest of your platform.</li>
+            <li><b>The URL is respected now</b>, so if you bookmark the link to a specific course, it&apos;ll actually work.</li>
+          </ul>
+          <p><b class="bw yellow-text">Other Changes</b></p>
+          <ul class="browser-default selectable">
+            <li><b>More customization</b>, in fact, so much that there&apos;s now two settings tabs! <span class="light-blue-text bw">All features shown above can be disabled through settings.</span> Along with new customization tools.</li>
+            <li><b>More bug fixes</b>, let me know if you encounter any!</li>
+            <li><b>Bunch of small tweaks</b>, such as courses now show their room/location.</li>
+          </ul>
+          <p><b class="bw light-blue-text">What Else?</b></p>
+          <ul class="browser-default selectable">
+            <li>Able/want to help? <b>Share the app with your friends</b> especially if you&apos;re not a senior - I&apos;m not looking for monetary gains through OVUE, but having interested users means I&apos;m not throwing money at hosting/domains for nothing :D <br><i class="fas fa-caret-right"></i> If you&apos;re curious, currently (as of this release) <b>2.6% of Fossil students</b> have used OVUE in the last two weeks, about half the size of May last school year.</li>
+            <li>Speaking of apps, you know there&apos;s an <a target="_blank" href="../app/install"><b>installable mobile app for OVUE</b></a>, right?</li>
+            <li>This will likely be the last major open beta release before either moving into the prerelease / release phase! (There&apos;s a known issue with dropdowns behaving weirdly on iOS 13 that I&apos;d like to patch before full release)</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><b>Open Beta 4.1.0</b>&#xA0;&#x2022; Build 914 &#x2022; October 8, 2019</div>
+        <div class="collapsible-body">
+          <p><b class="bw light-blue-text">Quick Survey</b></p>
+          <ul class="browser-default selectable">
+            <li><b>Hey, you! Please take the survey!</b> It only takes a minute or two, and is to gauge interest on features being considered for release so I know what to prioritize - yes, your input actually matters here. Thanks!</li>
+            <li><b>Survey Link: </b><i class="light-blue-text bw">(The survey&apos;s over now. Want to see the results? Open the &quot;Roadmap&quot; tab in Gradebook!)</i></li>
+            <li><b>Can&apos;t take it right now? </b>You can always access this link by selecting <b class="green-text bw">More Actions <i class="fas fa-arrow-right"></i> Changelog</b>.</li>
+          </ul>
+          <p><b class="bw yellow-text">So, What Changed?</b></p>
+          <ul class="browser-default selectable">
+            <li><b>A lot more bug fixes</b> since there&apos;s always a lot of bugs. Again, please let me know if you encounter any!</li>
+            <li><b>Currently selected tab is now highlighted</b> along with quite a few other subtle improvements throughout.</li>
+            <li><b>Some more customization options </b>allowing you to disable and/or change a few more aspects of OpenVUE. </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><b>Open Beta 4.0.0</b>&#xA0;&#x2022; Build 818 &#x2022; August 18, 2019</div>
+        <div class="collapsible-body">
+          <p><b class="bw green-text">Fancy New Stuff</b></p>
+          <ul class="browser-default selectable">
+            <li><b>The sidebar has gotten a lot fuller!</b> Three new modules (detailed below) have been implemented, doubling what we previously had.</li>
+            <li><b>Bell Schedules!</b> Currently for Fossil only, but great for getting yourself oriented with the new schedule. Even tells you how long you have left in a class!</li>
+            <li><b>Attendance Records and Messages</b> - You won&apos;t need the other StudentVUE app to check these anymore!</li>
+            <li><b>Custom backgrounds</b> so you can finally put your face on top of your grades. Or not. Doesn&apos;t matter, you have options now!</li>
+            <li><b>Browser buttons work now</b> so pressing back will actually do what you&apos;d expect it to do. You can&apos;t bookmark a specific page quite yet - we&apos;re working on that!</li>
+            <li><b>More detailed &quot;More Info&quot; modals </b>now showing things like Date Due, why the assignment was highlighted (if it was), and more. </li>
+            <li><b>Extra credit assignments</b> are now more apparent than ever, and will simply say &quot;EC&quot;. </li>
+            <li><b>Automatic app updates</b> so any installed apps will always be put on the latest version of OpenVUE... and it only updates the components needed so it&apos;ll usually take &lt;10 mb.</li>
+            <li><b>Offline app use </b>which was half-implemented previously but only somewhat worked. You can now take your phone offline and still access your gradebook and bell schedule after loading it once!</li>
+            <li><b>This modal is new too if you didn&apos;t notice</b>, so you don&apos;t have to guess what changed anymore. It&apos;s also accessible under the &quot;More Actions&quot; button.</li>
+          </ul>
+          <p><b class="bw yellow-text">Some Other Tidbits</b></p>
+          <ul class="browser-default selectable">
+            <li><b>Many many bugs were fixed</b> between the previous major release and now, but we&apos;re certain there&apos;s more. Please let us know if you encounter any!</li>
+            <li><b>Notifier is disabled</b> unless you were with us in the 2018-19 year. You can still request access manually, but the reason for this is in the next point.</li>
+            <li><b>Significant changes in data handling (and our legal pages)</b> because while most students could care less about what info they give/store, district IT personnel have expressed potential concerns, and we&apos;re taking proactive measures to both collect as little data as possible and be extremely open in what we do collect. Specifics are detailed in our <a href="../legal#privacy">Privacy Policy</a>.</li>
+            <li><b>We&apos;re almost out of Open Beta!</b> The big features envisioned last year are more or less complete now. After testing the big features a bit and smoothing out the smaller issues, we&apos;ll officially go into Build 1000!</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+

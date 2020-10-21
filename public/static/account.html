@@ -1,0 +1,131 @@
+
+  
+  <link rel="stylesheet" href="css/account.css" type="text/css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js" integrity="sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js" crossorigin="anonymous"></script>
+  <script defer src="js/svuelib.js"></script>
+
+  <div class>
+    <div class="row">
+      <div class="col s12 m9 l10">
+        <h1>Your Account</h1>
+        <hr>
+        <div id="loading">
+          <h4><i class="fas fa-circle-notch fa-spin"></i> Loading account information...</h4>
+        </div>
+        <div id="welcome" class="section scrollspy">
+          <h3>Welcome, <span id="user"></span></h3>
+          <p class="gray" id="userStr"></p>
+          <p id="about-demo" class="orange-text bw" style="display: none"><i class="fas fa-info-circle"></i> You&apos;re currently signed in with the demo account. As a result, some of the data you&apos;d normally be able to access will be redacted (shown as &quot;undefined&quot;) and &quot;privileged&quot; actions (i.e., setting up security keys, signing out of all devices) will be unavailable.</p>
+        </div>
+        <div id="statistics" class="section scrollspy">
+          <h2>Statistics / User Info</h2>
+          <p class="light-blue-text bw">Joined OpenVUE on <b id="userJoin"></b></p>
+          <p class="teal-text bw">
+            School: <span id="sp-school"></span><br>
+            Grade: <span id="sp-gr"></span>
+          </p>
+          <!-- <p>
+            You've checked Gradebook <b class='light-green-text bw'>7</b> times in the last seven days.<br/>
+            <i class='fas fa-caret-right'></i> This puts you in the <b class='light-green-text bw'>90th</b class='green-text bw'> percentile. (<i>You check <b class='light-green-text bw'>more</b> often than most people</i>)
+          </p> -->
+          <table>
+            <thead>
+              <tr>
+                <th>Statistic</th>
+                <th>You</th>
+                <!-- <th>Average</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Times checked Gradebook <span class="nw">(avg / day)</span></td>
+                <td class="light-green-text bw"><b id="tcg_user">0.0</b></td>
+                <!-- <td class='light-blue-text bw'><b id='tcg_avg'>0.0</b></td> -->
+              </tr>
+              <tr>
+                <td>Total requests made</td>
+                <td class="light-green-text bw"><b id="trm_user">0.0</b></td>
+                <!-- <td class='gray'>n/a</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="sessions" class="section scrollspy">
+          <h2>Your Sessions</h2>
+          <p>You&apos;re currently signed in on these devices.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Last Used</th>
+                <th>Browser / OS</th>
+                <th>Login IP</th>
+                <th>Most Recent IP</th>
+              </tr>
+            </thead>
+            <tbody id="tb_sessions" class="selectable"></tbody>
+          </table>
+          <p>Sessions with a &quot;<b class="red-text bw">*</b>&quot; have &quot;Remember Me&quot; disabled.</p>
+          <button onclick="signOutEverywhere()" class="btn blue waves-effect"><i class="fas fa-sign-out-alt"></i> Sign Out Everywhere</button>
+        </div>
+        <div id="securityKeys" class="section scrollspy">
+          <h2>Security Keys</h2>
+          <p id="keys-count">You do not currently have any security keys registered with OpenVUE.</p>
+          <table id="keys-table">
+            <thead>
+              <tr>
+                <th>Friendly Name</th>
+                <th>Key ID</th>
+                <th>Last Used</th>
+              </tr>
+            </thead>
+            <tbody id="tb_keys" class="selectable"></tbody>
+          </table>
+          <p><i>Security keys include both physical security keys as well as hardware TPM based keys (i.e., Face ID, Windows Hello, etc.). Use the button below to register a new one.</i></p>
+          <a href="/signin/reauth?action=registerKey"><button class="btn green waves-effect"><i class="fas fa-key"></i> Register a Key</button></a>
+        </div>
+        <div id="accessHistory" class="section scrollspy">
+          <h2>Access History</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Method</th>
+                <th>IP</th>
+              </tr>
+            </thead>
+            <tbody id="tb_access" class="selectable"></tbody>
+          </table>
+          <p>Access history is limited to 50 entires or 2 weeks back, whichever comes first.</p>
+        </div>
+        <div id="loginHistory" class="section scrollspy">
+          <h2>Login History</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Browser / OS</th>
+                <th>IP</th>
+              </tr>
+            </thead>
+            <tbody id="tb_login" class="selectable"></tbody>
+          </table>
+          <p>Login history is limited to 20 entires or 1 month back, whichever comes first.</p>
+        </div>
+      </div>
+      <div class="col hide-on-small-only m3 l2">
+        <br>
+        <ul class="section table-of-contents pinned">
+          <li><a class="active" href="#welcome">Welcome</a></li>
+          <li><a href="#statistics">Statistics</a></li>
+          <li><a href="#sessions">Your Sessions</a></li>
+          <li><a href="#securityKeys">Security Keys</a></li>
+          <li><a href="#accessHistory">Access History</a></li>
+          <li><a href="#loginHistory">Login History</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script defer src="js/account.js"></script>
+

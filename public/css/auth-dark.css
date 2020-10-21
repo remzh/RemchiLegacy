@@ -1,0 +1,83 @@
+#imgbk{
+  background-image: url(../images/night.jpg);
+}
+html, .card{
+  background-color: #25272a;
+  color: #fff;
+}
+.dropdown-content{
+  background-color: #333;
+}
+.dropdown-content li>a, .dropdown-content li>span{
+  color: #5fc7bc;
+}
+.dropdown-content li:hover, .dropdown-content li.active{
+  background-color: #444;
+}
+body.keyboard-focused .dropdown-content li:focus{
+  background-color: #444;
+}
+input{
+  color: #fff;
+}
+input:not([type]):disabled {
+  color: #ded;
+}
+input:not([type]):disabled+label {
+  color: #9e9e9e; 
+} 
+input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default):disabled+label {
+  color: #9e9e9e; 
+}
+
+input:-internal-autofill-selected, input:-webkit-autofill {
+  /* super bright default autofill background hurts people's eyes - works fine on light theme, but not on dark */
+  -webkit-box-shadow: 0 0 0 30px #3a3a3f inset !important;
+  box-shadow: none;
+  -webkit-text-fill-color: white; 
+  caret-color: white;
+}
+
+.btn:focus{
+  border: 1px solid #c1d8fa; 
+}
+
+label{
+  color: #efe;
+}
+#div-msg, #div-msg2{
+  background: #401d0b;
+  border-color: #732;
+}
+#div-msg.msg-success{
+  background-color: #053105; 
+  border-color: #141;
+}
+.domain:hover, .domain:focus, .wa-option:hover, .wa-option:focus{
+  background-color: #303336;
+}
+#div-domain:focus, label ~ #div-domain:focus{
+  outline: none; 
+  color: rgb(146, 236, 146); 
+}
+
+[type="checkbox"].tabbed:focus + span:not(.lever):after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  border: 0;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
+          box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media only screen and (max-width: 600px) {
+  #login-footer{
+    color: #fff;
+  }
+}
+@media only screen and (max-width: 360px) {
+  #ft, #ft-right{
+    background: rgba(37, 39, 42, 0.6);
+  }
+}

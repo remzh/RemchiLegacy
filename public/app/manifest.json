@@ -1,0 +1,22 @@
+{
+  "name": "StudentVUE+",
+  "short_name": "StudentVUE+",
+  "lang": "en-US",
+  "scope": "/",
+  "start_url": "/app/start",
+  "display": "standalone",
+  "theme_color": "#2962FF",
+  "icons": [
+    {
+      "src": "/app/icons/svue.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/app/icons/svue-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#c1e2ff"
+}

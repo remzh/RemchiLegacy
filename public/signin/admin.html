@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>Sign In | OpenVUE ADM</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='../favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <link rel='stylesheet' href='auth.css' type='text/css'>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js' integrity='sha256-vrn14y7WH7zgEElyQqm2uCGSQrX/xjYDjniRUQx3NyU=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script async src='https://unpkg.com/animejs@3.0.1/lib/anime.min.js'></script>
+  <script defer src='auth.js'></script>
+  <noscript><style>#div-msg{opacity:1; height: 96px; margin-top: 10px; padding: 3px 6px} input, button, label {display: none !important}</style></noscript>
+</head>
+<body>
+  <div id='imgbk' class='hide-on-small-only'></div>
+  <div id='login-outer'>
+    <div id='login-div' class='card'>
+      <div id='div-loadbar'></div>
+      <div class='card-content' id='cc'>
+        <span class='card-title'><img id='title-icon' src='../images/icon-sm.png'> ADM Sign In</span>
+        <p>Looking for OpenVUE? You're in the wrong place. <br><a href='../signin'>Sign in to OpenVUE</a></p>
+        <div id='div-msg'>
+          <b id='msg-title'>Error:</b>
+          <span id='msg-content'>JavaScript is disabled (29).<br>OpenVUE can not be used without JavaScript.<br><br>If you need help enabling JavaScript, <a href='https://enable-javascript.com'>click here</a>.</span>
+        </div>
+        <div class='input-field'>
+          <input id='i_user' type='text' maxlength='24' class='validate'>
+          <label id='l_user' for='i_user'>Username</label>
+        </div>
+        <div class='input-field'>
+          <input id='i_pass' type='password' maxlength='48' class='validate' autocomplete='current-password'>
+          <label for='i_pass'>Password</label>
+        </div>
+        <label>
+          <input id='c_rem' type='checkbox'/>
+          <span>Remember Me</span>
+        </label>
+        <button onclick='login()' class='btn btn-flat right blue white-text waves-effect'>Continue</button>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div id='login-footer'>
+    <span id='ft'>ADM | OpenVUE is not affiliated with Edupoint in any way | <a href='../legal'>Legal</a></span>
+    <span id='ft-right'>&copy; 2020 Ryan Zhang. All Rights Reserved.</span>
+  </div>
+</body>
+</html>

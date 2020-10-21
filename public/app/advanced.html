@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>Advanced Diagnostics | OpenVUE</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+  <link rel='manifest' href='manifest.json'>
+  <link href='../favicon.ico' rel='icon' type='icon/ico'>
+  <link defer rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <style>
+    a.btn, a.btn-flat{
+      text-transform: none; 
+    }
+    .modal p{
+      word-break: break-all;
+    }
+  </style>
+  <script defer src='../js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='../js/ver.js'></script>
+  <script defer src='../js/svuelib.js'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js' integrity='sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=' crossorigin='anonymous'></script>
+  <script defer src='https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js'></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-96580670-3'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div class='container'>
+    <h4><img src='../images/icon.png' style='height: 40px; vertical-align: text-bottom'> OpenVUE</h4>
+    <hr/>
+    <h6><a href='#' onclick='window.history.back()'><i class='fas fa-caret-left'></i> Go Back</a> | Advanced Diagnostics and Troubleshooting</h6>
+    <p><i class='fas fa-exclamation-triangle orange-text text-darken-1'></i> This page is for development use and troubleshooting only.</p>
+    <p><b>Version Information</b><br><span id='sp-ver'></span></p>
+    <p><b>In App: </b><span id='sp-app'></span></p>
+    <p><b>Service Workers</b> <a onclick='getSW()' href='#'>[Update]</a> | <a onclick='rmSW()' href='#'>[Unregister All]</a></p>
+    <p id='p-sw'></p>
+    <p><b>Local Storage</b></p>
+    <ul id='p-ls' class='browser-default'></ul>
+    <p><b>IndexedDB</b></p>
+    <a href='#' onclick='idb(1)'>[Invalidate gbCache]</a>
+    <br>
+    <ul id='p-idb' class='browser-default'></ul>
+  </div>
+  <div id='modal' class='modal'>
+    <div id='md-content' class='modal-content'>
+    </div>
+    <div class='modal-footer'>
+      <a href='#!' class='modal-close white-text blue waves-effect btn-flat'>Done</a>
+    </div>
+  </div>
+  <script>
+    function getSW(){
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        $('#p-sw').html('<span class="green-text">total: '+registrations.length+'</span><br>');
+        for(let i = 0; i < registrations.length; i++) {
+          $('#p-sw').append(`[${i+1}] scope ${registrations[i]['scope']}<br>`);
+        } 
+      });
+    }
+    function rmSW(){
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for(let registration of registrations) {
+        registration.unregister();
+        $('#p-sw').append(`<span class='red-text'>[Unregistered]</span> scope ${registration.scope}`); 
+      }});
+      setTimeout(getSW, 2000);
+    }
+    function getLS(){
+      $('#p-ls').html(''); 
+      let keys = Object.keys(localStorage); 
+      for(key of keys){
+        $('#p-ls').append(`<li>${key} <a href='#' onclick='showLS("${key}")'>[View]</a> | <a href='#' onclick='rmLS("${key}")'>[Delete]</a></li>`)}
+    }
+    function showLS(input){
+      M.Modal.getInstance($('#modal')[0]).open();
+      let item = localStorage.getItem(input);
+      let dec = 'N/A'; 
+      try {dec = atob(item)} catch(e) {} 
+      $('#md-content').html(`key: <b>${input}</b><br><br><b>Raw Data</b><p>${item}</p><br><b>Decoded Data</b><p>${dec}<p>`)
+    }
+    function rmLS(item){
+      localStorage.removeItem(item); 
+      getLS();
+    }
+    function idb(action){
+      if(action === 1){
+        localforage.getItem('gbCache').then(r => {
+          if(!r){
+            rlib.toast.warn('gbCache does not currently exist.');
+            return; 
+          }
+          r.timestamp -= 2000000; 
+          localforage.setItem('gbCache', r).then(r => {
+            rlib.toast.success('Success.')
+          })
+        }); 
+      }
+    }
+    function getIDB(){
+      $('#p-idb').html(''); 
+      localforage.keys().then(keys => {
+        for(let key of keys){
+          $('#p-idb').append(`<li>${key} <a href='#' onclick='rmIDB("${key}")'>[Delete]</a></li>`); 
+        }
+      })
+    }
+    function rmIDB(key){
+      localforage.removeItem(key).then(r => {
+        getIDB(); 
+      })
+    }
+    window.onload = function(){
+      M.AutoInit(); 
+      getSW(); 
+      getLS(); 
+      getIDB();
+      $('#sp-ver').html(`Build ${svueVer.build} (${svueVer.stage} ${svueVer.str}) / ${svueVer.date})`); 
+      $('#sp-app').html(svueVer.app?`Yes (${svueVer.appOS})`:`No`)
+    };
+  </script>
+  <footer>
+    <div class='container'>
+      <hr style='border: none; border-bottom: 1px solid #000'>
+      <p><a href='..'>Homepage</a> | <a href='start'>Start Page</a> | <a href='install'>Installation Page</a> <br>&copy; 2020 Ryan Zhang. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

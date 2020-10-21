@@ -1,0 +1,1 @@
+window.svueVer = {build: 1233, str: '2.0.0', stage: 'Release', date: '10.20.20'}; if(window.navigator.standalone == true){window.svueVer.app = true; window.svueVer.appOS = 'iOS/Safari'} else if(window.matchMedia('(display-mode: standalone)').matches){window.svueVer.app = true; window.svueVer.appOS = 'Android/Desktop'}

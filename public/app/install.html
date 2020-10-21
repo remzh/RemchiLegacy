@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>App Installer • OpenVUE</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+  <meta name='theme-color' content='#2962FF'>
+  <link rel='manifest' href='manifest.json'>
+  <link href='../favicon.ico' rel='icon' type='icon/ico'>
+  <link id='css-materialize' defer rel='stylesheet' crossorigin='anonymous'/>
+  <link defer rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link defer rel='stylesheet' href='css/main.css'/>
+  <link id='css-theme' defer rel='stylesheet'/>
+  <script defer src='../js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js' crossorigin='anonymous'></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-96580670-3'></script>
+  <script defer src='js/themeInit.js'></script>
+  <script defer src='js/installLib.js'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div id='bk'></div>
+  <div id='bko'></div>
+  <div class='container'>
+    <h4><img src='../images/icon.png' style='height: 40px; vertical-align: text-bottom'> OpenVUE</h4>
+    <hr/>
+    <h6><a href='#' onclick='window.history.back()'><i class='fas fa-caret-left'></i> Go Back</a> | App Installation</h6>
+    <div id='div-browserInfo' style='display: none'>
+        <p>Detected <b id='info-browser'></b> on <b id='info-os'></b></p>
+    </div>
+    <div id='div-check'>
+      <div class='progress'>
+        <div class='indeterminate'></div>
+      </div>
+      <p>Checking Compatibility...</p>
+    </div>
+    <div id='div-ready' style='display: none'>
+      <p><i class='fas fa-check'></i> Ready to install! <br/><a data-target='about-pwas' href='#' class='modal-trigger'><i class='fas fa-question-circle'></i> How will this "install"?</a></p>
+      <button id='installBtn' class='btn blue accent-2 waves-effect'><span class='sp-os'></span> Install App</button>
+      <p id='msg-refresh' class='grey-text' style='display: none'><i class='fas fa-info-circle'></i> It appears you cancelled the installation. You'll need to refresh the page if you want to install the app again.</p>
+    </div>
+    <div id='div-installed' style='display: none'>
+      <p><i class='fas fa-check green-text'></i> You've successfully installed the OpenVUE PWA.</p>
+      <p><a href='../dashboard'>Open Dashboard</a></p>
+    </div>
+    <div id='div-msg' style='display: none'>
+      <p><span id='msg-icon'></span> <span id='msg-txt'></span></p>
+    </div>
+    <div id='div-minRequirements' style='display: none'>
+      <p><b>Mininum Requirements: </b><br>Depending on the OS, your device must meet one of the following:<br>Chrome 67+ on Android 4.4+ (Firefox for Android <b>should</b> work)<br>Chrome 70+ on Windows 10 (Firefox <b>does not</b> work on desktop)<br>iOS 11.3+ (iOS 12.2+ recommended)</p>
+    </div>
+  </div>
+  <footer>
+    <br/>
+    <div class='container'>
+      <hr/>
+      <p><a href='..'>Homepage</a> | <a href='advanced'>Advanced</a> | &copy; 2020 Ryan Zhang. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <div id='about-pwas' class='modal'>
+    <div class='modal-content'>
+      <h4>On Progressive Web Apps</h4>
+      <p>OpenVUE is a progressive web app (PWA), which means that on (relatively) modern devices it'll behave like a normal app, but at a fraction of the size. Benefits of progressive web apps include automatic updates of only the sections which need updating (rather than reinstalling the entire app), doesn't cost me (the developer) $99/year (*cough* Apple), offline capabilities (which can be seen in OVUE w/ the cached grades feature), and it works just like any other app other than the non-conventional installation method.</p>
+    </div>
+    <div class='modal-footer'>
+      <a href="#" class="green white-text modal-close waves-effect btn-flat">Done</a>
+    </div>
+  </div>
+</body>
+</html>

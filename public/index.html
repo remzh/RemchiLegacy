@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>OpenVUE</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'/>
+  <meta name='description' content='The smart, modern gradebook for StudentVUE. Built in grade calculator, what-if support, GPA, dark mode, and more!'>
+  <link href='favicon.ico' rel='icon' type='icon/ico'/>
+  <link rel='canonical' href='https://svue.itsryan.org'/>
+  <link defer rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <link defer rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link defer rel='stylesheet' href='css/landing.css'/>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js' integrity='sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=' crossorigin='anonymous'></script>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js'></script>
+  <script defer src='js/ver.js'></script>
+  <script defer src='js/landing.js'></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96580670-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div class='navbar-fixed'>
+    <nav id='nav' class='nav-top'>
+      <div class='nav-wrapper'>
+        <a href='#' class='brand-logo left'><img id='nav-icon' src='images/icon-sm.png'/> OpenVUE</a>
+        <a title='Toggle Theme' id='a-theme' class='right' style='font-weight: 300; cursor: pointer'><i class='fas fa-moon'></i></a>
+        <span class='spl right'>|</span>
+        <a id='a-nav-start' href='signin' class='right' style='font-weight: 300'>Sign In</a>
+      </div>
+    </nav>
+  </div>
+  <div id='outer'>
+    <div id='top'>
+      <div class='container'>
+        <h3 id='header'>The smart, modern interface for StudentVUE.</h3>
+        <h5 id='ver' style='display: none'><span id='ver-str'></span> • <b>Build <span id='ver-build'></span></b></h5>
+        <br/>
+        <div id='top-actions'>
+          <a id='btn-signin' href='signin'><button class='btn waves-effect blue'><i class='fas fa-sign-in-alt'></i> Sign In</button></a>
+          <a id='btn-open' href='dashboard'><button class='btn waves-effect blue'><i class='far fa-window-maximize'></i> Open Dashboard</button></a>
+          <a id='btn-app'><button disabled id='btn-app-inner' class='btn waves-effect green'>Install App</button></a>
+          <button id='btn-more' class='btn waves-effect waves-light dropdown-trigger' data-target='drop'><i class='fas fa-ellipsis-v'></i> More</button>
+        </div>
+        <br/>
+        <a id='btn-down' onclick='window.scrollTo({left: 0, top: window.innerHeight-50, behavior: "smooth"})' class='tooltipped' data-position='top' data-tooltip='Learn More'><i class='fas fa-chevron-down'></i></a>
+        <ul id='drop' class='dropdown-content'>
+          <li><a href='signout'><i class='fas fa-sign-out-alt'></i> Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class='container'>
+      <h4>Congrats!</h4>
+      <p>You've successfully gotten <a href='https://github.com/Ryan778/OpenVUE' target='_blank'>OpenVUE</a> up and running.</p>
+      <p>Now that you're here, feel free to modify the landing page to your liking!</p>
+    </div>
+  </div>
+  <footer class='page-footer'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col l6 s12'>
+          <h5 class='white-text'>Disclaimer</h5>
+          <p><b>You are responsible with complying with your district's policies.</b> To help with this, we do not store any data without prior consent and we do not collect or store any more data than needed for OpenVUE to work as intended. No personal information is collected other than your name, school, and grade, but ultimately you still need to make sure whether it's OK to use a third-party application.</p>
+        </div>
+        <div class='col l4 offset-l2 s12'>
+          <h5 class='white-text'>Links</h5>
+          <ul>
+            <li><a class='blue-text text-lighten-4' href='#top'>Return to Top</a></li>
+            <li><a class='blue-text text-lighten-4' href='dashboard'>Dashboard</a></li>
+            <li><a class='blue-text text-lighten-4' href='account'>My Account</a></li>
+            <li><a class='blue-text text-lighten-4' href='https://github.com/Ryan778/OpenVUE' target='_blank'>Source Code</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='footer-copyright'>
+      <div class='container'>
+        &copy; 2020 Ryan Zhang. All Rights Reserved.
+        <a class='right blue-text text-lighten-4' href='legal'>Legal</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

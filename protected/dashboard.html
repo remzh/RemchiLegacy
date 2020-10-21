@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>OpenVUE</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0'>
+  <link href='../favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link id='css-theme' defer rel='stylesheet' crossorigin='anonymous'/>
+  <link id='css-theme-secondary' defer rel='stylesheet' crossorigin='anonymous'/>
+  <link defer rel='stylesheet' href='css/secondary.css' type='text/css'>
+  <link defer rel='stylesheet' href='css/main.css' type='text/css'>
+  <script defer src='js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js' integrity='sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=' crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js' integrity='sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=' crossorigin='anonymous'></script>
+  <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js' crossorigin='anonymous'></script>
+  <script defer src='https://unpkg.com/animejs@3.0.1/lib/anime.min.js' crossorigin='anonymous'></script>
+  <script defer src='js/svuelib.js'></script>
+  <script defer src='js/core.js'></script>
+  <script defer src='js/notifier.js'></script>
+  <script defer src='js/ver.js'></script>
+  <script defer src='js/main.js'></script>
+  <script defer src='js/secondary.js'></script>
+  <script async src='https://app.appzi.io/bootstrap/bundle.js?token=5gJLu'></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-96580670-3'></script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div id='bkImg'></div>
+  <div id='loadingDiv' style='position: fixed; top: 0; left: 0; width: calc(100% - 60px); height: 100%; font-family: -apple-system, "Roboto", "Segoe UI", sans-serif; z-index: 9999; padding: 0 30px; overflow: hidden; color: #fff'>
+    <style>
+      body {
+        overflow: hidden;
+      }
+      #loadingDiv {
+        opacity: 1; 
+        box-sizing: content-box; 
+        transition: opacity 0.4s; 
+        background: rgb(32, 44, 54); 
+        background: linear-gradient(150deg, rgb(35, 44, 53) 0%, rgb(8, 8, 20) 100%);
+      }
+      #loadingDiv h2{
+        font-size: 2.1rem;
+      }
+      #loadingDiv p{
+        font-size: 1.2rem;
+      }
+      #loadingDiv-p2, #loadingDiv-p3{
+        display: none;
+      }
+      #ld-outerPB {
+        width: 200px;
+        height: 6px;
+        position: relative;
+        background: #888;
+        border-radius: 3px;
+      }
+      #ld-innerPB{
+        width: 0px; 
+        height: 6px; 
+        border-radius: 3px; 
+        background: #8cf; 
+        transition: background 0.2s, width 3s;
+        transition-timing-function: ease-out;
+      }
+      @media (prefers-color-scheme: light) {
+        #loadingDiv { 
+          background: rgb(23,92,155); 
+          background: linear-gradient(150deg, rgba(23,92,155,1) 0%, rgba(0,0,75,1) 100%);
+        }
+      }
+    </style>
+    <h2 style='font-weight: 400; font-family: "zen-new", -apple-system, "Roboto", "Segoe UI", sans-serif'>OpenVUE</h2>
+    <div id='ld-outerPB'><div id='ld-innerPB'></div></div>
+    <p id='loadingDiv-p1'>Initializing OpenVUE Dashboard... (1/3)</p>
+    <p id='loadingDiv-p2'>Loading JS packages... (2/3)</p>
+    <p id='loadingDiv-p3'>Loading CSS + Icons... (3/3)</p>
+    <p>If you see this message for an extended period of time (more than a few seconds), then it's likely that something went wrong. </p>
+    <noscript><p><b>It appears that JavaScript may be disabled, which is required to run OpenVUE.</b></p></noscript>
+    <p><a href='#' style='color: #aaf' onclick='location.reload()'>Reload OpenVUE</a></p>
+    <p style='position: fixed; bottom: 0px; color: #ccf'>&copy; 2020 Ryan Zhang. All Rights Reserved.</p>
+  </div>
+  <div class='navbar-fixed'>
+    <nav class='svue-navblue'>
+      <a href='#' data-target='slide-out' class='sidenav-trigger' title='Open side navigation bar'>
+        <i class='fa fa-bars nav-comp' style='float: left; margin-left: 16px; font-size: 20px'></i></a>
+      <div class='snav-wrapper'>
+        <a class='brand-logo'>OpenVUE</a>
+        <ul id='nav-mobile' class='right hide-on-med-and-down'>
+          <li><a href='#' data-target='navbar-drop' class='waves-effect dropdown-trigger'><i class='fas fa-user-circle'></i> <span class='sp-fullName'>(...)</span> <i class='fa fa-caret-down'></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <ul id='navbar-drop' class='dropdown-content'>
+    <li class='nh'><span><i class='fas fa-fw fa-user-circle'></i> <span class='sp-fullName' >(Loading)</span></span></li>
+    <li class="divider" tabindex="-1"></li>
+    <li>
+      <a class='accountInfo-trigger' href='../account'><i class='fas fa-fw fa-user'></i> <span>Account</span></a>
+    </li>
+    <li>
+      <a href='../signout'><i class='fas fa-fw fa-sign-out-alt'></i> <span>Sign Out</span></a>
+    </li>
+  </ul>
+  <ul id='drop-moreActions' class='dropdown-content'>
+    <li class='show-in-app'>
+      <a href='#' onclick='returnToLaunch()' class='waves-effect'><i class='fa fa-fw fa-home'></i> <span>Return to Launch Screen</span></a>
+    </li>
+    <li class='show-in-web'>
+      <a href='..' class='waves-effect'><i class='fa fa-fw fa-arrow-left'></i> <span>Go to Homepage</span></a>
+    </li>
+    <li class='show-in-app'>
+      <a href='#' onclick='location.reload()' class='waves-effect'><i class='fa fa-fw fa-redo-alt'></i> <span>Reload Page</span></a>
+    </li>
+    <li>
+      <a href='#' class='waves-effect modal-trigger' data-target='modal-whatsnew'><i class='fa fa-fw fa-file-alt'></i> Show Changelog</a>
+    </li>
+    <li id='sn-roadmap' class='bold'>
+      <a href='#' onclick='pageNav("roadmap", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-map-marked-alt'></i> Roadmap</a>
+    </li>
+    <li class='hide-on-large-only'>
+      <a class='accountInfo-trigger' href='account'><i class='fa fa-fw fa-user'></i> My Account</a>
+    </li>
+    <li class='bold'>
+      <a data-az-l='68f8e09d-2966-455c-885a-b798bab5af4a' class='waves-effect sidenav-close'>
+      <i class='fas fa-fw fa-bullhorn'></i> Send Feedback</a>
+    </li>
+    <li class='bold'>
+      <a class='waves-effect'>
+      <i class='fas fa-fw fa-times'></i> Close Dropdown</a>
+    </li>
+  </ul>
+  <ul id='slide-out' class='sidenav sidenav-fixed'>
+    <li class='bold'>
+      <span style='padding: 0 32px; font-size: 24px' class='bw cf hide-on-large-only'><img alt='' src='images/icon-sm.png' style='height: 30px; vertical-align: text-bottom'/> OpenVUE <a href='#' class='btn-dismiss waves-effect sidenav-close' style='font-size: 14px' tabindex='0'><i class='fas fa-times'></i></a></span>
+    </li>
+    <li id='sn-gradebook' class='bold sidenav-hl'>
+      <a href='#' onclick='pageNav("gradebook", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-book'></i> Gradebook</a></li>
+    <li id='sn-schedule' class='bold'>
+      <a href='#' onclick='pageNav("schedule", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-bell'></i> Bell Schedule</a></li>
+    <li id='sn-courseHistory' class='bold'>
+      <a href='#' onclick='pageNav("courseHistory", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-graduation-cap'></i> GPA / Course History</a></li>
+    <li id='sn-attendance' class='bold'>
+      <a href='#' onclick='pageNav("attendance", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-calendar-alt'></i> Attendance</a></li>
+    <li id='sn-messages' class='bold'>
+      <a href='#' onclick='pageNav("messages", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-envelope'></i> Messages</a></li>
+    <li id='sn-notifier' class='bold'>
+      <a href='#' onclick='pageNav("notifier", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-comment'></i> Notifier</a></li>
+    <li id='sn-export' class='bold'>
+      <a href='#' onclick='pageNav("export", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-share'></i> Export Data</a></li>
+    <div class='slide-btm'>
+      <li id='li-error' class='bold modal-trigger' data-target='modal-errorStack' style='display: none; background: #ff880030'>
+        <a class='orange-text bw' href='#'><i class='fas fa-fw fa-exclamation-triangle'></i> <span id='li-error-msg'>1 Error</span></a></li>
+      <li class='bold hide-on-large-only'>
+        <a href='../signout' class='waves-effect'><i class='fas fa-fw fa-sign-out-alt'></i> Sign Out</a></li>
+      <li id='sn-settings' class='bold' id='sidenav-opt-settings'>
+        <a href='#' onclick='pageNav("settings", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-cog'></i> Settings</a></li>
+      <li class='bold'>
+        <a href='#' class='waves-effect dropdown-trigger' data-target='drop-moreActions'><i class='fas fa-fw fa-plus-square'></i> More Actions</a></li>
+      <!-- <li class=''>
+        <a class='yellow-text bw'><i class='fas fa-fw fa-broadcast-tower'></i> Poor Connection</a></li> -->
+    </div>
+  </ul>
+  <div id='div-outer' class='container wrapper'>
+    <div id='v-gradeList'>
+      <ul class='collection with-header'>
+        <transition-group name='anim-msg'>
+          <li v-for='(msg, index) in banner.messages' class='collection-header ch-animated' :class='{"bk-subtle":!msg.bk,"bk-green":msg.bk==="C","bk-orange":msg.bk==="E"}' v-bind:key='msg.text?msg.text:index'>
+            <span v-show='msg.icon==="C"'><i class='fas fa-fw fa-check'></i></span>
+            <span v-show='msg.icon==="I"'><i class='fas fa-fw fa-info-circle'></i></span> 
+            <span v-show='msg.icon==="E"'><i class='fas fa-fw fa-exclamation-triangle'></i></span> 
+            {{msg.text}}
+            <span v-on:click='banner.messages.splice(index, 1)' v-on:keyup.enter='banner.messages.splice(index, 1)' class='waves-effect btn-dismiss' tabindex='0'><i class='fas fa-times'></i></span>
+          </li>
+          <li v-if='banner.update' class='collection-header ch-animated bk-green' v-bind:key='-1'>
+            <i class='fas fa-fw fa-bullhorn'></i> OpenVUE has been updated to <b>r2.0.0</b>!
+            <a href='#' class='right pointer' v-on:click='cbList.showChangelog()' tabindex='0'>See what's new</a>
+          </li>
+        </transition-group>
+        <transition name='anim-msg'>
+          <li v-if='banner.refresh' class='collection-header ch-animated' v-bind:key='-2' :class='{"bk-subtle":refreshStatus==="L","bk-green":refreshStatus==="C","bk-orange":refreshStatus==="E"}'>
+            <span v-show='refreshStatus==="C"'><i class='fas fa-fw fa-check'></i></span>
+            <span v-show='refreshStatus==="L"'><i class='fas fa-fw fa-circle-notch fa-spin'></i></span> 
+            <span v-show='refreshStatus==="E"'><i class='fas fa-fw fa-exclamation-triangle'></i></span> 
+            {{banner.refresh.slice(2)}}
+          </li>
+        </transition>
+        <li class='collection-header c-li'>
+          <span id='sp-greeting'></span>
+          <span class='hide-on-med-and-up' style='font-size: 1.1rem'>
+            <span class='right light-blue-text pointer bw' v-on:click='cbList.openRP()' v-on:keyup.enter='cbList.openRP()' v-on:keyup.space.prevent='cbList.openRP()' tabindex='0'><i class='fas fa-cog'></i></span>
+            <span id='sp-mobile-lu' class='right light-blue-text pointer bw dropdown-trigger drop-nc' data-target='drop-lastUpdated' style='margin-right: 16px' tabindex='0'><i class='fas fa-history'></i></span>
+            <ul id='drop-lastUpdated' class='dropdown-content'>
+              <li class='nh'>
+                <span class='sp-lastUpdated'>Currently Updating...</span>
+              </li>
+              <li>
+                <a href='#' v-on:click='cbList.refresh()' v-on:keyup.enter='cbList.refresh()' v-on:keyup.space.prevent='cbList.refresh()' class='waves-effect'><i class='fa fa-fw fa-sync-alt'></i> <span>Update Now</span></a>
+              </li>
+            </ul>
+          </span>
+          <span class='hide-on-small-and-down'>
+            <span class='gray right sp-lastUpdated'>Loading...</span>
+          </span>
+          <br/>
+          <span class='sp-fullName' style='font-size: 26px; line-height: 1.1'></span>
+          <br/>
+          <span style='display: block; padding-top: 4px'>
+            <span class='hide-on-small-only'><span id='sp-time' class='light-blue-text bw'>...</span> • </span><span id='sp-date' class='light-blue-text bw'></span> <span id='sp-weather-outer' class='hidden'>• <span id='sp-weather' class='pointer light-blue-text bw dropdown-trigger drop-nc' data-target='sp-weather-drop' tabindex='0'><i class='far fa-question-circle'></i> ??</span></span>
+            <span class='hide-on-small-only'>
+              <span class='right tooltipped light-blue-text pointer bw' v-on:click='cbList.openRP()' v-on:keyup.enter='cbList.openRP()' v-on:keyup.space.prevent='cbList.openRP()' data-tooltip='Reporting Period Settings' data-position='top' tabindex='0'><i class='fas fa-cog spin-on-hover'></i></span>
+              <span class='right tooltipped light-blue-text pointer bw' v-on:click='cbList.refresh()' v-on:keyup.enter='cbList.refresh()' v-on:keyup.space.prevent='cbList.refresh()' data-tooltip='Force Update' data-position='top' style='margin-right: 8px;' tabindex='0'><i class='fas fa-sync spin-on-hover'></i></span>
+            </span>
+          </span>
+          <div id='sp-weather-drop' class='dropdown-content'></div>
+        </li>
+        <li class='collection-item' v-if='banner.loading'>
+          <span class='bw'><i class='fas fa-spin fa-circle-notch'></i> <span id='course-loading-msg'>Loading Gradebook</span>...</span>
+        </li> 
+        <li class='collection-item' v-if='banner.cache'>
+          <span class='bw'><i class='fas fa-info-circle'></i> A cached version of your gradebook from <span class='light-green-text bw'>{{banner.cache}}</span> is available. <br/><br/><button v-on:click='cbList.refresh(!1, 2)' style='margin-bottom: 4px' class='btn-small btn-flat blue white-text waves-effect'>Open Cached Gradebook</button> <button v-on:click='cbList.refresh()' style='margin-bottom: 4px' class='btn-small btn-flat teal white-text waves-effect'>Refresh Gradebook</button></span>
+        </li> 
+        <a v-on:click='$_sc({index})' v-on:keyup.enter='$_sc({index})' v-on:keydown.up.prevent='$_focus(index, 0)' v-on:keydown.down.prevent='$_focus(index, 1)' :id='`ci-`+index' class='collection-item waves-effect course-item c-li' :class='$_hasNew(course.$.Title)' v-for='(course, index) in course' v-if='course.$' tabindex='0'>
+          <span class='bw' :class='$_chkLength($_trim(course.$.Title))'>{{$_trim(course.$.Title)}}</span>
+          <span class='right lg bw' v-html='$_showGrade(course)'></span>
+          <br><span class='gray'>P{{course.$.Period}} | {{course.$.Staff}}</span><span class='right' :class='$_detNew(course.$.Title, 1, index)'>{{$_detNew(course.$.Title, 0, index)}}</span>
+        </a>
+        <li class='collection-header course-rp' v-else-if='course._m'>
+          <span class='bw'>{{course.school}} • {{course.rp}}</span>
+          <span class='gray right'>{{course.rpDate}}</span>
+        </li>
+        <li id='course-nodata' v-if='!course' class='collection-item course-item'>
+          <span class='bw lg'>No Data</span><br/>
+          <span>Looks like you don't have any courses here. </span>
+        </li>
+      </ul>
+    </div> <!--v-gradeList wrapper-->
+    <div id='v-schedule' class='hidden'>
+      <ul class='collection with-header'>
+        <li class='collection-header c-li'>
+          <a id='bell-drop-trigger' href='#' data-target='bell-drop' class='right bell-hidden hidden dropdown-trigger drop-nc'><span id='bell-drop-title'>Today</span> <i class='fas fa-caret-down'></i></a>
+          <span style='font-size: 24px'>Bell Schedule</span>
+          <br/>
+          <span id='bell-time'></span> <span id='bell-date'></span><span id='bell-schedule'></span>
+        </li>
+        <li id='bell-now-outer' class='collection-header hidden'>
+          <span class='bw'><i class='fas fa-clock'></i> <b>Now</b>: <span id='bell-now'></span> <span id='bell-timeLeft-outer' class='bw green-text'>(<span id='bell-timeLeft'></span>m left)</span></span>
+        </li> 
+        <li id='bell-unavailable' class='collection-item hl-i3'><i class='fas fa-exclamation-triangle'></i> OpenVUE does not have a bell schedule for your school. As of now, Bell Schedule is only available to students in Fossil Ridge High School.</li>
+        <li :id='`bell-li-`+index' class='collection-item hidden bell-hidden' v-for='(course, index) in schedule'>
+          <span class='lg bw'>{{course.name}}</span>
+          <span class='right lg bw'>{{course.time}}</span>
+          <br><span class='gray'>
+            <span :id='`bell-now-`+index' class='hlt hl-new hidden'>Now</span>
+            <span :id='`bell-next-`+index' class='hlt hl-i2 hidden'>Next</span>
+            <span class='bw light-blue-text'>{{course.class}}</span> <span class='right light-blue-text bw'>{{course.subtext}}</span></span>
+        </li>
+      </ul>
+      <div id='div-bell-drop'>
+        <ul id='bell-drop' class='dropdown-content'>
+          <li class='nh'><span>Show Schedule For:</span></li>
+          <li v-for='i in 5' v-on:click='$_changeDay(i)'><a>{{$_day(i)}}</a></li>
+        </ul>
+      </div>
+    </div> <!--v-schedule wrapper-->
+    <div id='v-course-outer'>
+      <div id='div-course' class='hidden'>
+        <ul class='collection with-header'>
+          <li class='collection-header' style='border-bottom-color: #555'>
+            <span class='lg cf'><a title='Return to Course List' onclick='hideCourseDetails()' onkeypress='hideCourseDetails(0, event)' class='pointer' tabindex='0'><i class='bw fas fa-arrow-left'></i></a> <span class='hide-on-small-only'>{{course.Title}}</span><span class='hide-on-med-and-up' class='trim-120'>{{$_trim(course.Title)}}</span></span>
+            <span class='right'>
+              <span v-if='!isModified' class='right lg green-text bw'>{{grade.CalculatedScoreRaw}}% ({{grade.CalculatedScoreString}})</span><span v-else><span class='lg gray' style='text-decoration: line-through'>{{grade.CalculatedScoreRaw}}%</span> <span class='lg light-blue-text bw'>{{modifiedScoreLg}}</span></span>
+              <br/>
+              <span class='green-text bw nw'>Raw: {{shared.gradeEngine.calcGrade(items, weights).toFixed(4)}}% <a class='modal-trigger pointer' ref='m_gr' v-on:keyup.enter='$refs.m_gr.click()' data-target='modal-gradeRounding' tabindex='0'><i class='fas fa-question-circle'></i></a></span>
+            </span>
+            <br/>
+            <span><span class='hide-on-med-and-up'>{{course.Title}}<br/></span>Period {{course.Period}} | {{course.Room?course.Room:"(No Room Specified)"}}<span class='hide-on-xs'> | </span><br class='show-on-xs'/><a class='bw' :href='`mailto:`+course.StaffEMail' tabindex='0'><i class='far fa-envelope va-raise'></i> {{course.Staff}}</a></span>
+            <!-- <span class='right green-text bw'></span> -->
+          </li>
+          <li class='collection-header'>
+            <span>{{items.length}} Item{{items.length==1?'':'s'}} <span v-show='shared.showNew' :class='$_calcNew(course.Title, 1)'>({{$_calcNew(course.Title)}} New)</span></span>
+            <button class='qa-btn btn-small cyan waves-effect dropdown-trigger drop-nc' data-target='drop-courseActions'><i class='fa fa-ellipsis-v'></i><span class='hide-on-small-only'> More</span></button>
+            <button class='qa-btn btn-small blue accent-3 waves-effect modal-trigger' data-target='modal-addWhatIf' v-show='$_showQA("addwhatif")'><i class='fa fa-file-medical'></i><span class='hide-on-small-only'> Add What-If</span></button>
+            <button class='qa-btn btn-small btn-flat green white-text waves-effect' v-show='$_showQA("gradecalc")' v-on:click='showGC=!showGC'><i class='fa fa-calculator'></i><span class='hide-on-small-only'> Grade Calculator</span></button> 
+            <button class='qa-btn btn-small light-green waves-effect' onclick='cb.showFilter = !cb.showFilter' v-show='$_showQA("filter")' :class='showFilter?"darken-1":"darken-2"'><i class='fas fa-filter'></i><span class='hide-on-small-only'> Filter <span v-if='filterCount' class='light-blue-text text-lighten-4'>({{filterCount}})</span></span></button>
+            <button class='qa-btn btn-small yellow darken-4 waves-effect' onclick='cb.$_toggleTrends()' v-show='$_showQA("trends")'><i class='fa fa-chart-line'></i><span class='hide-on-small-only'> Trends</span></button>
+            <br><span class='gray' v-if='weighted'>Weighted Class <br class='show-on-xs'/><span class='nw'>(<a v-on:click='showWeights = !showWeights' href='#' v-on:click.self.prevent tabindex='0'>{{showWeights?'Hide Categories':'Show Categories'}}</a>)</span></span><span class='gray' v-else>Unweighted Class <span class='nw'>(<span class='light-blue-text bw'>{{points_formatted}}</span>)</span></span>
+            
+            <ul id='drop-courseActions' class='dropdown-content'>
+              <li class='nh'><span>More Actions</span></li>
+              <li class='bw' v-show='!$_showQA("trends")'><span class='waves-effect' onclick='cb.$_toggleTrends()'><i class='fas fa-fw fa-chart-line'></i> Trends</span></li>
+              <li class='bw' v-show='!$_showQA("filter")'><span class='waves-effect' onclick='cb.showFilter = !cb.showFilter'><i class='fas fa-fw fa-filter'></i> Filter <span v-if='filterCount' class='light-blue-text text-lighten-4'>({{filterCount}})</span></span></li>
+              <li class='bw' v-show='!$_showQA("gradecalc")'><span class='waves-effect' v-on:click='showGC=!showGC'><i class='fas fa-fw fa-calculator'></i> Grade Calc</span></li>
+              <li class='modal-trigger bw' data-target='modal-addWhatIf' v-show='!$_showQA("addwhatif")'><span class='waves-effect'><i class='fas fa-fw fa-file-medical'></i> Add What-If</span></li class='modal-trigger bw waves-effect' data-target='modal-addWhatIf'>
+              <li v-show='shared.showNew'><a href='#' onclick='pushAllActions()' class='bw waves-effect'><i class='fas fa-fw fa-check-double'></i> Mark All As Seen</a></li>
+            </ul>
+          </li>
+          <transition name='anim-div-sm'>
+            <li v-if='isModified' v-bind:key='0' class='collection-header'>
+              <span><i class='fas fa-info-circle'></i> With your changes, your overall grade would be <b class='green-text bw'>{{shared.gradeEngine.calcGrade(items, weights).toFixed(2)}}%</b> (<span :class='modifiedDiff[0]'>{{modifiedDiff[1]}}</span>). (<a class='pointer' v-on:click='$_revertAllEdits()' v-on:keyup.enter='$_revertAllEdits()' tabindex='0'>Revert All Edits</a>)<br><i>Note: All tools (i.e., Trends, Grade Calculator) use your modified grade.</i></span>
+            </li>
+          </transition>
+          <transition-group name='anim-div'>
+            <li v-if='showWeights' v-bind:key='1' class='collection-header'>
+              <p class='yellow-text bw' v-show='isModified'><i class='fas fa-exclamation-triangle'></i> These values are not affected by your modifications.</p>
+              <table class='hide-on-small-only'>
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Points</th>
+                    <th>W. Avg.</th>
+                    <th>Weight</th>
+                    <th>Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-if='item.$.Type!="TOTAL"' v-for='item in weights'>
+                    <td><span :class='$_detClass(2, item.$.Type)'>{{item.$.Type}}</span></td>
+                    <td>{{$_formatPt(item)}}</td>
+                    <td>{{item.$.WeightedPct}}</td>
+                    <td>{{item.$.Weight}}</td>
+                    <td>{{$_formatAvg(item)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class='hide-on-med-and-up'>
+                <div v-if='item.$.Type!="TOTAL"' v-for='item in weights'>
+    <!--              <b :class='$_detClass(1, item.$.Type)'>{{item.$.Type}}</b>-->
+                  <b>{{item.$.Type}}</b>
+                  <table class='tb-sm'>
+                    <tbody>
+                      <tr>
+                        <td style='width: 25%'>Points</td>
+                        <td style='width: 23%'>Weight</td>
+                        <td style='width: 22%'>W. Avg.</td>
+                        <td style='width: 30%'>Average</td>
+                      </tr>
+                      <tr>
+                        <td>{{$_formatPt(item)}}</td>
+                        <td>{{item.$.WeightedPct}}</td>
+                        <td>{{item.$.Weight}}</td>
+                        <td>{{$_formatAvg(item)}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </li>
+            <li v-show='showGC' v-bind:key='2' id='li-gc' class='collection-header' style='border-top: 1px solid #555'>
+              <h3>Grade Calculator <span v-on:click='showGC=0' v-on:keyup.enter='showGC=0' class='waves-effect btn-dismiss-lg' tabindex='0'><i class='fas fa-times'></i></span></h3>
+              <p class='light-blue-text bw'><i class='fas fa-info-circle'></i> Have test replacement/dropping policies or test curving? Use <a rel='noopener' href='https://ryan778.github.io/final-grade-calculator/?ref=svue.itsryan.org' target='_blank'>this tool instead</a>.</p>
+              <span v-show='weighted'>What do you have coming up? </span>
+              <div class='input-field inline' v-show='weighted'>
+                <select v-model='gc.category' v-on:change='$_gcCheck' class='browser-default'>
+                  <option disabled>(Important Categories)</option>  
+                  <option v-for='(item) in weights_sorted[2]' :class='item.$class' :value='item.$index'>{{item.$.Type}}</option>
+                  <option disabled>(Other Categories)</option>  
+                  <option v-for='(item) in weights_sorted[1]' :class='item.$class' :value='item.$index'>{{item.$.Type}}</option>
+                </select>
+              </div>
+              <br>
+              <div v-show='!weighted || (weighted && !gc.emptyCat)'>
+                <span>How many points is it out of?</span>
+                <div class='input-field inline'>
+                  <input v-model='gc.worth' id='i_gc_worth' placeholder='(def: 100)' type='number' class='validate valid'>
+                  <label for='i_gc_worth'>Points</label>
+                </div>
+                <br>
+              </div>
+              <span>What's your target grade?</span>
+              <div class='input-field inline'>
+                <input v-model='gc.targetGrade' id='i_gc_targetGrade' placeholder='(def: 90)' type='text' class='validate valid'>
+                <label for='i_gc_targetGrade'>Grade (%)</label>
+              </div>
+              <span>%</span>
+              <br>
+              <button v-on:click='$_gcRun' class='btn btn-flat green waves-effect white-text'>What Do I Need?</button>
+              <p id='gc-result' v-show='gc.result' class='bw'><span id='gc-modNotice' class='light-blue-text bw'><i class='fas fa-info-circle'></i> This score is based off of your modified grade. <br></span><span class='green-text bw'>You'll need to get <b>{{gc.result}}%</b>{{gc.resDetails}}.</span><span class='right gray' v-on:click='gc.result=""'><i class='fas fa-times pointer'></i></span><br><span class='gray'>{{gc.helper}}</span></p>
+              <br v-if='!gc.result'><br>
+            </li>
+            <li v-show='showTrends' v-bind:key='3' class='collection-header' style='border-top: 1px solid #555'>
+              <h3>Trends <span class='btn-dismiss-lg waves-effect' v-on:click='showTrends=0' v-on:keyup.enter='showTrends=0' tabindex='0'><i class='fas fa-times'></i></span></h3>
+              <div style='position: relative; width: 100%; height: 400px; max-height: 400px;'>
+                <canvas id='canvas-chart'></canvas>
+              </div>
+            </li>
+          </transition-group>
+          <transition name='anim-div-sm'>
+            <li id='li-filters' v-show='showFilter' class='collection-header' style='border-top: 1px solid #555'> <!--v-show due to Materialize rendering-->
+              <div id='div-cbf-input'>
+                <input v-model='filters.string' id='cbf-input' placeholder='Filter by Name' type='text' class='validate light-blue-text bw'/>
+              </div>
+              <div id='div-cbf-cat' v-show='weighted'>
+                <a style='vertical-align: top' id='cbf-cat' onclick='scrollOnMobile("#li-filters")' class='dropdown-trigger drop-nc drop-ncl drop-bd bw' data-target='cbf-cat-drop'><span id='cbf-cat-text' class='truncate' style='display: inline-block; width: calc(100% - 12px)' :class='filter_catSelColor'>{{filter_catSel}}</span> <span class='right'><i class='fas fa-caret-down'></i></span></a>
+                <ul id='cbf-cat-drop' class='dropdown-content'>
+                  <li class='nh'>
+                    <span>Filter by Category</span>
+                  </li>
+                  <li v-if='item.$.Type!="TOTAL"' v-for='item in weights'>
+                    <span>
+                      <label v-on:dblclick='$_filter_toggleAllCat(item.$.Type)'>
+                        <input v-model='filters.categories' :value='item.$.Type' type='checkbox' :key='item.$.Type'/>
+                        <span class='bw'>{{item.$.Type}}</span>
+                      </label>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div id='div-cbf-points' v-show='!weighted'>
+                <a id='cbf-points' class='dropdown-trigger drop-nc drop-ncl drop-bd bw' data-target='cbf-points-drop'><span id='cbf-points-text'>{{filter_ptsSel}}</span> <span class='right'><i class='fas fa-caret-down'></i></span></a>
+                <ul id='cbf-points-drop' class='dropdown-content'>
+                  <li class='nh'>
+                    <span>Filter by Points</span>
+                  </li>
+                  <li>
+                    <span style='padding: 4px 14px 0'>
+                      <div class='input-field'>
+                        <input id='cbf-points-input-min' type='number' class='validate' v-model='filters.points.min'/>
+                        <label for='cbf-points-input-min'>Mininum Point Value</label>
+                      </div>
+                    </span>
+                  </li>
+                  <li>
+                    <span style='padding: 4px 14px 0'>
+                      <div class='input-field'>
+                        <input id='cbf-points-input-max' type='number' class='validate' v-model='filters.points.max'/>
+                        <label for='cbf-points-input-max'>Maximum Point Value</label>
+                      </div>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </transition>
+          <li href='#' class='collection-item class-item collection-stripe' :class='$_detClass(0, item.$)' v-for='item in filteredItems'>
+            <span class='bw class-item-title truncate'>{{item.$.Measure}}</span>
+            <div class='right' style='text-align: right'>
+              <div class='pb-outer gray-bk'>
+                <div class='pb-inner bw' :class='$_formatPB(item.$)[0]' :style='$_formatPB(item.$)[1]'></div>
+              </div>
+              <span class='bw lg left'>{{$_formatPerc(item.$)}}</span> <span class='bw lf asc' :class='{ascs: ($_formatScore(item.$).length>8)}'>{{$_formatScore(item.$)}}</span>
+            </div>
+            <br>
+              <span v-if='$_isNew(item.$.GradebookID)' class='hlt hl-new'>New</span>
+              <span v-if='$_isPending(item.$.GradebookID)' class='hlt hl-pending'>Pending</span>
+              <span v-if='$_isModified(item.$)' class='hlt hl-modified'>Modified</span>
+              <span v-if='item.$.$custom' class='hlt hl-modified'>Custom</span>
+              <span class='gray'>
+                <span :class='$_detClass(1, item.$)'>{{item.$.Type}}</span>
+                <span class='hide-on-small-only'> | </span><br class='hide-on-med-and-up'>{{item.$.Date}} | 
+                <span v-if='$_formatPerc(item.$) === "EC"'><a class='teal-text bw'>Extra Credit</a> | </span>
+                <span v-if='!$_isCounted(item.$)' class='pointer'><a class='yellow-text bw' v-on:click='$_showNote($event, "Does not affect your grade")'>Not Counted</a> | </span>
+                <span v-if='item.$.Notes' class='pointer'><a class='teal-text text-accent-3' v-on:click='$_showNote($event, item.$.Notes)'>Note</a> | </span>
+                <span v-if='showTrends || showChanges'>
+                  <a :class='item.$.$changeColor' v-on:click='$_showNote($event, "Grade at Time: "+item.$.$gradeAtTime)'>{{item.$.$change}}</a> |
+                </span>
+                <a data-target='drop-actions' class='dropdown-trigger nw' v-on:click='$_setActionDrop($event, item)' v-on:keyup.enter='$_setActionDrop($event, item)' tabindex='0'>More <i class='fa fa-caret-down'></i></a>
+              </span>
+          </li>
+        </ul>
+      </div>
+      <div id='div-fixedBar' class='pinned col-w hidden'>
+        <ul class='collection with-header'>
+          <li class='collection-header'>
+            <span id='div-fb-title' :class='isModified?"shorten":""' class='cf truncate'><span><a onclick='hideCourseDetails()' onkeypress='hideCourseDetails(0, event)' class='pointer' tabindex='0'><i class='bw fas fa-arrow-left'></i></a></span> {{$_trim(course.Title)}}</span>
+            <span v-if='!isModified' class='right cf green-text bw'>{{grade.CalculatedScoreRaw}}% ({{grade.CalculatedScoreString}})</span>
+            <span v-else class='right cf'><span class='gray' style='text-decoration: line-through'>{{grade.CalculatedScoreRaw}}%</span> <span class='light-blue-text bw'>{{modifiedScoreLg}}</span></span>
+          </li>
+        </ul>
+      </div>
+      <div id='div-dropActions'>
+        <ul id='drop-actions' class='dropdown-content'>
+          <li class='nh'><span>More Actions</span></li>
+          <li class='modal-trigger' data-target='modal-assignmentDetails'><a><i class='fas fa-info-circle fa-fw'></i> Details</a></li>
+          <li v-on:click='$_dropAction(3)'><a><i class='fas fa-edit fa-fw'></i> Edit <span v-if='currentDropItem.details.$hasScore'>Item</span><span v-else>(What If?)</span></a></li>
+          <li v-show='currentDropItem.pending' v-on:click='$_dropAction(5)'><a><i class='fas fa-calculator fa-fw'></i> Use in GC</a></li>
+          <li v-show='currentDropItem.details.$originalScore' v-on:click='$_dropAction(4)'><a><i class='fas fa-undo fa-fw'></i> Undo Edit(s)</a></li>
+          <li v-show='!currentDropItem.new && !currentDropItem.pending && shared.showNew && !currentDropItem.custom' v-on:click='$_dropAction(0)'><a><i class='fas fa-highlighter fa-fw'></i> Mark as New</a></li>
+          <li v-show='currentDropItem.new && !currentDropItem.pending && shared.showNew' v-on:click='$_dropAction(1)'><a><i class='fas fa-archive fa-fw'></i> Mark as Seen</a></li>
+          <li v-show='currentDropItem.custom' v-on:click='$_dropAction(6)'><a><i class='fas fa-trash-alt fa-fw'></i> Delete</a></li>
+          <li v-show='currentDropItem.pending' v-on:click='$_dropAction(2)'><a><i class='fas fa-hourglass-end fa-fw'></i> Not Pending</a></li>
+        </ul>
+      </div>
+      <div id='modal-assignmentDetails' class='modal md-scroll modal-fixed-footer'>
+        <div class='modal-content selectable'>
+          <h4>{{currentDropItem.details.Measure}}</h4>
+          <p class='gray noselect'><i class='fas fa-info-circle'></i> You can select and copy the text in this modal.</p>
+          <p class='light-blue-text bw'><b>{{course.Title}}</b> / {{course.Staff}}</p>
+          <p>Score: {{currentDropItem.details.Score}}<br>
+            Score Type: {{currentDropItem.details.ScoreType}}<br>
+            Points: {{currentDropItem.details.Points}}</p>
+          <p>Grade up to This Assignment: {{currentDropItem.details.$gradeAtTime}}<br/>
+            Change in Grade: <span :class='currentDropItem.details.$changeColor'>{{currentDropItem.details.$change}}</span></p>
+          <p>
+            Category: <span>{{currentDropItem.details.Type}}</span><br>
+            Date Assigned: <span>{{currentDropItem.details.Date}}</span><br>
+            Date Due: <span>{{currentDropItem.details.DueDate}}</span><br>
+            Notes: <span v-if='currentDropItem.details.Notes' class='teal-text text-accent-3'>{{currentDropItem.details.Notes}}</span><span v-else class='gray'>(None)</span></p>
+          <p>
+            Predicted Importance: <span :class='currentDropItem.details.imp_class'>{{currentDropItem.details.imp}}/3</span> <span class='gray'>({{['Regular Item', 'Quizzes, essays, labs, formatives, etc.', 'Tests / exams, projects, summatives', 'Finals'][currentDropItem.details.imp]}})</span><br>
+            Item ID: <span>{{currentDropItem.details.GradebookID}}</span><br>
+            Student ID: <span>{{currentDropItem.details.StudentID}}</span><br>
+            Teacher ID: <span>{{currentDropItem.details.TeacherID}}</span>
+          </p>
+          <ul class='collapsible'>
+            <li>
+              <div class='collapsible-header noselect'>Raw Assignment JSON</div>
+              <div class='collapsible-body'>
+                <pre style='overflow-x: auto; margin-top: 0'>{{JSON.stringify(currentDropItem.details, null, 2)}}</pre>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class='modal-footer'>
+          <a href='#' class='modal-close light-blue white-text waves-effect btn-flat'>Done</a>
+        </div>
+      </div>
+      <div id='modal-addWhatIf' class='modal modal-fixed-footer'>
+        <div class='modal-content'>
+          <h4>Add What-If Assignment</h4>
+          <div class='row'>
+            <p v-if='weighted' style='display: inline-block; margin-right: 8px'>Category: </p>
+            <div class='input-field inline' v-if='weighted'>
+              <select v-model='addWhatIf.category' class='browser-default'>
+                <option disabled>(Select One)</option>
+                <option disabled>(Important Categories)</option>  
+                <option v-for='(item) in weights_sorted[2]' :class='item.$class' :value='item.$.Type'>{{item.$.Type}}</option>
+                <option disabled>(Other Categories)</option>  
+                <option v-for='(item) in weights_sorted[1]' :class='item.$class' :value='item.$.Type'>{{item.$.Type}}</option>
+              </select>
+            </div><br v-if='weighted'/>
+            <p style='display: inline-block; margin-right: 8px'>Assignment Name <span class='gray'>(Optional)</span>: </p>
+            <div class='input-field inline'>
+              <input v-model='addWhatIf.name' placeholder='What-If Assignment'/>
+            </div>
+            <br/>
+            <p style='display: inline-block; margin-right: 8px'>Assignment Score: </p>
+            <div class='nw'>
+              <div class='input-field inline'>
+                <input v-on:keyup.enter='$_addWhatIf' v-model='addWhatIf.pts' id='i_awi_pts' style='width: 70px' type='number' inputmode='decimal'/>
+                <label for='i_awi_pts'>Points</label>
+              </div> / 
+              <div class='input-field inline'>
+                <input v-on:keyup.enter='$_addWhatIf' v-model='addWhatIf.total' id='i_awi_total' style='width: 70px' type='number' inputmode='decimal'/>
+                <label for='i_awi_total'>Out Of</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='modal-footer'>
+          <a href='#' class='modal-close grey darken-1 white-text waves-effect waves btn-flat'>Cancel</a>
+          <a href='#' target='_blank' v-on:click='$_addWhatIf' class='light-blue white-text waves-effect btn-flat'>Add Item</a>
+        </div>
+      </div>
+    </div> <!--v-course outer wrapper-->
+    <div id='v-notifier-outer'>
+      <div id='v-notifier' class='hidden showMargins'>
+        <div class='imgbk'>
+          <h4>Notifier</h4>
+          <p>Get notifications whenever something important is put into Gradebook.</p>
+          <p id='nt-mustUpdateCreds' class='yellow-text bw hidden'><i class='fas fa-exclamation-triangle'></i> Your notifier credentials are invalid. This is usually caused when your password expires and/or you're no longer in the Synergy system. <a href='#' onclick='nt.updateCreds()'>[Update Credentials]</a></p>
+          <p class='light-blue-text bw'><i class='fas fa-fw fa-exclamation-circle'></i> For legal reasons, Notifier is disabled by default. Want text notifications when new assignments are in? Contact me for access.<br><a href='#modal-notifierInfo' class='modal-trigger'><i class='fas fa-fw fa-angle-right'></i> More information</a></p>
+          <p><b v-show='whitelisted' class='green-text bw'><i class='fas fa-check'></i> You are whitelisted for Notifier access.</b><b v-show='!whitelisted' class='orange-text bw'><i class='fas fa-exclamation-triangle'></i> You do not have access to Notifier.</b></p>
+          <p v-show='whitelisted'>Notifier is currently <b v-if='!overall' class='red-text bw'>disabled</b><b v-else class='green-text bw'>enabled</b> on your account.</p>
+        </div>
+        <div v-show='overall' class='imgbk'>
+          <span class='p'>What to notify you about: </span>
+          <div class='input-field inline' style='width: 180px'>
+            <select class='browser-default' v-on:change='_updateMinImportance' v-model='minImportance'>
+              <option value='0'>I&GreaterEqual;0: Everything</option>
+              <option value='1'>I&GreaterEqual;1: Important Items</option>
+              <option value='2'>I&GreaterEqual;2: Tests and Projects</option>
+              <option value='3'>I=3: Final Exam Only</option>
+            </select>
+          </div>
+          <a href='#modal-catDefinitions' class='modal-trigger'>(What does each category mean?)</a>
+          <br>
+        </div>
+        <ul class='collapsible'>
+          <li>
+            <div class='collapsible-header'><i class='fas fa-envelope fa-fw nt-icon'></i> Email Notifications<b class='gray absright'>Not Available</b></div>
+            <div class='collapsible-body'>
+              <span>Email notifications are currently <b class='gray'>Not Available</b>.</span>
+              <br><br>
+              <button v-show='whitelisted' disabled class='btn waves-effect'>Setup</button>
+            </div>
+          </li>
+          <li>
+            <div class='collapsible-header'><i class='fas fa-comment fa-fw nt-icon'></i> Text Notifications <b class='absright' :class='_status(1, 1)'>{{_status(1)}}</b></div>
+            <div class='collapsible-body'>
+              <span>Text notifications are currently <b :class='_status(1, 1)'>{{_status(1)}}</b>.</span>
+              <br><br>
+              <button v-show='whitelisted' class='btn teal waves-effect' v-on:click='_setup(1)' v-if='text===0'>Setup</button>
+              <button class='btn green waves-effect modal-trigger' data-target='modal-notifier-verify' v-on:click='currentModal=1' v-if='text===1'>Verify</button>
+              <button class='btn teal waves-effect' v-on:click='_setup(1)' v-if='text>0'>Change Number</button>
+              <button class='btn deep-orange darken-2 waves-effect' v-on:click='_toggle(1, 0)' v-if='text===3'>Disable</button>
+              <button class='btn green waves-effect' v-on:click='_toggle(1, 1)' v-if='text===2'>Enable</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id='modal-notifier-new' class='modal'>
+        <div class='modal-content'>
+          <div v-show='currentModal===0'>
+            <h4>Setup Email Notifications</h4>
+          </div>
+          <div v-show='currentModal===1'>
+            <h4>Setup Text Notifications</h4>
+            <p>Select your carrier and enter your phone number below. <br>If you're not on an unlimited plan, texting rates may apply, etc., you know how it works.</p>
+            <p v-if='setupInput.error' class='red-text bw'><i class='fas fa-exclamation-triangle'></i> {{setupInput.error}}</p>
+            <div class='row'>
+              <div class='input-field col s12 m6'>
+                <select id='nt_select' v-model='setupInput.carrier'>
+                  <option value='none' class='gray' disabled selected>(Select a Carrier)</option>
+                  <option value='att'>AT&amp;T</option>
+                  <option value='sprint'>Sprint</option>
+                  <option value='tmobile'>T-Mobile</option>
+                  <option value='verizon'>Verizon</option>
+                  <option value='lyca'>Lycamobile</option>
+                </select>
+                <label>Carrier</label>
+              </div>
+              <div class='input-field col s12 m6'>
+                <input id='nt_phone' type='tel' pattern='((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}' class='validate' v-on:input='_phoneFormat' v-on:keyup.enter='_validateSetup' v-model='setupInput.phone'/>
+                <label for='nt_phone'>Phone Number</label>
+              </div>
+            </div>
+          </div>
+          <div v-show='currentModal===2'>
+            <h4>Setup Push Notifications</h4>
+          </div>
+        </div>
+        <div class='modal-footer'>
+          <button class='modal-close grey white-text waves-effect btn btn-flat'>Cancel</button>
+          <button id='btn-valSetup' v-on:click='_validateSetup' class='light-blue white-text waves-effect btn btn-flat'>Continue</button>
+        </div>
+      </div>
+      <div id='modal-notifier-verify' class='modal'>
+        <div class='modal-content'>
+          <div v-show='currentModal===0'>
+            <h4>Verify Your Email</h4>
+            <p>A link to verify your email has been sent. You'll need to click on it in order to activate notifications for that email.</p>
+          </div>
+          <div v-show='currentModal===1 || currentModal===2'>
+            <h4>Verification</h4>
+            <p>Please enter the verification code sent to your device.</p>
+            <p v-if='setupInput.error' class='red-text bw'><i class='fas fa-exclamation-triangle'></i> {{setupInput.error}}</p>
+            <div class='input-field' style='display: inline-block'>
+              <input id='nt_verify' autocomplete='one-time-code' inputmode='numeric' maxlength='6' v-on:keyup.enter='_verifyCode' v-model='setupInput.code'/>
+              <label for='nt_verify'>Verification Code</label>
+            </div>
+          </div>
+        </div>
+        <div class='modal-footer'>
+          <button v-on:click='_verifyCode' class='light-blue white-text waves-effect btn btn-flat'>Continue</button>
+        </div>
+      </div>
+    </div> <!-- outer notifier wrapper -->
+    <div id='v-attendance-outer'>
+      <div id='v-attendance' class='hidden imgbk showMargins'>
+        <h4>Attendance</h4>
+        <div id='att-loading'>
+          <div class='collapsible-header'>
+            <span id='att-loading-text'><i class='fas fa-circle-notch fa-spin'></i> Fetching your attendance records...</span>
+          </div>
+          <br/>
+        </div>
+        <div id='att-main' style='display: none'>
+          <a href='#' class='modal-trigger' data-target='modal-attInfo'>Icon Legend</a>
+          <br><br>
+          <div class='row'>
+            <div class='col m5 s12'>
+              <table id='att-table' class='centered' style='table-layout: fixed'>
+                <thead>
+                  <tr>
+                    <th class='att-calItem' title='Previous Month' v-on:click='monthShown--'><i class='fas fa-chevron-left'></i></th>
+                    <th colspan='5' class='att-calItem' title='Current Month' v-on:click='monthShown=0'><span>{{moment().add(monthShown, 'months').format('MMMM YYYY')}}</span></th>
+                    <th class='att-calItem' title='Next Month' v-on:click='monthShown++'><i class='fas fa-chevron-right'></i></th>
+                  </tr>
+                  <tr>
+                    <th v-for='n in 7'>{{moment().day(n-1).format('dd')}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for='i in 6'>
+                    <td class='att-calItem' :class='$_calHL(i, j)' v-on:click='$_showDay(this, i, j)' v-for='j in 7' v-html='$_getDay(i, j)'></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id='att-details' class='col m7 s12'>
+              <h5 class='cf' v-html='h_curShown'></h5>
+              <span v-if='curDayShown'><span v-if='curDayShown.note !== ""'><b>Note: </b>{{curDayShown.note}}</span></span>
+              <table class='table-compact' v-if='curDayShown'>
+                <thead>
+                  <tr>
+                    <th style='width: 35px'>Pd</th>
+                    <th>Course</th>
+                    <th style='width: 105px'>Mark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for='period in f_curShown'>
+                    <td>{{period.number}}</td>
+                    <td>{{$_trim(period.course)}}</td>
+                    <td><span v-html='$_getIcon(period.name)'></span> {{period.name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p v-else>You have no attendance notes!</p>
+              <br/>
+              <h5 class='cf'><b>{{filterPeriods[curFilterPeriod].name?filterPeriods[curFilterPeriod].name:curPd_name}}</b> <span style='font-size: 16px'><a class='pointer' v-on:click='showSelPD = true'>[Change]</span></span></h5>
+              <p v-if='showSelPD'><a class='pointer' v-on:click='$_selPd(0)'>Last 7 Days</a> • <a class='pointer' v-on:click='$_selPd(1)'>Last 14 Days</a> • <a class='pointer' v-on:click='$_selPd(2)'>Last 30 Days</a><br><a class='pointer' v-on:click='$_selPd(3)'>{{curPd_name}}</a> • <a class='pointer' v-on:click='$_selPd(4)'>All Time</a></p>
+              <p v-if='Object.keys(currentPeriod).length==0'><i>You have no attendance notes in the period selected.</i></p>
+              <table class='table-compact' v-else>
+                <thead>
+                  <tr>
+                    <th>Mark</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for='(count, mark) in currentPeriod'>
+                    <td><span v-html='$_getIcon(mark)'></span> {{mark}}</td>
+                    <td>{{count}} period{{count!==1?'s':''}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+          <h3>Full Attendance Notes</h3>
+          <br>
+          <ul id='attendance-list' class='collapsible popout'>
+            <li v-for='(absence, index) in absences'>
+              <div class='collapsible-header'><b class='att-date'>{{absence.dateStr}}</b> <span v-html='absence.summary'></span></div>
+              <div class='collapsible-body'>
+                <p><b>Reason: </b> <span v-if='absence.note.length > 0'>{{absence.note}}</span><span class='gray' v-else>(No reason provided)</span></p>
+                <p class='hide-on-med-and-up' style='margin-bottom: 0'>Details (Period / Mark / Code):</p>
+                <table class='att-table'>
+                  <thead>
+                    <tr>
+                      <th class='att-firstHeader hide-on-small-only'>Period</th>
+                      <th v-for='index in (config.endPeriod - config.startPeriod + 1)'>
+                        {{index + config.startPeriod - 1}}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class='hide-on-small-only'>Mark</td>
+                      <td v-for='index in (config.endPeriod - config.startPeriod + 1)'>
+                        <span v-if='absence.periods[index + config.startPeriod - 1]' v-html='$_getIcon(absence.periods[index + config.startPeriod - 1].name)'></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class='hide-on-small-only'>Code</td>
+                      <td v-for='index in (config.endPeriod - config.startPeriod + 1)'>
+                        <span v-if='absence.periods[index + config.startPeriod - 1]'>{{absence.periods[index + config.startPeriod - 1].reason}}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li v-if='absences.length==0'>
+              <div class='collapsible-header'>You don't have any marks on your attendance!</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- attendance wrapper -->
+    <div id='v-messages-outer'>
+      <div id='v-messages' class='hidden showMargins imgbk'>
+        <h4>Messages</h4>
+        <div id='messages-loading'>
+          <div class='collapsible-header'>
+              <span id='messages-loading-text'><i class='fas fa-circle-notch fa-spin'></i> Fetching your messages...</span>
+          </div>
+        </div>
+        <p class='messages-doneLoading hidden' v-if='messages.length !==0'>Total: {{messages.length}} message{{messages.length!=1?'s':''}}</p>
+        <br>
+        <ul id='message-list' class='collapsible popout messages-doneLoading hidden'>
+          <li v-for='msg in messages'>
+            <div class='collapsible-header'><b class='msg-date'>{{msg.dateStrShort}}</b> <span class='truncate'>{{msg.subject}}</span></div>
+            <div class='collapsible-body'>
+              <b>{{msg.subject}}</b><br/><br/>
+              <b>From: {{msg.from}}</b><br/>
+              <b>Timestamp: {{msg.dateStr}}</b>
+              <p class='msg-content selectable' v-html='msg.content'></p>
+            </div>
+          </li>
+          <li v-if='messages.length === 0'>
+            <div class='collapsible-header'>Looks like you don't have any messages right now.</div>
+          </li>
+        </ul>
+      </div>
+    </div> <!-- messages wrapper -->
+    <div id='courseHistory' class='hidden imgbk'>
+      <h2>GPA / Course History</h2>
+      <div id='ch-landing'>
+        <p>See your GPA (to three decimals!) and course history with this tool.</p>
+        <p class='light-blue-text bw'><i class='fas fa-info-circle'></i> Once course history is loaded, it'll be saved to your local device; accessing this page in the future will then load the saved version (as it's not something that often changes).</p>
+        <p class='yellow-text bw'><i class='fas fa-exclamation-triangle'></i> Because your course history is stored on your device until you sign out, <b>do not load it on public and/or untrusted devices</b>.</p>
+        <button id='ch-load' onclick='courseHistory.load()' class='btn teal waves-effect'>Load Course History</button> <span class='gray' style='margin-left: 4px;'><br class='hide-on-med-and-up'/>(Note that this may take a while. <a href='#' class='modal-trigger' data-target='modal-chInfo'>Why?</a>)</span>
+      </div>
+      <div id='ch-main' class='hidden'>
+        <p><b><i class='fas fa-calendar-check'></i> As of: </b><span id='ch-date'>-</span><br/><a href='#' onclick='courseHistory.collapseAll()' tabindex='0'>Collapse All</a> • <a href='#' onclick='courseHistory.expandAll()' tabindex='0'>Expand All</a><span id='ch-updateBtn'> • <a href='#' class='modal-trigger' data-target='modal-confirmLoad' tabindex='0'>Update</a></span></p>
+        <div id='ch-data' class='selectable'></div>
+      </div>
+    </div>
+    <div id='ext-roadmap' class='hidden'></div>
+    <div id='ext-export' class='hidden imgbk'></div>
+    <div id='v-settings' class='hidden'>
+      <br class='hide-on-small-only'/>
+      <div class='row'>
+        <div class='col nopad s12'>
+          <ul id='settings-tabs' class='tabs'>
+            <li class='tab col s3'><a href='#settings-general' class='active'><i class='fas fa-cog'></i> General</a></li>
+            <li class='tab col s3'><a href='#settings-appearance'><i class='fas fa-eye'></i> Appearance</a></li>
+            <li class='tab col s3'><a href='#settings-about'><i class='fas fa-question-circle'></i> About</a></li>
+          </ul>
+        </div>
+        <br>
+        <div id='settings-general' class='col s12 imgbk'>
+          <h2>General</h2>
+          <span class='p'><i class='fas fa-list-ul'></i> Quick Actions</span>
+          <div class='input-field inline'>
+            <select multiple class='config-input' v-model='config.quickActions'>
+              <option value='trends'>Trends</option>
+              <option value='filter'>Filter</option>
+              <option value='gradecalc'>Grade Calculator</option>
+              <option value='addwhatif'>Add What-If</option>
+            </select>
+          </div>
+          <br/>
+          <i>"Quick Actions" are actions that show up under a course - anything not selected will be put under "More".<br>While there's no hard limit, it's recommended that you have two to three selected.</i>
+          <br/><br/>
+          <span class='p'><i class='fas fa-user-tag'></i> Nickname</span>
+          <div class='input-field' style='display: inline-block; margin-left: 8px'>
+            <input placeholder='Placeholder' id='config-nickname' class='config-input' v-model='config.nickname' maxlength='24'/>
+            <label class='active' for='config-nickname'>Nickname</label>
+          </div>
+          <br/>
+          <i>If you set a nickname, it will replace the name that shows up under "Gradebook". Limit 24 characters.</i>
+          <br/><br/>
+          <span class='p'><i class='fas fa-map-marked-alt'></i> Weather Location</span>
+          <div class='input-field' style='display: inline-block; margin-left: 8px'>
+            <input placeholder='40.51,-105.02' id='config-weather' class='config-input' v-model='config.weatherLocation' maxlength='24'/>
+            <label class='active' for='config-weather'>Zip (US) / Coordinates</label>
+          </div>
+          <div class='switch' style='display: inline-block; padding-bottom: 12px'>
+            <label>
+              <input type='checkbox' id='config-useGeolocation' class='config-input' v-model='config.useGeolocation'>
+              <span class='lever'></span>
+              Use My Location
+            </label>
+          </div>
+          <br/>
+          <i>This defaults to Fort Collins, Colorado (40.51,-105.02) if not set. You can either enter a US zip code or use "Use My Location" to get a more precise location.</i>
+          <br/><br/>
+          <p>
+            <label class='bw'>
+              <input type='checkbox' class='config-input' v-model='config.alwaysShowGC'/>
+              <span>Always Show Grade Changes</span>
+            </label>
+          </p>
+          <i><b>Enabled by default in r1.0.0+.</b> If enabled, grade changes will always be shown next to each assignment. Otherwise, they'll only be shown when the trends chart is also open.</i>
+          <p>
+            <label class='bw'>
+              <input type='checkbox' class='config-input' v-model='config.skipMarkingWait'/>
+              <span>Skip "Mark As Seen" Wait</span>
+            </label>
+          </p>
+          <i>By default, if you open a course and immediately close out, new assignments won't be marked as "seen". Enable this option to disable that feature.</i>
+          <p>
+            <label class='bw'>
+              <input type='checkbox' class='config-input' v-model='config.markPendingAsNew'/>
+              <span>Disable "Pending" Functionality</span>
+            </label>
+          </p>
+          <i>New items will show as "new" regardless of whether they have a grade or not.<br>Gradebook must be updated for changes to this option to take effect.</i>
+          <p>
+            <label class='bw'>
+              <input type='checkbox' class='config-input' v-model='config.usePointValue'/>
+              <span>Use $.PointValue (instead of $.Score) in calculations</span>
+            </label>
+          </p>
+          <i>Deprecated. Will make little to no difference for most users. If assignment grades don't show up properly, this option <b>may</b> help.</i>
+          <br/><br/>
+        </div>
+        <div id='settings-appearance' class='col s12 imgbk'>
+          <h2>Appearance</h2>
+          <h3>Color and Themes</h3>
+          <p style='margin-top: 0'>
+            <label class='bw'>
+              <input type='checkbox' class='config-input' data-reltheme='1' v-model='config.matchTheme'/>
+              <span>Match color scheme (light/dark) with system</span>
+            </label>
+          </p>
+          <p>
+            <label class='bw'>
+              <input type='checkbox' class='config-input' data-reltheme='1' v-model='config.imgTheme'/>
+              <span>Image Backgrounds</span>
+            </label>
+          </p>
+          <i>This setting is not recommended on lower-end devices; having hardware acceleration is highly recommended. </i>
+          <br/>
+          <span class='p' v-show='!config.matchTheme'>Color Scheme</span>
+          <div class='input-field inline' v-show='!config.matchTheme'>
+            <select class='config-input' data-reltheme='1' v-model='config.theme'>
+              <option value='light'>Light</option>
+              <option value='dark'>Dark</option>
+            </select>
+          </div>
+          <div v-show='config.imgTheme'>
+            <span class='p'>Background Image</span>
+            <div class='input-field inline'>
+              <select id='config-imgSrc' class='config-input icons' data-reltheme='1' v-model='config.imgSrc'>
+                <option value='mountains' data-icon='images/mountains.icon.jpg'>Mountains L</option>
+                <option value='mountains-night' data-icon='images/mountains-night.icon.jpg'>Mountains D</option>
+                <option id='config-localImg' value='local' >Custom</option>
+              </select>
+            </div>
+            <div v-show='config.imgSrc == "local"' class='imgbk'>
+              <p><b>Image Settings</b></p>
+              <p>
+                <label class='bw'>
+                  <input class='config-input' type='checkbox' data-reltheme='1' v-model='config.imgBlur'/>
+                  <span>Blur Background</span>
+                </label>
+              </p>
+              <span>Image Size</span>
+              <div class='input-field inline'>
+                <select id='config-imgSize' class='config-input icons' data-reltheme='1' v-model='config.imgSize'>
+                  <option value='cover'>Cover (Default)</option>
+                  <option value='contain'>Contain</option>
+                  <option value='unset'>Unset</option>
+                </select>
+              </div>
+              <br/>
+              <span>Image Position</span>
+              <div class='input-field inline'>
+                <select id='config-imgPos' class='config-input icons' data-reltheme='1' v-model='config.imgPos'>
+                  <option value='center'>Center (Default)</option>
+                  <option value='top'>Top</option>
+                  <option value='bottom'>Bottom</option>
+                  <option value='left'>Left</option>
+                  <option value='right'>Right</option>
+                </select>
+              </div>
+              <br/>
+              <button onclick='$(`#fileSelect`).click()' class='btn blue config-imgBtn waves-effect'><i class='fas fa-image'></i> Change Image</button>
+              <br class='smOnly'/>
+              <a id='bkImg-export' download='OVUE Custom Background'><button class='btn teal config-imgBtn waves-effect'><i class='fas fa-download'></i> Export Image</button></a>
+              <br class='smOnly'/>
+              <button v-on:click='$_removeImg()' class='btn red config-imgBtn waves-effect'><i class='fas fa-trash'></i> Remove Image</button>
+              <br/><br/>
+            </div>
+          </div>
+          <input style='visibility: hidden' id='fileSelect' type='file' accept='image/*'/>
+          <h3>Accessibility and Animations</h3>
+          <p>
+            <label class='bw'>
+              <input class='config-input' type='checkbox' v-model='config.reduceMotion'/>
+              <span>Reduce Motion</span>
+            </label>
+          </p>
+          <i>Turning this on will disable most animations. This includes the page scrolling animation, button wave effects, open/close animations when selecting a quick action, and zoom-in/zoom-out animations for dropdowns and modals.</i>
+          <p>
+            <label class='bw'>
+              <input class='config-input' type='checkbox' v-model='config.noAnim'/>
+              <span>Remove Page Animations</span>
+            </label>
+          </p>
+          <i>Turning this on will completely remove page transition animations.</i>
+          <br/>
+          <span class='p'>Animation Speed</span>
+          <div class='input-field inline'>
+            <select class='config-input' v-model='config.animSpeed'>
+              <option value='0.5'>Fastest (x2.0)</option>
+              <option value='0.67'>Faster (x1.5)</option>
+              <option value='0.8'>Fast (x1.2)</option>
+              <option value='1'>Normal (x1.0)</option>
+              <option value='1.25'>Slow (x0.8)</option>
+              <option value='1.67'>Slower (x0.6)</option>
+              <option value='3.33'>Slowest (x0.3)</option>
+            </select>
+          </div>
+          <i><br>Change the rate transitions and animations are played.</i>
+          <br/><br/><br/>
+          <h3>Highlighting</h3>
+          <p>
+            <label class='bw'>
+              <input class='config-input' type='checkbox' v-model='config.sidenavHL'/>
+              <span>Highlight/indicate current tab (in sidebar)</span>
+            </label>
+          </p>
+          <p>
+            <label class='bw'>
+              <input class='config-input' type='checkbox' v-model='config.newIndicator'/>
+              <span>Highlight/indicate new assignments</span>
+            </label>
+          </p>
+          <i>Turning this off will disable the "__ new assignments" feature. Note that the feature will always be disabled if you're offline or in a different reporting period.</i>
+          <br/><br/>
+        </div>
+        <div id='settings-about' class='col s12 imgbk'>
+          <h2>About</h2>
+          <h3><img src='images/icon-sm.png' style='height: 32px; vertical-align: text-bottom'/> OpenVUE</h3>
+          <p>Currently logged in as <b id='sp-fullNameActual'>...</b>. <a class='nw' href='account'>Account Details</a>.</p>
+          <p><b id='ver-build'>build: n/a</b><br><span id='ver-str'></span></p>
+          <p id='ver-web' class='green-text bw'></p>
+          <p id='ver-app' class='light-blue-text bw'></p>
+          <p>Missed the welcome screen? <a href='#' onclick='welcome.open()'>Show Welcome Screen</a></p>
+          <h3>Credits</h3>
+          <ul class='collapsible'>
+            <li>
+              <div class='collapsible-header'><i class='fas fa-image fa-fw collapsible-icon'></i> Photos and Backgrounds</div>
+              <div class='collapsible-body'>
+                All photos used in OpenVUE are either courtesy of Unsplash contributors, under the <a rel='noreferrer' href='https://unsplash.com/license' target='_blank'>Unsplash License</a>. Photos and background images used in demo screenshots and videos (that aren't otherwise found in OpenVUE) are taken by me (Ryan Zhang).<br/><i class='fas fa-caret-right'></i> View the <a rel='noopener' href='https://itsryan.page.link/svue-photos' target='_blank'>OpenVUE Photo Collection</a>
+              </div>
+            </li>
+            <li>
+              <div onclick='loadExternal("ext-oss", "/static/oss")' class='collapsible-header'><i class='fas fa-heart fa-fw collapsible-icon'></i> Open Source Software</div>
+              <div id='ext-oss' class='collapsible-body'></div>
+            </li>
+          </ul>
+          <p>
+            &copy; 2020 Ryan Zhang. All Rights Reserved. <br/>
+            <a href='../legal'>Terms of Service</a> • <a href='../legal#privacy'>Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> <!--outer div wrapper-->
+  <div id='modal-notifierInfo' class='modal modal-fixed-footer md-scroll'>
+    <div class='modal-content'>
+      <h3>Notifier Service</h3>
+      <p>As of the 2019-20 school year, Notifier is no longer generally available to the public. This is due to the potential security concerns associated with Notifier -- most school districts are not keen on having a third party storing educational records, much less user credential data. While we only use credential data to occasionally check grades (in the same way a service like EarlyScores only uses your credentials to check AP scores on your behalf), there isn't really a way to "prove" we're not doing anything else. Therefore, the safest way to prevent issues is to not offer such functionality to the general public in the first place.</p>
+      <p>OpenVUE by default does not store any personally identifiable information (including your grades) other than the bare mininum outlined in the privacy policy. However, this is not possible if you want OpenVUE to notify you on new tests / assignments. Thus, using Notifier requires a greater scope on the amount of data collected (and thus, additional consent).</p>
+      <p class='yellow-text bw'>Due to this, out of an abundance of caution, any new users to OpenVUE by default <b>will not be able to opt-in to the notifier service</b>.</p>
+      <p>If you joined OpenVUE during its open beta period, <b>you are automatically whitelisted</b>. Otherwise, if you would like access and do not currently have access, contact <b class='light-blue-text bw'>svuelegal [at] itsryan.org</b> or me in person. A form with written and signed consent may be required.</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
+    </div>
+  </div>
+  <div id='modal-chInfo' class='modal modal-fixed-footer md-scroll'>
+    <div class='modal-content'>
+      <h3>Loading GPA/Course History</h3>
+      <p><b>Why will it take a while to load?</b><br/>If you've used the official StudentVUE mobile app, you may have noticed that course history is missing from it. That's because the endpoint that the mobile app uses doesn't support course history, and is the same endpoint OpenVUE normally uses.<br/><br/>So how do we work around this limitation? When you select "Load Course History", the OpenVUE server will open up the StudentVUE web interface, sign in as you, and extract the course history data before finally signing you out and discarding your session token. While this works (and works reliably), it's a three-step process (fetch login page, login, fetch course history page) which means it'll take a while to complete. It also means that when you select "Load Course History", you'll see a new entry under "Login History" on the official website - that's the server.<br/><br/>Fortunately, this process only has to be done once on each device you use, because your device will save it locally after it gets the data. (It's not ever stored server-side to avoid legal trouble - course history is considered a sensitive educational record!)</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
+    </div>
+  </div>
+  <div id='modal-catDefinitions' class='modal modal-fixed-footer md-scroll'>
+    <div class='modal-content'>
+      <h3>Notification Categories</h3>
+      <p><i>Note that each category also includes anything placed into a higher category. For example, selecting I&GreaterEqual;1 will also include tests, projects, and final exams.</i></p>
+      <p><b>I&GreaterEqual;0</b>: <span class='hlt hl-new'>Everything</span> (Not Recommended)<br>You'll get a notification every time something is put into gradebook. Not recommended, as notifications are rate-limited to one every few hours due to bandwith limitations, and everything will get grouped together.</p>
+      <p><b>I&GreaterEqual;1</b>: <span class='hlt hl-i1'>Important Items</span> (Default)<br>You'll get a notification every time an "important" item is put in. These include quizzes, labs, challenge problems, etc. Anything that's highlighted in dark blue is considered an "important" item. </p>
+      <p><b>I&GreaterEqual;2</b>: <span class='hlt hl-i2'>Tests and Projects</span><br>You'll get a notification only when tests and projects are put in. These items are highlighted in a brighter shade of blue in Gradebook.</p>
+      <p><b>I&GreaterEqual;3</b>: <span class='hlt hl-i3'>Final Exam Only</span> (Not Recommended)<br>You'll only get a notification when your final exam for a class is put in. Not recommended, just turn off notifier if you don't want notifications.</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
+    </div>
+  </div>
+  <div id='modal-gradeRounding' class='modal'>
+    <div class='modal-content'>
+      <h4>Grade Rounding</h4>
+      <p>Synergy rounds grades in each class to 0-2 decimals (this is determined by the teacher). <br>Your "raw" grade is a more accurate grade in the class, and is used in the grade calculator to give you results with a higher precision than third party grade calculators.</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
+    </div>
+  </div>
+  <div id='modal-attInfo' class='modal modal-fixed-footer'>
+    <div class='modal-content'>
+      <h4>Attendance Module / Icon Legends</h4>
+      <p>The attendance icons used in OpenVUE are designed to be similar to the ones used in standard StudentVUE for better consistency. Note that you can also hover over (on desktop) an icon to see what it means.<br>
+        <br><span class='green-text bw'><i class='fas fa-flag'></i> Activity</span>: School excused activity. Differs from standard "excused" in that this mark only applies to school-sponsored activities. 
+        <br><span class='light-blue-text bw'><i class='fas fa-dot-circle'></i> Not Included</span>: Attendance is not tracked/included for this course.  
+        <br><span class='green-text bw'><i class='fas fa-check-circle'></i> Excused</span>: School excused. Generally has no negative impact.  
+        <br><span class='light-blue-text bw'><i class='fas fa-check-circle'></i> Absent</span>: In most cases, this mark is functionally equivalent to "Excused".  
+        <br><span class='yellow-text bw'><i class='fas fa-clock'></i> Excused Tardy</span>: Tardy, but excused. Also generally has no negative impact. 
+        <br><span class='orange-text bw'><i class='fas fa-exclamation-circle'></i> Unexcused Tardy</span>: You're tardy for a non-academic reason. Some schools may give disciplinary actions for excessive unexcused tardies. 
+        <br><span class='red-text bw'><i class='fas fa-times-circle'></i> Unexcused</span>: You didn't show up. StudentVUE sends automated calls and/or emails when this happens.
+      </p>
+      <p class='gray'>Tip: You can expand individual dates to see details by clicking / tapping on such section.</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
+    </div>
+  </div>
+  <div id='modal-reportingPeriod' class='modal modal-fixed-footer'>
+    <div class='modal-content'>
+      <h4>Reporting Periods</h4>
+      <p class='light-blue-text bw'><i class='fas fa-info-circle'></i> By default, we'll load all reporting periods that you currently have classes in.</p>
+      <table class='highlight'>
+        <thead>
+          <tr>
+            <th><i class='fas fa-fw fa-check'></i></th>
+            <th>Reporting Period</th>
+            <th style='min-width: 60px'>Start</th>
+            <th style='min-width: 60px'>End</th>
+          </tr>
+        </thead>
+        <tbody id='v-rp-placeholder'>
+          <tr>
+            <td><i class='fas fa-circle-notch fa-spin'></i></td>
+            <td colspan='3'>Loading reporting periods...</td>
+          </tr>
+        </tbody>
+        <tbody id='v-rp' class='hidden'>
+          <tr v-for='(rp, index) in all' v-on:click='toggleRP(index)' v-on:keyup.space.prevent='toggleRP(index)' v-on:keyup.enter='toggleRP(index)' v-bind:class='{"green-text bw": rp.selected}' class='pointer selectable' tabindex='0'>
+            <td>
+              <i class='fas fa-fw fa-check-square' v-show='rp.selected'></i>
+              <i class='far fa-fw fa-square' v-show='!rp.selected'></i>
+            </td>
+            <td>{{rp.name}}<span v-if='rp.default' class='light-blue-text bw'> (Default)</span></td>
+            <td>{{rp.start}}</td>
+            <td>{{rp.end}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='left transparent light-blue-text bw waves-effect waves btn-flat' onclick='cbList.changeRP(1)'>Reset to Default</a>
+      <a href='#' class='modal-close grey white-text waves-effect waves btn-flat'>Cancel</a>
+      <a href='#' class='teal white-text waves-effect waves btn-flat' onclick='cbList.changeRP()'>Load</a>
+    </div>
+  </div>
+  <div id='modal-editItem' class='modal bottom-sheet'>
+    <div class='modal-content'>
+      <h4>Edit Item Score</h4>
+      <p id='medit-item'></p>
+      <div class='row'>
+        <div class='input-field inline'>
+          <input onkeyup='cb.$_processEdit(event)' style='width: 60px' value='0' id='medit-points' type='text' inputmode='decimal'/>
+          <label onkeyup='cb.$_processEdit(event)' class='active' for='medit-points'>Points</label>
+        </div>
+        <div class='input-field inline'>
+          <input style='width: 60px' value='10' id='medit-totalPoints' type='text' inputmode='decimal'/>
+          <label class='active' for='medit-totalPoints'>Out Of</label>
+        </div>
+      </div>
+      <a href='#' style='margin-right: 4px' class='left grey white-text modal-close waves-effect btn-flat'>Cancel</a>
+      <a href='#' onclick='cb.$_processEdit()' class='left green white-text modal-close waves-effect btn-flat'>Done</a>
+      <br/>
+    </div>
+  </div>
+  <div id='modal-confirmPass' class='modal'>
+    <div class='modal-content'>
+      <h4>One more step...</h4>
+      <p>You'll need to confirm your identity before continuing.</p>
+      <button class='btn blue waves-effect' onclick='rlib.openDeferredPopup()'>Confirm Account</button>
+      <a href='#' style='margin-left: 4px' onclick='window.cancelSudo()' class='btn grey white-text modal-close waves-effect'>Cancel</a>
+      <br/>
+    </div>
+  </div>
+  <div id='modal-confirmLoad' class='modal'>
+    <div class='modal-content'>
+      <h4>Confirmation</h4>
+      <p>Are you sure you want to update/refresh your course history?<br/><br/>Loading and parsing course history will take a while. You should <b>only</b> update it if a term's grades have been finalized and you know there's new additions to your course history.</p>
+      <button class='btn blue modal-close waves-effect' onclick='courseHistory.load(); $("#ch-updateBtn").hide()'>Update</button>
+      <a href='#' style='margin-left: 4px' class='btn grey white-text modal-close waves-effect'>Cancel</a>
+      <br/>
+    </div>
+  </div>
+  <div id='modal-errorStack' class='modal modal-fixed-footer'>
+    <div class='modal-content'>
+      <h4>Error Stack</h4>
+      <p>When reporting errors, include the following debug information.</p>
+      <pre id='modal-errorStack-data' style='white-space: pre-wrap' class='selectable'></pre>
+      <textarea readonly id='modal-errorStack-ta' class='hidden'></textarea>
+    </div>
+    <div class='modal-footer' style='text-align: left'>
+      <a href='#' class='btn green white-text modal-close waves-effect'><i class='fas fa-times'></i> Close</a>
+      <a href='#' class='btn light-blue white-text waves-effect' onclick='rlib.copyStack()'><i class='fas fa-copy'></i> Copy</a> 
+    </div>
+  </div>
+  <div id='modal-welcome' class='modal'>
+    <div id='wel-container'>
+      <div id='wel-carousel' class='carousel carousel-slider center'>
+        <div class='carousel-fixed-item center'>
+          <a id='wel-next' onclick='welcome.next()' class='btn waves-effect blue darken-text-2'>Get Started</a>
+          <a href='#' onclick='welcome.skip()'>Skip Tour</a>
+        </div>
+        <div id='wel-landing' class='carousel-item cf'>
+          <img src='images/icon.png' style='height: 80px; width: 80px'/>
+          <h2>Welcome to OpenVUE</h2>
+          <p>The modern, responsive Gradebook.</p>
+          <p>We're glad you're here.</p>
+        </div>
+        <div class='carousel-item bw'>
+          <h2>Info at a Glance</h2>
+          <p>Assignments are <b>color-coded</b> automatically. Check the <b>highlighted tags</b> to learn more!</p>
+          <div class='collection with-header'>
+            <div class='collection-item'>
+              <span class='hl-pending hlt'>Normal</span> HW, in-class practice, etc.
+            </div>
+            <div class='collection-item hl-new'>
+              <span class='hl-new hlt'>New</span> You haven't seen this yet!
+            </div>
+            <div class='collection-item hl-i1'>
+              <span class='hl-i1 hlt'>Notable</span> Labs, quizzes, and more.
+            </div>
+            <div class='collection-item hl-i2'>
+              <span class='hl-i2 hlt'>Important</span> Exams and big projects.
+            </div>
+            <div class='collection-item hl-i3'>
+              <span class='hl-i3 hlt'>Critical</span> These are your finals.
+            </div>
+          </div>
+          <p></p>
+        </div>
+        <div id='wel-qa' class='carousel-item bw'>
+          <h2>Quick Actions</h2>
+          <p>Tools that extend Gradebook functionality.<br/>Find them on the top right of any class.</p>
+          <button class='btn-flat waves-effect yellow darken-4' data-name='Trends' data-desc='See how your grades in a class changed over time.' data-tip='If you scroll down from the chart, you can see how each individual assignment affected your grade.'><i class='fas fa-chart-line'></i></button>
+          <button class='btn-flat waves-effect light-green darken-1' data-name='Filter' data-desc='Filter assignments by name, point value (unweighted), or category (weighted).' data-tip='Double tap a category to only show assignments in that category. Double tap again to undo.'><i class='fas fa-filter'></i></button>
+          <button class='btn-flat waves-effect green' data-name='Grade Calculator' data-desc='See what you need on your next exam (or anything else). Like RogerHub, but better!' data-tip='Pending assignment? You can use it directly in the Grade Calculator under the "More" dropdown!'><i class='fas fa-calculator'></i></button>
+          <button class='btn-flat waves-effect blue accent-3' data-name='Add What-If' data-desc='See how adding a new assignment will impact your grade.' data-tip='Existing assignments are also editable! Just select "Edit Item" under the "More" dropdown.'><i class='fas fa-file-medical'></i></button>
+          <button class='btn-flat waves-effect teal' data-name='More Actions' data-desc='Anything not in the toolbar will show up under here.' data-tip='You can change what shows up in the toolbar in Settings.'><i class='fas fa-ellipsis-v'></i></button>
+          <p id='wel-qa-desc'>
+            <span class='green-text bw'>Select a button to learn more about that feature.</span>
+          </p>
+        </div>
+        <div id='wel-more' class='carousel-item bw'>
+          <h2>And More!</h2>
+          <p>OpenVUE is more than just a gradebook.<br/>Here's some of its other features:</p>
+          <button class='btn-flat waves-effect amber darken-2' data-name='Data Export' data-desc='Want a printable spreadsheet of your assignments? Data export is here for you.' data-tip='You can also export the raw XML files if you want everything.'><i class='fas fa-share-alt'></i></button>
+          <button class='btn-flat waves-effect deep-orange darken-1' data-name='GPA/Course History' data-desc="View your GPA, class rank (if enabled), and every course you've ever taken." data-tip='You can also copy/paste these tables into any spreadsheet editor!'><i class='fas fa-graduation-cap'></i></button>
+          <button class='btn-flat waves-effect red darken-2' data-name='Customizations' data-desc='Under settings, you can change colors, backgrounds, and more - just like the demo images!' data-tip='Not a fan of the numerous animations? Turn on "Reduced Motion" under settings.'><i class='fas fa-image'></i></button>
+          <button class='btn-flat waves-effect purple darken-1' data-name='Security Keys' data-desc='Did you know you can sign in to OpenVUE with your fingerprint/face?' data-tip='You can set this up under your account page.'><i class='fas fa-key'></i></button>
+          <button class='btn-flat waves-effect brown accent-2' data-name='Privacy' data-desc="Notice how OpenVUE even works offline? That's because your data is cached on your device, not our servers." data-tip='Our privacy policy lists full details on exactly what we do store server-side. (Hint: not a lot!)'><i class='fas fa-shield-alt'></i></button>
+          <p id='wel-more-desc'>
+            <span class='green-text bw'>Once again, select a button to learn more about that feature.</span>
+          </p>
+        </div>
+        <div id='wel-final' class='carousel-item bw' style='display: none'>
+          <h2>Ready to Go?</h2>
+          <p>This short tour isn't nearly enough to cover everything, so you're encouraged to play around and discover what else OpenVUE has to offer!</p>
+          <p>Feedback? Use the "Send Feedback" tool under "More Actions". You can also email me at <span class='light-blue-text bw'>ryan [at] itsryan.org</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id='modal-whatsnew' class='modal modal-fixed-footer' data-build='1230'>
+    <div class='modal-content'>
+      <h4>What's New</h4>
+      <p><b>Release 2.0.0</b>&nbsp;• Build 1233 • October 20, 2020<br/></p>
+      <hr/>
+      <p>Changelogs aren't published directly in builds of OpenVUE. If you'd like to see what's changed, check us out on <a target='_blank' href='https://github.com/Ryan778/OpenVUE'>GitHub</a>!</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Ok, Thanks!</a>
+    </div>
+  </div>
+</body>
+</html>

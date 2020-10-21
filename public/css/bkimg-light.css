@@ -1,0 +1,89 @@
+#bkImg{
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  height: 100%; 
+  z-index: -1; 
+  background-attachment: fixed; 
+  background-size: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .imgbk.showMargins {
+    margin: 0; /*.imgbk will add appropirate padding*/
+  }
+}
+
+#v-gradeList, #div-course {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.collection.with-header .collection-header {
+  background: #d9e2f3d9;
+}
+
+.collection.with-header .collection-header.bk-green { /*Used for update messages*/
+  background: #a2f5bbd9; 
+}
+
+.collection.with-header .collection-header.bk-purple { /*Used for all other announcements/messages*/
+  background: #dbcef0d9; 
+}
+
+.collection.with-header .collection-header.bk-orange { /*Used for errors*/
+  background: #f0dcced9; 
+}
+
+.collection.with-header .collection-header.bk-subtle { /*User-initiated messages (i.e., force refresh)*/
+  background: #bde1ffd9; 
+}
+
+.sidenav.sidenav-fixed, .collection .collection-item {
+  background: #ffffffbf;
+}
+
+.sidenav-hl{
+  background: #5e72a133;
+}
+
+.collection a.collection-item:not(.active):hover{
+  background: #ddddddbf;
+}
+
+.collection a.collection-item.hl-new:not(.active):hover{
+  background: #bcdfb9bf;
+}
+
+.collection.with-header .collection-item.hl-i1{
+  background: #c0d6f7bf;
+}
+
+.collection.with-header .collection-item.hl-i2{
+  background: #a4d8ffbf;
+}
+
+.collection.with-header .collection-item.hl-new{
+  background: #d5ffd5bf;
+}
+
+.collection.with-header .collection-item.hl-i3{
+  background: #ffdd88bf;
+}
+
+.collapsible-header{
+  background: #ffffffcf;
+}
+
+.collapsible-body{
+  background: #ffffffaf
+}
+
+.imgbk{ /*For elements that are fine without an image background, but need a background when there is an image for readability*/
+  background: #ffffffaf;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 1px solid #bbb;
+  padding: 4px 20px; 
+}

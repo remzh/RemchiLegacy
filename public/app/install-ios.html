@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>App Installer • OpenVUE</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+  <link rel='manifest' href='manifest.json'>
+  <meta name='mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='application-name' content='OpenVUE'>
+  <meta name='apple-mobile-web-app-title' content='OpenVUE'>
+  <meta name='theme-color' content='#2962FF'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+  <link rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link rel='apple-touch-icon' type='image/png' sizes='167x167' href='icons/svue-ios-167.png'>
+  <link rel='apple-touch-icon' type='image/png' sizes='180x180' href='icons/svue-ios-180.png'>
+  <link href='../favicon.ico' rel='icon' type='icon/ico'>
+  <link defer rel='stylesheet' href='css/main.css'/>
+  <link id='css-materialize' defer rel='stylesheet' crossorigin='anonymous'/>
+  <link id='css-theme' defer rel='stylesheet'/>
+  <script defer src='../js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js' crossorigin='anonymous'></script>
+  <script defer src='js/themeInit.js'></script>
+  <script async src='js/pwacompat.min.js'></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-96580670-3'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div id='bk'></div>
+  <div id='bko'></div>
+  <div class='container'>
+    <h4><img src='../images/icon.png' style='height: 40px; vertical-align: text-bottom'> OpenVUE</h4>
+    <hr/>
+    <h6><a href='..'><i class='fas fa-caret-left'></i> Go Back</a> | iOS App Installation</h6>
+    <p id='ios-p' class='pad'>You're currently on <b id='ios'></b>.<br/><span id='ios-details' class='grey-text'></span></p>
+    <p>Mininum Requirement: <b>iOS 11.3 or later</b> (iPhone 5S or later, but if you have one you can update to at least iOS 12.4)</p>
+    <p>Recommended: <b>iOS 12.2 or later</b> (iPhone 5S+)</p>
+    <p>Space Requirement: <b>7.1 MB</b> (less than ten photos!)</p>
+    <div id='instructions' style='display: none'>
+      <hr/>
+      <h6>Installation Instructions</h6>
+      <a data-target='about-iosPWA' href='#' class='modal-trigger'><i class='fas fa-question-circle'></i> Why can't I just get it from the App Store?</a>
+      <p><i class='fas fa-info-circle'></i> If you're not already in Safari, go there now. <b>You must be in Safari to do the following steps.</b></p>
+      <p><b>1.</b> Press the share icon on the bottom of the screen. It looks like this: <img style='height: 20px; vertical-align: text-bottom' src='images/ios-share.png'></p>
+      <p><b>2.</b> From the list of options, scroll down until you see "Add to Home Screen". Select that. (Shown in the image below)</p>
+      <div class='row'>
+        <div class='col s12'>
+          <img style='width: inherit; text-align: center' class='materialboxed responsive-img' id='add-img'/>
+        </div>
+      </div>
+      <p><b>3.</b> Press "Add" in the top right corner.</p>
+      <p><b>4.</b> You're done! The app will install any missing components automatically the first time you open it, and will be available offline after you sign in!</p>
+    </div>
+  </div>
+  <footer>
+    <div class='container'>
+      <hr style='border: none; border-bottom: 1px solid #000'>
+      <p>&copy; 2020 Ryan Zhang. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <div id='about-iosPWA' class='modal modal-fixed-footer'>
+    <div class='modal-content'>
+      <h4>Why can't I just get it from the App Store?</h4>
+      <p>Apple requires app developers to sign up for their Apple Developer program in order to release apps onto the app store, and doing so requires an annual payment of $99. However, OpenVUE is completely free and I make no money off of it, which means I don't have a source of income to fund that. And, because OpenVUE is a PWA, it can already be directly "installed" with this method (which is intentional by Apple). Because of that, it's simply not worth it to spend such money trying to get the app officially onto the App Store.</p>
+      <p>tl;dr Ryan's broke and can't afford paying Apple $99/year</p>
+    </div>
+    <div class='modal-footer'>
+      <a href="#" class="green white-text modal-close waves-effect btn-flat">Done</a>
+    </div>
+  </div>
+  <script defer src='js/installLib-iOS.js'></script>
+</body>
+</html>

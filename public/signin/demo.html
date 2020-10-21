@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>Sign In • OpenVUE</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <link rel='stylesheet' href='../css/auth.css' type='text/css'>
+  <script defer src='../js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='../js/ver.js'></script>
+  <script defer src='demo.js'></script>
+  <script async src='https://unpkg.com/animejs@3.0.1/lib/anime.min.js'></script>
+  <noscript><style>#div-msg{opacity:1; height: 96px; margin-top: 10px; padding: 3px 6px} input, button, label {display: none !important}</style></noscript>
+</head>
+<body>
+  <div id='imgbk' class='hide-on-small-only'></div>
+  <div id='login-outer'>
+    <div id='login-div' class='card'>
+      <div id='div-loadbar'></div>
+      <div class='card-content' id='cc1'>
+        <span class='card-title'><img id='title-icon' src='../images/icon-sm.png'> Demo Account</span>
+        <p>By selecting "sign in", you will be signed into a demo account, which will behave (almost) just like a real account.</p>
+        <br/>
+        <p>Note that nothing you do in the demo account will be saved server-side. Your session will automatically expire after an hour.</p>
+        <br/>
+        <p>
+          <label>
+            <input id='demo-showWelcome' type='checkbox' checked/>
+            <span>Show welcome popup after signing in</span>
+          </label>
+        </p>
+        <br/>
+        <div id='div-msg'>
+          <b id='msg-title'>Error:</b>
+          <span id='msg-content'>JavaScript is disabled (29).<br>OpenVUE can not be used without JavaScript.<br><br>If you need help enabling JavaScript, <a href='https://enable-javascript.com'>click here</a>.</span>
+        </div>
+        <button onclick='login()' class='btn btn-flat right blue white-text waves-effect'>Sign In</button>
+        <a href='app/start?persist=1' id='lnk-app' style='display: none'><button class='btn btn-flat right blue-grey darken-1 waves-effect waves-effect white-text' style='margin-right: 4px'>Back</button></a>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div id='login-footer'>
+    <span id='ft'>OpenVUE is not affiliated with Edupoint. <a href='../legal'>Legal</a></span>
+    <span id='ft-right'>&copy; 2020 Ryan Zhang. All Rights Reserved. <a id='a-theme' href='#'>Toggle Theme</a></span>
+  </div>
+</body>
+</html>

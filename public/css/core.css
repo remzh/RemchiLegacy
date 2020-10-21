@@ -1,0 +1,61 @@
+::selection{
+  background: rgb(203, 215, 255);
+}
+
+html{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+nav{
+  user-select: none;
+}
+
+.navbar-fixed, .nav-comp, .snav-wrapper *:not(ul):not(svg), nav{
+  height: 48px;
+  line-height: 48px;
+  font-family: 'zen-new', 'Roboto', -apple-system, sans-serif;
+}
+
+nav .brand-logo{
+  font-size: 1.8rem;
+}
+
+img{
+  display: inline-block;
+  height: 36px;
+  vertical-align: text-bottom;
+  margin-left: 25px;
+}
+
+h1{
+ font-size: 2.4rem; 
+}
+
+h2{
+  font-size: 1.9rem;
+}
+
+h3{
+  font-size: 1.7rem;
+}
+
+h4{
+  font-size: 1.4rem;
+}
+
+p{
+  font-size: 1.12rem;
+}
+
+.nw{
+  white-space: nowrap;
+}
+
+.selectable{
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}

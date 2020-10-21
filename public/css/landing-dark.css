@@ -1,0 +1,54 @@
+html {
+  background: #1f2224; 
+  color: #fff;
+}
+
+nav.nav-top *{
+  color: #fff;
+}
+
+nav#nav{
+  background: rgba(27, 45, 95, 0.9);
+}
+
+.dropdown-content{
+  background-color: #333;
+}
+.dropdown-content li>a, .dropdown-content li>span{
+  color: #5fc7bc;
+}
+.dropdown-content li:hover, .dropdown-content li.active{
+  background-color: #444;
+}
+
+a{
+  color: #72c4ec;
+}
+
+#quotes ul li img{
+  filter: blur(6px) brightness(40%);
+}
+
+footer.page-footer{
+  background: #14171f;
+}
+
+#top{
+  background-image: url('/images/scenic-dark.jpg');
+  text-shadow: none;
+}
+
+#btn-more{
+  background: #00000059;
+  color: #eee;
+}
+
+::-webkit-scrollbar{
+  background-color: #222;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #778;
+  border-radius: 4px;
+}

@@ -1,0 +1,94 @@
+#bkImg{
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  height: 100%; 
+  z-index: -1; 
+  background-attachment: fixed; 
+  background-size: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .imgbk.showMargins {
+    margin: 0; /*.imgbk will add appropirate padding*/
+  }
+}
+
+#v-gradeList, #div-course {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.collection.with-header .collection-header {
+  background: #26292ee0;
+}
+
+.collection.with-header .collection-header.bk-green {
+  background: #2a603ae0; 
+}
+
+.collection.with-header .collection-header.bk-purple {
+  background: #42306de0; 
+}
+
+.collection.with-header .collection-header.bk-orange {
+  background: #6d4630e0; 
+}
+
+.collection.with-header .collection-header.bk-subtle {
+  background: #435061e0; 
+}
+
+.sidenav.sidenav-fixed, .collection .collection-item {
+  background: #2c2f33bf;
+}
+
+.sidenav.sidenav-fixed {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.sidenav-hl{
+  background: #11121448; 
+}
+
+.collection a.collection-item:not(.active):hover{
+  background: #41454bbf;
+}
+
+.collection a.collection-item.hl-new:not(.active):hover{
+  background: #38523abf;
+}
+
+.collection.with-header .collection-item.hl-i2{
+  background: #0c5497bf;
+}
+
+.collection.with-header .collection-item.hl-i1{
+  background: #0e2b52bf;
+}
+
+.collection.with-header .collection-item.hl-new{
+  background: #114422bf;
+}
+
+.collection.with-header .collection-item.hl-i3{
+  background: #553311bf;
+}
+
+.collapsible-header{
+  background: #333333cf;
+}
+
+.collapsible-body{
+  background: #333333af
+}
+
+.imgbk{ /*For elements that are fine without an image background, but need a background when there is an image for readability*/
+  background: #333333af;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 1px solid #444;
+  padding: 4px 20px; 
+}

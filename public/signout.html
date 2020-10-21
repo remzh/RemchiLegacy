@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>Sign Out | OpenVUE</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <link rel='stylesheet' href='css/auth.css' type='text/css'>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js' integrity='sha256-vrn14y7WH7zgEElyQqm2uCGSQrX/xjYDjniRUQx3NyU=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js' integrity='sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='../js/ver.js'></script>
+  <script defer src='js/signout.js'></script>
+  <noscript><style>#div-msg{opacity:1; height: 96px; margin-top: 10px; padding: 3px 6px} input, button, label {display: none !important}</style></noscript>
+</head>
+<body>
+  <div id='imgbk' class='hide-on-small-only'></div>
+  <div id='login-outer'>
+    <div id='login-div' class='card'>
+      <div class='card-content'>
+        <div id='div-loadbar'></div>
+        <span class='card-title'><img id='title-icon' src='images/icon-sm.png'> Sign Out</span>
+        <br>
+        <p id='so' style='font-size: 16px'><img src='images/rolling.svg' id='so-i' style='height: 20px; vertical-align: text-bottom'> Please wait while you're being signed out...</p>
+        <br><br>
+        <button disabled onclick='window.open("../signin","_self")' class='btn btn-small btn-flat right blue white-text waves-effect'>Sign In Again</button>
+        <button id='btn-home' disabled class='btn btn-small btn-flat right green white-text waves-effect' style='margin-right: 4px'>Main Page</button>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div id='login-footer'>
+    <span>OpenVUE is not affiliated with Edupoint in any way.</span>
+    <span id='ft-right'>&copy; 2020 Ryan Zhang. All Rights Reserved.</span>
+  </div>
+</body>
+</html>

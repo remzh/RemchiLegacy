@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>OpenVUE</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+  <link rel='manifest' href='manifest.json'>
+  <link href='../favicon.ico' rel='icon' type='icon/ico'>
+  <link defer rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <link defer rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link defer rel='stylesheet' href='css/main.css'/>
+  <link defer rel='stylesheet' href='css/start.css'/>
+  <link id='css-theme' defer rel='stylesheet'/>
+  <script defer src='../js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js' integrity='sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.3/localforage.min.js' integrity='sha256-H/ZsHjKSJUnQyCQHZwPmn7VTWFeTTI+qgCP1GkiB9zI=' crossorigin='anonymous'></script>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='/js/core.js'></script>
+  <script defer src='../js/ver.js'></script>
+  <script defer src='js/start.js'></script>
+  <script async src='../js/svuelib.js'></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-96580670-3'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div id='bk'></div>
+  <div id='bko'></div>
+  <div class='container'>
+    <h4><img src='../images/icon.png' style='height: 40px; vertical-align: text-bottom'> OpenVUE</h4>
+    <hr/>
+    <div id='init'>
+      <h5><i class='fas fa-spin fa-circle-notch'></i> Initializing...</h5>
+    </div>
+    <div id='main' style='display: none'>
+      <h5 id='msg-header'>Welcome to OpenVUE!</h5>
+      <br/>
+      <div id='div-upd' style='display: none'>
+        <p><i class='fas fa-info-circle'></i> OpenVUE has been updated.</p>
+      </div>
+      <div id='div-msg' style='display: none'>
+        <div id='div-pb' class='progress'>
+          <div class='indeterminate'></div>
+        </div>
+        <div id='div-msg-progress'>
+          <p id='div-msg-text'></p>
+          <div id='div-msg-skipFetch' style='display: none'>
+              <a href='#' onclick='forceCachedGB()'>Show Cached Instead (from <span id='div-msg-skipFetch-duration'></span>)</a>
+              <br><br>
+          </div>
+          <div id='div-msg-opts' style='display: none'>
+            <span id='opt-cached' style='display: none'><a href='#' onclick='forceCachedGB()'>Show Cached</a> | </span><a href='#' onclick='fetchGB()'>Try Again</a>
+            <br><br>
+          </div>
+        </div>
+      </div>
+      <div id='div-toGB' style='display: none'>
+        <a class='btn blue waves-effect' href='../dashboard?app=1' target='_self'><i class='far fa-window-maximize'></i> Dashboard</a>
+        <br><br>
+      </div>
+      <div id='div-signin' style='display: none'>
+        <p id='p-sessExp' style='display: none'><i class='fas fa-info-circle'></i> Your session has expired. You'll need to sign in again to continue.</p>
+        <a class='btn green waves-effect' href='../signin' target='_self'><i class='fas fa-sign-in-alt'></i> Sign In</a>
+      </div>
+	  <div id='div-signin-alt' style='display: none'>
+        <a href='../signin' target='_self'><i class='fas fa-sign-in-alt'></i> Sign in to another account</a>
+      </div>
+    </div>
+    <br>
+    <p class='grey-text'>
+      Build <span id='ver'></span> • <a class='grey-text' href='advanced'>Advanced</a><br>
+      <span class='grey-text'>&copy; 2020 Ryan Zhang. All Rights Reserved.</span>
+    </p>
+</body>
+</html>

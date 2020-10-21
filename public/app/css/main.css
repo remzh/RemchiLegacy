@@ -1,0 +1,44 @@
+h4{
+  font-family: 'zen-new', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+button.btn, a.btn{
+  text-transform: none; 
+}
+a:hover:not(.btn){
+  text-decoration: underline;
+}
+.pad{
+  padding: 4px 6px;
+}
+hr{
+  border: 1px solid #000;
+  border-top: none;
+}
+
+p, a{
+  font-size: 16px; /*14px is too small*/
+}
+
+#bk{
+  background: #889;
+  background: linear-gradient(to bottom right, #559, #78a);
+  position: fixed;
+  width: 100%; 
+  height: 100%; 
+  top: 0; 
+  left: 0; 
+  z-index: -2;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.05);
+  filter: blur(4px);
+}
+
+#bko { /*Background Overlay*/
+position: fixed;
+  top: 0; left: 0; 
+  width: 100%; 
+  height: 100%; 
+  z-index: -1; 
+  /* (background is set in light/dark.css*/
+}

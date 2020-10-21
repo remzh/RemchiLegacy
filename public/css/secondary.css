@@ -1,0 +1,56 @@
+/* secondary.css
+   (C) 2020 Ryan Zhang. All Rights Reserved. 
+   
+   CSS for secondary features (messages, attendance) 
+*/
+
+.table-compact th, .table-compact td{
+  padding: 10px 5px;
+}
+
+.att-calItem{
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.att-calSelToday {
+  background: #64d2fe33; 
+}
+
+.att-calSel {
+  background: #64fe9733; 
+}
+
+.att-calMark {
+  position: absolute;
+  width: 4px; 
+  height: 4px; 
+  border-radius: 2px;
+}
+
+.att-date{
+  display: inline-block;
+  width: 115px; 
+}
+
+.msg-date{
+  display: inline-block; 
+  width: 50px; 
+}
+
+.msg-content p{
+  font-size: 1.0rem;
+}
+
+.msg-content a{
+  color: #b03c08 /*gets inverted to blue*/
+}
+
+.att-table{
+  table-layout: fixed; /*don't resize based on icons in second/third rows*/
+}
+
+.att-firstHeader{
+  width: 85px; /*make fixed so it gets mroe width than individual periods*/
+}

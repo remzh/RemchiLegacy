@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+  <title>Sign In • OpenVUE</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous'/>
+  <link rel='stylesheet' href='css/auth.css' type='text/css'>
+  <script defer src='js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  <script defer src='js/ver.js'></script>
+  <script defer src='js/signin.js'></script>
+  <script defer src='js/wa-client.js'></script>
+  <script async src='https://unpkg.com/animejs@3.0.1/lib/anime.min.js'></script>
+  <noscript><style>#div-msg{opacity:1; height: 96px; margin-top: 10px; padding: 3px 6px} input, button, label {display: none !important}</style></noscript>
+</head>
+<body>
+  <div id='imgbk' class='hide-on-small-only'></div>
+  <div id='login-outer'>
+    <div id='login-div' class='card'>
+      <div id='div-loadbar'></div>
+      <div class='card-content' id='ccL'>
+        <span class='card-title'><img id='title-icon' src='images/icon-sm.png'> OpenVUE</span>
+        <br/>
+        <noscript>
+          <div>
+            <b>Error:</b>
+            <span>JavaScript is disabled (29).<br>OpenVUE can not be used without JavaScript.<br><br>If you need help enabling JavaScript, <a href='https://enable-javascript.com'>click here</a>.</span>
+          </div>
+        </noscript>
+        <p style='font-size: 16px'><img src='images/rolling.svg' id='so-i' style='height: 20px; vertical-align: text-bottom'> Please wait...</p>
+      </div>
+      <div class='card-content' id='ccD'>
+        <span class='card-title'><img id='title-icon' src='images/icon-sm.png'> District Selection</span>
+        <span>If your district is not listed below, enter either your <b>zip code</b> or <b>district URL</b> to show a list of districts near you.</span><br/>
+        <!-- <span><a href='#'>How do I find my District URL?</a></span> -->
+        <div class='input-field'>
+          <input id='i_domain' type='text' maxlength='64' class='validate'>
+          <label id='l_domain' for='i_domain'>District URL / Zip Code</label>
+          <span id='h_domain' class='helper-text' data-error='The URL provided is not valid.'></span>
+        </div>
+        <div id='domainOut'>
+          <div class='domain' tabindex='0' onkeypress='selDomain(this)' onclick='selDomain(this)'>
+            <span class='domainName'>Internal Server</span>
+            <span class='domainURL'>svue.itsryan.org</span>
+          </div>
+          <div class='domain' tabindex='0' onkeypress='selDomain(this)' onclick='selDomain(this)'>
+            <span class='domainName'>Poudre School District</span>
+            <span class='domainURL'>svue.psdschools.org</span>
+          </div>
+        </div>
+      </div>
+      <div class='card-content' id='cc1' style='display: none'>
+        <span class='card-title'><img id='title-icon' src='images/icon-sm.png'> Sign In</span>
+        <span>Use the <b>same credentials</b> you normally use for StudentVUE.</span>
+        <div id='div-msg'>
+          <b id='msg-title'>Error:</b>
+          <span id='msg-content'>JavaScript is disabled (29).<br>OpenVUE can not be used without JavaScript.<br><br>If you need help enabling JavaScript, <a href='https://enable-javascript.com'>click here</a>.</span>
+        </div>
+        <div class='input-field'>
+          <input id='i_user' type='text' maxlength='24' class='validate'>
+          <label id='l_user' for='i_user'>Username</label>
+        </div>
+        <div class='input-field'>
+          <input id='i_pass' type='password' maxlength='48' class='validate'>
+          <label for='i_pass'>Password</label>
+        </div>
+        <div class='input-field'>
+          <label for='div-domain' class='active'>Domain / District</label>
+          <div id='div-domain' tabindex='0' data-target='drop-domain-ul' onclick='showDrop()'>
+            <span id='s-domain'></span>
+            <span id='s-domainURL'></span>
+          </div>
+        </div>
+        <div id='wa-signin' class='wa-option' tabindex='0' onkeypress='openWALogin(event)' onclick='openWALogin()'>
+          <p>🔑 Sign in with a security key instead</p>
+        </div>
+        <label>
+          <input id='c_rem' type='checkbox' checked/>
+          <span>Remember Me</span>
+        </label>
+        <button onclick='login()' class='btn btn-flat right blue white-text waves-effect'>Continue</button>
+        <a href='app/start?persist=1' id='lnk-app' style='display: none'><button class='btn btn-flat right blue-grey darken-1 waves-effect waves-effect white-text' style='margin-right: 4px'>Back</button></a>
+        <br>
+      </div>
+      <div class='card-content' id='ccWA'>
+        <span class='card-title'><img id='title-icon' src='images/icon-sm.png'> Sign In with WebAuth</span>
+        <div class='domain' tabindex='0' onkeypress='selDomain(this)' onclick='selDomain(this)'>
+          <span class='domainName'>Sign in with an external security key</span>
+          <span class='domainURL'>svue.psdschools.org</span>
+        </div>
+      </div>
+      <div class='card-content' id='cc2'>
+        <span class='card-title'><img id='title-icon' src='images/icon-sm.png'> OpenVUE</span>
+        <p>Looks like you haven't used OpenVUE yet this school year. Welcome (or welcome back)!</p>
+        <br>
+        <p>A new OpenVUE account will be linked to your StudentVUE account. Please confirm the following information is accurate before continuing.</p>
+        <br>
+        <p>Legal Name: <b><span id='cc2_name'></span></b><br>School: <b><span id='cc2_school'></span></b></p>
+        <br>
+        <br>
+        <button onclick='consent(2)' class='btn btn-flat right blue white-text waves-effect'>Continue</button>
+        <button onclick='consent(0)' class='btn btn-flat right grey white-text waves-effect' style='margin-right: 5px'>Cancel</button>
+        <br>
+      </div>
+      <div class='card-content' id='cc3'>
+        <span class='card-title'>Legal</span>
+        <div id='div-msg2'>
+          <b>Error:</b>
+          <span id='msg2-content'>The request failed.</span>
+        </div>
+        <p><b>OpenVUE works by communicating with Synergy SIS, and this includes transferring potentially sensitive student records. </b> In order to continue, you must grant permission for us (OpenVUE as well as its owner, Ryan Zhang) to access your educational records on your behalf, in accordance with the <a href='../legal' target='_blank'>Terms of Service</a> and <a href='../legal#privacy' target='_blank'>Privacy Policy</a>.</p>
+        <br/>
+        <p><b>You are responsible for ensuring compliance with your district. OpenVUE is not responsible or liable for any misuse of this service.</b></p>
+        <div class='input-field'>
+          <input id='i_signature' type='text' maxlength='48' onchange='tosAcc.disabled=!(c_tos.checked && this.value.length > 2)' class='validate'>
+          <label for='i_signature'>Your Signature</label>
+        </div>
+        <br>
+        <label>
+          <input id='c_tos' type='checkbox' onchange='tosAcc.disabled=!(this.checked && i_signature.value.length > 2)'/>
+          <span>I agree to the Terms of Service and Privacy Policy, and I grant permission for OpenVUE to access my educational records.</span>
+        </label>
+        <br>
+        <br>
+        <button id='tosAcc' disabled onclick='consent(1)' class='btn btn-flat right blue white-text waves-effect'>Continue</button>
+        <button id='tosAccCancel' onclick='consent(0)' class='btn btn-flat right teal white-text waves-effect' style='margin-right: 5px'>Sign Out</button>
+        <br>
+      </div>
+      <div class='card-content' id='cc4'>
+        <span class='card-title'>Success!</span>
+        <p>Your account has been successfully created. <br>Welcome to OpenVUE, <span id='cc4_name'></span>!</p>
+        <br>
+        <p>If you have any questions, suggestions, or comments, you can always select "Feedback" or reach out in person. Thanks!</p>
+        <br>
+        <button onclick='window.open("../dashboard","_self")' class='btn btn-flat right blue white-text waves-effect'>Continue</button>
+        <br>
+      </div>
+    </div>
+  </div>
+  <ul id='drop-domain-ul' class='dropdown-content'>
+    <li onclick='drop(0)'><span>Open District Portal</span></li>
+    <li onclick='drop(1)'><span>Change District</span></li>
+  </ul>
+  <div id='login-footer'>
+    <span id='ft'>OpenVUE is not affiliated with Edupoint. <a href='../legal'>Legal</a></span>
+    <span id='ft-right'>&copy; 2020 Ryan Zhang. All Rights Reserved. <a id='a-theme' href='#'>Toggle Theme</a></span>
+  </div>
+</body>
+</html>

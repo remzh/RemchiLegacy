@@ -1,0 +1,23 @@
+html{
+  color: white;
+}
+
+#bko { 
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#div-msg, #div-theme, #div-upd{
+  background: rgba(5, 30, 3, 0.5);
+}
+
+hr{
+  border-color: #aaa;
+}
+
+.progress{
+  background: #244441;
+}
+
+.progress .indeterminate{
+  background-color: #16dbaa; 
+}

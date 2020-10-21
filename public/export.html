@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='favicon.ico' rel='icon' type='icon/ico'>
+  <link rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
+  <link id='rel-theme' rel='stylesheet'/>
+  <script defer src='/js/fa.js' crossorigin='anonymous'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
+  
+  
+  <title>Export Data &#x2022; OpenVUE</title>
+  <style id="sve-css">
+    #steps {
+      font-size: 1.2rem;
+      background: #88888828; 
+      margin-top: 12px;
+      margin-bottom: 12px;
+      padding: 8px 8px;
+    }
+    .step {
+      border: 1px solid #fff; 
+      display: inline-block;
+      width: 22px; 
+      height: 22px;
+      border-radius: 11px;
+      text-align: center;
+      vertical-align: text-bottom;
+      line-height: 1;
+      transition: all 0.4s;
+    }
+    .step-outer {
+      transition: all 0.4s;
+      overflow-x: hidden;
+      display: inline-block;
+      white-space: nowrap;
+      vertical-align: bottom;
+    }
+    .step-outer.step-current {
+      color: #80ccff;
+    }
+    .step-outer.step-inactive, .step-inactive .step {
+      color: #888;
+      border-color: #888;
+    }
+    .step-outer.step-done, .step-done .step {
+      color: #ccffcf;
+      border-color: #85ff67;
+    }
+    .step-current .step {
+      border-color: #80ccff;
+      background: #80ccff2f;
+      color: #fff;
+    }
+    .div-step {
+      position: relative;
+      transition: all 0.4s;
+      opacity: 1;
+      left: 0;
+    }
+    #legal {
+      background: #60778b28;
+      padding: 4px 16px;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+    @media only screen and (max-width: 800px) {
+      .step-outer {
+        max-width: 24px;
+      }
+      .step-outer.step-current {
+        max-width: 200px;
+      }
+      #steps svg {
+        display: none;
+      }
+      .container#steps {
+        margin-top: 0; 
+        width: 100%; 
+      }
+      #legal {
+        max-height: 320px;
+      }
+    }
+  </style>
+
+  <link rel='stylesheet' href='css/core.css' type='text/css'>
+  <script defer src='js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96580670-3"></script>
+  <script>
+    if(localStorage.cfg_theme === 'dark' || (localStorage.cfg_theme === 'match' && window.matchMedia('(prefers-color-scheme: dark)').matches) || (!localStorage.cfg_theme && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+      document.getElementById('rel-theme').href = 'css/materialize/dark.css'}
+    else{
+      document.getElementById('rel-theme').href = 'css/materialize/light.css'}
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+  </script>
+</head>
+<body>
+  <div class='navbar-fixed'>
+    <nav class='nav svue-navblue' style='height: 48px'>
+      <div class='nav-wrapper'>
+        <a href='dashboard'>
+          <i class='fas fa-arrow-left nav-comp' style='float: left; margin-left: 16px; font-size: 20px'></i></a>
+        <span class='brand-logo nw'><img src='images/icon-sm.png'/> OpenVUE </span>
+      </div>
+    </nav>
+  </div>
+  
+  <div id="steps" class="row container">
+    <span id="step-1" class="step-outer step-current"><span class="step">1</span> Acknowledgements</span> <i class="fas fa-chevron-right"></i>
+    <span id="step-2" class="step-outer step-inactive"><span class="step">2</span> Confirm Identity</span> <i class="fas fa-chevron-right"></i>
+    <span id="step-3" class="step-outer step-inactive"><span class="step">3</span> Customize</span> <i class="fas fa-chevron-right"></i>
+    <span id="step-4" class="step-outer step-inactive"><span class="step">4</span> Download</span>
+  </div>
+  <div class="row container">
+    <div id="div-step-1" class="div-step">
+      <div id="legal">
+        <h2 style="margin-top: 8px">Welcome to the Data Export tool!</h2>
+        <p><b>Please read and accept the following terms and disclaimers before using the tool. A tl;dr is provided for convenience only.</b></p>
+        <h3>tl;dr</h3>
+        <ul>
+          <li>- By using this tool, you grant us (ItsRyan / Ryan Zhang) permission to fetch data on your behalf, and temporarily store it on our servers.</li>
+          <li>- Exports may be rate-limited depending on server capacity due to how computer-intensive exports are. Once the limit is hit, further downloads will fail. </li>
+          <li>- We&apos;re not affiliated with Edupoint&#xAE;. No warranties, expressed or implied, are provided for using this tool. You and only you are responsible for anything that happens with it.</li>
+        </ul>
+        <hr>
+        <h3>Introduction</h3>
+        <p>The data export tool is an open source, publicly usable tool designed to allow any StudentVUE&#x2122;/ParentVUE&#x2122; user to obtain a copy of their grades in a variety of formats. This tool is built off of publicly and freely accessible websites and images, and is not based off of any proprietary design documents or source code from any of Edupoint&#xAE;&apos;s products.</p>
+        <p><b>Edupoint&#xAE; does not support or endorse this tool in any way. Edupoint&#xAE; is completely unaffiliated with this tool.</b></p>
+        <h3>Rate Limits</h3>
+        <p>Exporting data is a very computationally expensive task (relative to the everything else on this website/app), and is not something a user will (or rather, should) often do. There is no strict rate limit currently being enforced right now, but this is subject to change. If you hit the rate limit, you will no longer be able to create new exports until the limit resets. Downloading the same file again will not count against your rate limit, but generating a new export - even if its contents are identical - will count. </p>
+        <h3>Representations, Warranties, and Indemnities</h3>
+        <p>1) You represent and warrant that: </p>
+        <ol>
+          <li>The credentials/account information you provide are either your own or on the behalf of someone you&apos;re authorized to access;</li>
+          <li>You are following any policies set out by your school/district/StudentVUE account provider; and</li>
+          <li>You are not violating any applicable laws.</li>
+        </ol>
+        <p>2) You will indemnify the authors and contributors of this tool against all liabilities, damages, losses, ccosts, fees (including legal fees), and expenses related to any allegation or third-party legal proceeding that arises from:</p>
+        <ol>
+          <li>Not following the terms listed here and creating a third party dispute; and</li>
+          <li>Violating any obligation you have with any other person/entity (i.e., a district policy).</li>
+        </ol>
+      </div>
+      <br>
+      <label>
+        <input id="sve-legal" type="checkbox">
+        <span>I understand and acccept the terms and disclaimers listed above.</span>
+      </label><br><br>
+      <button id="btn-start" disabled onclick="goto(1, 2)" class="btn green waves-effect"><i class="fas fa-circle-notch fa-spin"></i> Continue</button>
+    </div>
+    <div id="div-step-2" class="div-step" style="display: none">
+      <p id="p-step-2"><i class="fas fa-circle-notch fa-spin"></i> Waiting for authentication...</p>
+      <button onclick="goto(2, 1)" class="btn grey waves-effect"><i class="fas fa-arrow-left"></i> Cancel</button> <button id="btn-authContinue" disabled onclick="goto(2, 3)" class="btn teal waves-effect"><i class="fas fa-circle-notch fa-spin"></i> Continue</button>
+    </div>
+    <div id="div-step-3" class="div-step" style="display: none">
+      <p>3.1) Select your format: </p> 
+      <div class="input-field inline">
+        <select id="sel-format">
+          <option value="xlsx" selected>XLSX (Excel)</option>
+          <option value="xml">XML</option>
+          <option value="json">JSON</option>
+        </select>
+        <label>Format</label>
+      </div>
+      <br><i>If you&apos;re unsure, select XLSX (Excel). XML is the full, raw data as returned by the Synergy&#xAE; server; JSON is a modified version of it.<br>Want to print and/or get a PDF of your report? Use XLSX and print/print to pdf - the Excel files are formatted to be print friendly!</i>
+      <br><br>
+      <p>3.2) Select your school: </p>
+      <div class="input-field inline">
+        <select id="sel-school"></select>
+        <label>School</label>
+      </div>
+      <br>
+      <button id="sve-confirm" class="btn indigo waves-effect"><i class="fas fa-check"></i> Confirm</button>
+      <div id="s3-rp" style="display: none">
+        <p>3.3) Select your reporting period(s):<br><i>By default, all reporting periods will be exported into one zip file.</i></p>
+        <div class="input-field inline">
+          <select id="sel-rp" multiple></select>
+          <label>Reporting Period</label>
+        </div>
+        <br>
+        <button id="sve-finalize" class="btn indigo waves-effect"><i class="fas fa-check"></i> Confirm</button>
+      </div>
+    </div>
+    <div id="div-step-4" class="div-step" style="display: none;">
+      <h2>Export Data</h2>
+      <p id="s4-waiting"><i class="fas fa-circle-notch fa-spin"></i> Please wait as your data is being prepared.<br><i>This process should not take more than a minute.</i></p>
+      <p id="s4-error" style="display: none"><i class="fas fa-exclamation-triangle"></i> Something went wrong. Error: </p>
+      <p id="s4-ready" style="display: none"><i class="fas fa-check"></i> Your download is ready!<br><br><a href="/data/secure/export/download"><i class="fas fa-download"></i> Download</a><br><i>Act quickly! Your download link is only valid until <span id="s4-expires">...</span>.</i></p>
+    </div>
+  </div>
+  <script>
+    let notReady = true, needsAuth = false, curPopup; 
+    function goto(a, b, v) {
+      $(`#div-step-${a}`).css({left: `${a<b?'-':''}20px`, opacity: '0'});
+      $(`#div-step-${b}`).css({left: `${a<b?'':'-'}20px`, opacity: '0'});
+
+      if (b === 2 && needsAuth) {
+        openAuth(); 
+      }
+
+      setTimeout(() => {
+        $(`#div-step-${b}`).css({display: 'block'});
+        $(`#div-step-${a}`).css({display: 'none', left: '0'});
+        setTimeout(() => {
+          let cur = $('.step-current'); 
+          cur.removeClass('step-current');
+          $(`#step-${b}`).removeClass('step-inactive').removeClass('step-done').addClass('step-current');  
+          $(`#div-step-${b}`).css({left: '0px', opacity: '1'});
+          if (a < b) {
+            cur.addClass('step-done');
+          } else {
+            $(`#step-${a}`).addClass('step-inactive');  
+          }
+        }, 50); 
+      }, 400); 
+    }
+
+    function openAuth() {
+        let w = 400, h = 500; 
+        if (curPopup && curPopup.close) {
+          curPopup.close(); 
+        }
+        let dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+        let dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+        let width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        let height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+        let systemZoom = width / window.screen.availWidth;
+        let left = (width - w) / 2 / systemZoom + dualScreenLeft
+        let top = (height - h) / 2 / systemZoom + dualScreenTop
+        curPopup = window.open('/signin/reauth', '_blank', 'scrollbars=yes, width=' + w / systemZoom + ', height=' + h / systemZoom + ', top=' + top + ', left=' + left);
+        if(!curPopup){
+          $('#p-step-2').html(`<i class='fas fa-exclamation-triangle'></i> Looks like we were unable to open the authentication page. Do you have a popup blocker enabled?`)
+          $('#btn-authContinue').html(`<i class='fas fa-times'></i> Continue`); 
+        }
+        else{
+          let called = false; 
+          curPopup.onunload = function (e) {
+            if (called) window.cancelSudo(); 
+            called = true; 
+          }; 
+        }
+      }
+
+    (function() {
+      function checkAuth() {
+        fetch('/data/secure/export/info').then(r => r.json()).then((r => {
+          notReady = false;  
+          $('#btn-start').html(`<i class='fas fa-arrow-right'></i> Continue`); 
+          if (r.type === 'auth') needsAuth = true; 
+          else {
+            $('#btn-authContinue').html(`<i class='fas fa-arrow-right'></i> Continue`); 
+            $('#btn-authContinue').prop('disabled', false); 
+            $('#p-step-2').html(`Hi there! <br/>Please select "Continue" if the information below is correct: <br/><br/><span class='light-blue-text bw'><b>${r.name}</b><br/>${r.domain}\\${r.user}<br/>${r.school}<br/></span>`); 
+            $('#sel-school').append(`<option selected value='h'>${r.school}</option>`); 
+            if (r.concurrent) {
+              for (let i of r.concurrent) {
+                $('#sel-school').append(`<option value='${i.guid}'>${i.name}</option>`); 
+              }
+            }
+            M.FormSelect.init($('#sel-format')[0]); 
+            M.FormSelect.init($('#sel-school')[0]); 
+          }
+        }), (e => {
+          console.log(e); 
+          alert('Error.')
+        }))
+      }
+      
+      function confirmSchool(ele) {
+        ele.disabled = true; 
+        ele.innerHTML = `<i class='fas fa-circle-notch fa-spin'></i> Confirm`;
+        $.post('/data/secure/export/createSession', {
+          school: $('#sel-school').val(), 
+          format: $('#sel-format').val()
+        }).then(r => {
+          $(ele).hide(); 
+          $('#s3-rp').show(); 
+          for (let rp of r.rp) {
+            $('#sel-rp').append(`<option selected value='${rp.index}'>${rp.name}</option>`); 
+          }
+          $('#sel-format').prop('disabled', true); 
+          $('#sel-school').prop('disabled', true); 
+          M.FormSelect.init($('#sel-format')[0]); 
+          M.FormSelect.init($('#sel-school')[0]); 
+          M.FormSelect.init($('#sel-rp')[0]); 
+        }, (e) => {
+          ele.insertAdjacentHTML('beforeBegin', `<i class='fas fa-exclamation-triangle fa-fw'></i> An error occured while trying to create a session.<br/>`)
+          M.toast({html: `<i style='padding-right: 4px' class='fas fa-exclamation-triangle fa-fw'></i> Failed to create an export session. Usually, reloading the page will fix this.`, classes: 'orange darken-2', displayLength: 6000}); 
+          ele.disabled = false; 
+          ele.innerHTML = `<i class='fas fa-check'></i> Confirm`;
+        })
+      }
+      function confirmRP() {
+        goto(3, 4); 
+        $.post('/data/secure/export/complete', {
+          rp: $('#sel-rp').val().join('/')
+        }).then(r => {
+          $('#s4-waiting').hide(); 
+          $('#s4-ready').show(); 
+          $('#s4-expires').text(r.expires); 
+        }, e => {
+          $('#s4-waiting').hide(); 
+          $('#s4-error').show(); 
+          $('#s4-error').append(e.msg); 
+        })
+      }
+      window.cancelSudo = () => {
+        $('#p-step-2').html(`<i class='fas fa-exclamation-triangle'></i> Authentication failed. <a style='cursor: pointer' onclick='openAuth()'>Retry</a>`)
+      }
+      window.confirmSudo = () => {
+        curPopup.close(); 
+        checkAuth(); 
+      }
+
+      if (localStorage.cfg_theme === 'light' || document.getElementById('rel-theme') && document.getElementById('rel-theme').href.indexOf('light') !== -1) {
+        // light theme, inject light CSS
+        document.getElementById('sve-css').insertAdjacentHTML('beforeEnd', `.step-outer.step-done, .step-done, .step-done .step {color: #009209; border-color: #009209} .step-outer.step-current, .step-current .step {color: #0e77be; border-color: #0e77be}`); 
+      }
+
+      document.getElementById('sve-confirm').addEventListener('click', () => {
+        confirmSchool(document.getElementById('sve-confirm')); 
+      }); 
+
+      document.getElementById('sve-finalize').addEventListener('click', confirmRP); 
+
+      document.getElementById('sve-legal').addEventListener('change', () => {
+        $("#btn-start").prop("disabled", notReady || !document.getElementById('sve-legal').checked)
+      }); 
+
+      checkAuth(); 
+    })(); 
+  </script>
+
+</body>
+</html>

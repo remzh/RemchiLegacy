@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Error 404 (Page Not Found)</title>
+  <meta charset="UTF-8">
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href="favicon.ico" rel="icon" type="icon/ico">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'/>
+  <style>
+    html{
+      background: #e3e3ff;
+      background: linear-gradient(#e3fffe, #e3ebff);
+      height: 100%;
+    }
+    body{
+      font-family: 'Open Sans', sans-serif;
+    }
+    #header{
+      position: absolute;
+      font-size: 80px;
+      left: calc(50% - 75px);
+      top: calc(30% - 50px);
+      border-bottom: 2px solid black;
+      text-shadow: 1px 1px 3px gray;
+    }
+    #main{
+      position: absolute;
+      font-size: 20px;
+      left: calc(50% - 80px);
+      top: calc(30% + 50px);
+      line-height: 1.5;
+      text-shadow: 1px 1px 2px lightgray;
+    }
+    #side{
+      position: absolute;
+      font-size: 18px;
+      width: calc(100% - 8px);
+      top: calc(30% + 120px);
+      text-align: center;
+    }
+    a{
+      text-decoration: none; 
+      color: #4174ff;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id='header'>404</div>
+  <div id='main'>
+    <p>Page Not Found</p>
+  </div>
+  <div id='side'>
+    <p>The requested URL was not found on this server.<br><a href='#' onclick='window.history.back()'>Go Back</a> | <a href='/'>Homepage</a></p>
+  </div>
+</body>
+</html>
