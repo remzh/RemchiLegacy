@@ -2,7 +2,7 @@
 # OpenVUE
 > The gradebook that you wish you had in high school. 
 
-[![License: AGPL v3](https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
+[![GitHub](https://img.shields.io/github/license/Ryan778/OpenVUE?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Ryan778/OpenVUE?style=flat-square)
 ## Welcome to OpenVUE!
 OpenVUE is a modern, responsive interface that's designed to connect to Synergy's StudentVUE™ software. It is not a replacement for Synergy, rather, a complement to it. Synergy is a comprehensive Student Information System (SIS) developed by Edupoint LLC and performs a myriad of complex tasks for schools and school districts; OpenVUE is merely a user-facing interface to access and present data already stored in Synergy. 
