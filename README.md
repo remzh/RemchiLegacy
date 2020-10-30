@@ -14,7 +14,7 @@ In short, OpenVUE is intended to allow users to replace StudentVUE™, but **not
 Visit [svue.itsryan.org](https://svue.itsryan.org) and read the landing page to learn more about what OpenVUE has to offer. Since I'd like to believe that page already does a fine job at this, there's no need to reiterate everything here.
 
 ### Demo
-At [svue.itsryan.org](https://svue.itsryan.org), there's a link to a demo account you can access to play around. Most features are usable in said demo account. 
+At [svue.itsryan.org](https://svue.itsryan.org), there's a link to a demo account you can access to play around. Most features are usable in said demo account. To access it, simply select that link and scroll down to where an option to "Open Demo Account" is given. 
 
 ### Feature Comparison
 *This is between the official StudentVUE site/app and OpenVUE.*
