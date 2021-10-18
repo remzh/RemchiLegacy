@@ -19,15 +19,14 @@
 
   <link rel='stylesheet' href='css/core.css' type='text/css'>
   <script defer src='js/zepto.min.js' integrity='sha256-RHTXmWrHQAbYRTGQR8NJapj1bG53Zh4oRZRuAy2Hu3A=' crossorigin='anonymous'></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96580670-3"></script>
-  <script>
+    <script>
     if(localStorage.cfg_theme === 'dark' || (localStorage.cfg_theme === 'match' && window.matchMedia('(prefers-color-scheme: dark)').matches) || (!localStorage.cfg_theme && window.matchMedia('(prefers-color-scheme: dark)').matches)){
       document.getElementById('rel-theme').href = 'css/materialize/dark.css'}
     else{
       document.getElementById('rel-theme').href = 'css/materialize/light.css'}
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+    /*(optional Google Analytics code here)*/
   </script>
 </head>
 <body>

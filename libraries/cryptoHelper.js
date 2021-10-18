@@ -2,7 +2,7 @@
  * cryptoHelper.js
  * Believe it or not, for the longest time, user passwords were stored in plain-text in the database. And, because we're using the free version of MongoDB Server, said passwords were then stored in plain-text on disk. 
  * The reason this was not previously a thing was due to the need to have plaintext passwords (since we are acting as a gateway to Synergy), and reversible encryption is frankly meaningless if the key gets compromised. Nonetheless, the encryption key is NOT stored on the database, so doing this should help slightly in the event that the database is somehow compromised. This realistically won't do too much, but it also has a very low performance cost. 
- * (C) 2020 Ryan Zhang. 
+ * (C) 2021 Ryan Zhang. 
 */
 
 const crypto = require('crypto'); 

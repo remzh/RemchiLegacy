@@ -1676,7 +1676,7 @@ fs.readFile(path.join('public', 'js', 'ver.js'), 'utf8', (e, r) => {
   r = JSON.parse(r); // parse JSON
   logger.info('----------------------------------------'); 
   logger.info('OpenVUE'); 
-  logger.info('(C) 2020 Ryan Zhang. All Rights Reserved.')
+  logger.info('(C) 2021 Ryan Zhang. All Rights Reserved.')
   logger.info(`Version ${r.str} [${r.stage}]`);
   logger.info(`⮡ Build ${r.build} (${r.date})`);
   logger.info('----------------------------------------')

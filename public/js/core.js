@@ -1,5 +1,5 @@
 /** core.js
- * (C) 2020 Ryan Zhang. See license.md for licensing. 
+ * (C) 2021 Ryan Zhang. See license.md for licensing. 
  * A replacement "core" (built in late 2020) for the ever worsening spaghetti code from 2018 to handle loading courses, caching courses, and handling concurrent schools + multiple reporting periods simultaneously (which under the previous setup was not possible)
  * Additionally, unlike the previous implementation, this one uses JavaScript's native Fetch API, removing the need for jQuery or Zepto.js + AJAX - and for a lot of other questionable hacks taken to make things work (i.e., errors being sent a status code of 200 because Zepto's $.get w/o ajax didn't support error handling). 
  * @requires localforage (localForage ~1.7.3) 
@@ -192,7 +192,14 @@ const svcore = {
         rp: i.md.rp, 
         rpDate: i.md.rpDate
       }); 
-      dataOut.push(...i.data);
+      if (i.data) {
+        dataOut.push(...i.data);
+      } else {
+        dataOut.push({
+          _m: true, 
+          _nd: true // no data (occurs when a reporting period is listed but doesn't have any courses in it)
+        });
+      }
     }
     this._rpSel = data.map(r => r.md._key); 
     let out = {

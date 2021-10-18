@@ -1,6 +1,6 @@
 /**
  * Support for the WebAuth spec on SVUE+
- * (C) 2020 Ryan Zhang. 
+ * (C) 2021 Ryan Zhang. 
  */
 
 let db = false; 
@@ -71,7 +71,7 @@ function hook(app) {
       try {
         let auth = await f2l.attestationResult(attestation, {
           challenge: str2ab(req.session.waChallenge), 
-          origin: 'https://svue-dev.itsryan.tk', 
+          origin: 'https://svue.itsryan.org', 
           factor: 'either'
         }); 
         req.session.waTmp = {

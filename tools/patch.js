@@ -1,5 +1,5 @@
 /* patchxlsx.js 
-(C) 2020 Ryan Zhang. See LICENSE.md for license info. 
+(C) 2021 Ryan Zhang. See LICENSE.md for license info. 
 
 svexport.js relies on a custom implementation of ExcelJS (due to their lack of some features needed). Running patchxlsx.js will "patch" the ExcelJS library to support it. 
 

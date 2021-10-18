@@ -1,5 +1,5 @@
 // main.js
-// (C) 2020 Ryan Zhang. All Rights Reserved. 
+// (C) 2021 Ryan Zhang. All Rights Reserved. 
 // 
 // Main script, used for all functions in the Gradebook tab as well as global / shared functions (settings, page navigation, etc.)
 
@@ -15,8 +15,15 @@ let cbList = {
   /**
    * Changes the reporting periods shown in the course list. 
    * @param {boolean} [reset=false] Whether to reset the reporting periods to default 
+   * @returns {undefined}
    */
   changeRP: function(reset) {
+    if (!cbList.rp) {
+      // No reporting periods exist
+      rlib.toast.info(`You do not have any other reporting periods.`); 
+      M.Modal.getInstance($('#modal-reportingPeriod')[0]).close(); 
+      return;
+    }
     let target; 
     if (reset) {
       let isDefault = true; 
@@ -106,7 +113,15 @@ let cbList = {
     if (!localStorage.lastChangelog) this.pushMessage({icon: 'I', text: `You can return to the changelog anytime under More Actions 🡒 Show Changelog.`});
     M.Modal.getInstance($('#modal-whatsnew')[0]).open();
     localStorage.lastChangelog = $('#modal-whatsnew')[0].dataset.build;
-  }
+  }, 
+  /**
+   * 
+   */
+  dismissChangelog: function () {
+    this.cl.banner.update = false; 
+    if (!localStorage.lastChangelog) this.pushMessage({icon: 'I', text: `Message dismissed. To show the changelog again, go to More Actions 🡒 Show Changelog.`});
+    localStorage.lastChangelog = $('#modal-whatsnew')[0].dataset.build;
+  }, 
 }
 let cbData, cbDiff = {}; 
 let cbChart, cbChartSup; // cbChart instance, supplementary cbChart data
@@ -1425,7 +1440,9 @@ function initApp(userData){
 
   if (svcore.getUUID()) {
     if (typeof ga !== 'undefined') {
-      ga('set', 'userId', svcore.getUUID()); 
+      gtag('config', 'UA-96580670-3', {
+        'user_id': svcore.getUUID()
+      });
     }
   }
   
@@ -1698,16 +1715,6 @@ function returnToLaunch(){
   sessionStorage.app_persistLaunchPage = '1'; 
   window.open('app/start', '_self');
 }
-
-$(document).on('touchstart', function (e) {
-  let target = $(e.target);
-  if (!target.is("span")) { //checking if you are tapping on items in multiple select or not
-      $(document).trigger('click'); //if you are tapping outside multiple select close it
-      $(':focus').blur(); //focus out for multiple select so you can choose another or the same (in case you have more multiple selects on page)
-  } else {
-      //nothing or fire another event
-  };
-});
 
 window.onpopstate = function(event){
   let state = event.state; 

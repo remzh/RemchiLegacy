@@ -1,5 +1,5 @@
 // StudentVUE Function Library
-// (C) 2020 Ryan Zhang
+// (C) 2021 Ryan Zhang
 
 const moment = require('moment');
 const logger = {

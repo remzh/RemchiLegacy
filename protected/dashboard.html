@@ -24,12 +24,11 @@
   <script defer src='js/main.js'></script>
   <script defer src='js/secondary.js'></script>
   <script async src='https://app.appzi.io/bootstrap/bundle.js?token=5gJLu'></script>
-  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-96580670-3'></script>
-  <script async src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js'></script>
+    <script async src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js'></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date()); gtag('config', 'UA-96580670-3');
+    /*(optional Google Analytics code here)*/
   </script>
 </head>
 <body>
@@ -85,7 +84,7 @@
     <p>If you see this message for an extended period of time (more than a few seconds), then it's likely that something went wrong. </p>
     <noscript><p><b>It appears that JavaScript may be disabled, which is required to run OpenVUE.</b></p></noscript>
     <p><a href='#' style='color: #aaf' onclick='location.reload()'>Reload OpenVUE</a></p>
-    <p style='position: fixed; bottom: 0px; color: #ccf'>&copy; 2020 Ryan Zhang. All Rights Reserved.</p>
+    <p style='position: fixed; bottom: 0px; color: #ccf'>&copy; 2021 Ryan Zhang. All Rights Reserved.</p>
   </div>
   <div class='navbar-fixed'>
     <nav class='svue-navblue'>
@@ -181,7 +180,7 @@
           </li>
           <li v-if='banner.update' class='collection-header ch-animated bk-green' v-bind:key='-1'>
             <i class='fas fa-fw fa-bullhorn'></i> OpenVUE has been updated to <b>r2.0.0</b>!
-            <a href='#' class='right pointer' v-on:click='cbList.showChangelog()' tabindex='0'>See what's new</a>
+            <span class='right'><a href='#' class='pointer' v-on:click='cbList.showChangelog()' tabindex='0'>See what's new</a> • <a href='#' class='pointer' v-on:click='cbList.dismissChangelog()' tabindex='0'>Dismiss</a></span>
           </li>
         </transition-group>
         <transition name='anim-msg'>
@@ -232,6 +231,9 @@
           <span class='right lg bw' v-html='$_showGrade(course)'></span>
           <br><span class='gray'>P{{course.$.Period}} | {{course.$.Staff}}</span><span class='right' :class='$_detNew(course.$.Title, 1, index)'>{{$_detNew(course.$.Title, 0, index)}}</span>
         </a>
+        <li class='collection-item course-rp' v-else-if='course._m && course._nd'>
+          <span class='bw'>No Data </span><span class='gray'>(No courses found in this reporting period)</span>
+        </li>
         <li class='collection-header course-rp' v-else-if='course._m'>
           <span class='bw'>{{course.school}} • {{course.rp}}</span>
           <span class='gray right'>{{course.rpDate}}</span>
@@ -1034,7 +1036,7 @@
             </li>
           </ul>
           <p>
-            &copy; 2020 Ryan Zhang. All Rights Reserved. <br/>
+            &copy; 2021 Ryan Zhang. All Rights Reserved. <br/>
             <a href='../legal'>Terms of Service</a> • <a href='../legal#privacy'>Privacy Policy</a>
           </p>
         </div>
@@ -1256,12 +1258,57 @@
       </div>
     </div>
   </div>
-  <div id='modal-whatsnew' class='modal modal-fixed-footer' data-build='1230'>
+  <div id='modal-whatsnew' class='modal modal-fixed-footer' data-build='1233'>
     <div class='modal-content'>
       <h4>What's New</h4>
-      <p><b>Release 2.0.0</b>&nbsp;• Build 1233 • October 20, 2020<br/></p>
-      <hr/>
-      <p>Changelogs aren't published directly in builds of OpenVUE. If you'd like to see what's changed, check us out on <a target='_blank' href='https://github.com/Ryan778/OpenVUE'>GitHub</a>!</p>
+      <p><b>Release 2.0.0</b>&nbsp;• Build 1233 • October 20, 2020<br/><i>Missed a release? <a href='changelog'>See Previous and/or Full Changelog</a></i></p>
+      <p><b class='green-text text-accent-bw'>New Things!</b></p>
+      <ul class='browser-default selectable'>
+        <li>OpenVUE is now <b>open source</b>! Named OpenVUE, you can find the <a target='_blank' href='https://github.com/Ryan778/OpenVUE'>full source code on GitHub</a>.</li>
+        <li>Complete refactoring of the OpenVUE core:</li>
+        <ul class='browser-default'>
+          <li>This is the portion OpenVUE uses to communicate with Synergy, and it has been slowly accumulating bugs ever since its rocky start back in February 2019.</li>
+          <li>By redoing it from scratch using modern APIs, it now <b>fully supports concurrent enrollment schools</b>, has <b>better caching and more detailed errors</b>, and is <b>significantly less prone to bugs</b>.</li>
+        </ul>
+        <li>Redesigned dashboard:</li>
+        <ul class='browser-default'>
+          <li>See the weather, date, and time (on desktop) at a glance</li>
+          <li>Concurrently enrolled with another school? See all of your classes at once!</li>
+          <li>Unobtrusive banner messages (in contrast to the obnoxious popups in the past)</li>
+        </ul>
+        <li>Significantly better accessibility:</li>
+        <ul class='browser-default'>
+          <li>Almost all of OpenVUE can now be navigated with just a keyboard!</li>
+          <li>Better "Reduced Motion" setting removes even more optional animations</li>
+        </ul>
+        <li>Data Exporting:</li>
+        <ul class='browser-default'>
+          <li>You can now download your grades in a variety of formats!</li>
+          <li>Currently XML, JSON, and XLSX are supported</li>
+        </ul>
+      </ul>
+      <p><b class='yellow-text text-accent-bw'>Improvements!</b></p>
+      <ul class='browser-default selectable'>
+        <li>Performance improvements:</li>
+        <ul class='browser-default'>
+          <li>Code optimization and dead code cleanup means pages should load even faster than before</li>
+          <li>The legacy, buggy course list loading system has been thrown out and replaced with a proper VueJS implementation</li>
+        </ul>
+        <li>Greatly improved "Welcome" carousel for the new user onboarding experience</li>
+        <li>Lots and lots and lots of bug fixes:</li>
+        <ul class='browser-default'>
+          <li>Far too many to list here, but they can be found in the full changelog!</li>
+        </ul>
+      </ul>
+      <p><b class='teal-text bw'>What's next?</b></p>
+      <ul class='browser-default selectable'>
+        <li>Potential notifier overhaul:</li>
+        <ul class='browser-default'>
+          <li>Reintroduce text notifications to the general public if possible?</li>
+          <li>Plans to greatly improve stability and customization options</li>
+        </ul>
+        <li><b class='light-blue-text bw'>You tell me!</b> We're always looking for suggestions on how OpenVUE can be further improved.</li>
+      </ul>
     </div>
     <div class='modal-footer'>
       <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Ok, Thanks!</a>

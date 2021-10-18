@@ -1,5 +1,5 @@
 // svexport.js
-// (C) 2020 Ryan Zhang. Some Rights Reserved. 
+// (C) 2021 Ryan Zhang. Some Rights Reserved. 
 // 
 // Converts gradebook data to JSON and excel spreadsheets
 

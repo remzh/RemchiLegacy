@@ -9,11 +9,11 @@ workbox.googleAnalytics.initialize();
 workbox.precaching.precacheAndRoute([
   {
     "url": "account.html",
-    "revision": "e6ce140e16fae4503275f03b2db24bbc"
+    "revision": "3a09b97a47c289e1698dc01082504806"
   },
   {
     "url": "app/advanced.html",
-    "revision": "584ad4caa30aaa1ba7886c21b99771a0"
+    "revision": "fcb4a9626d9afd89e4e2c17fab71d9bc"
   },
   {
     "url": "app/css/main.css",
@@ -73,11 +73,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "app/install-ios.html",
-    "revision": "aabf43abc781562b9245cb2cd81d7df3"
+    "revision": "4d66c9ec7f084f8b93b84147656d09bd"
   },
   {
     "url": "app/install.html",
-    "revision": "f5d7d0af751116abffa09cac4d15eb28"
+    "revision": "3a3fd6173c08b14c8ccef30e4d42cdf3"
   },
   {
     "url": "app/js/installLib-iOS.js",
@@ -101,11 +101,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "app/start.html",
-    "revision": "b442f1a275164ca7c2e0e08e774bdd2d"
+    "revision": "a894b95317dd28537b2518a096a07521"
   },
   {
     "url": "changelog/full.html",
-    "revision": "dec31d8af3ecdd5946aff246f770bcac"
+    "revision": "c14cda6f8296d550f20bcdf25af153b5"
   },
   {
     "url": "css/account.css",
@@ -153,7 +153,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/materialize/dark.css",
-    "revision": "97768d5ecfd7a43296ee270be1fb7b82"
+    "revision": "da404a055613f25c213ddfe79222f95d"
   },
   {
     "url": "css/materialize/light.css",
@@ -161,11 +161,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "css/secondary.css",
-    "revision": "6ae3bed93d71ffed37fa4fa1af5402d1"
+    "revision": "cfa80387ec4617e0aa849c6e4dad6265"
   },
   {
     "url": "export.html",
-    "revision": "b31515a55d7470a827427635d4036cce"
+    "revision": "3b609feaf6818ff306b8f387c25e9928"
   },
   {
     "url": "images/icon-sm.png",
@@ -205,7 +205,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "5eea5493f342b9d68683aa2f8e84ccf5"
+    "revision": "0c422d19de2259082e09ac069d23a987"
   },
   {
     "url": "js/account.js",
@@ -213,7 +213,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/core.js",
-    "revision": "84dd8a60307d580c7f3b843f2fc05c93"
+    "revision": "082569d3d43e55ec7e7414cd6f975376"
   },
   {
     "url": "js/fa.js",
@@ -225,7 +225,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/main.js",
-    "revision": "d2e5beedbce1cead4b82744528a9347c"
+    "revision": "044eb7b009a8b1fd5e77a36696bb953b"
   },
   {
     "url": "js/notifier.js",
@@ -237,7 +237,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/secondary.js",
-    "revision": "090ff16c147302682db9690be45ffee7"
+    "revision": "d690e0cabae0ff05896a36a901938088"
   },
   {
     "url": "js/signin.js",
@@ -249,11 +249,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/svuelib.js",
-    "revision": "d3d3f3177746360a227a2dfa8eb47b18"
+    "revision": "9ea581b7ae49173a765c1452521657c0"
   },
   {
     "url": "js/ver.js",
-    "revision": "ef13a4ec888e206f3f9923f009c61f13"
+    "revision": "76f3fd5b8b6563aa33f90c001046d5b8"
   },
   {
     "url": "js/wa-client.js",
@@ -265,11 +265,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "legal.html",
-    "revision": "1c5c65b8bad85ab876a2f47528e0bee4"
+    "revision": "4cf8762a7681b46336ef80a8ab723828"
   },
   {
     "url": "signin/demo.html",
-    "revision": "6de66bb3c6ba4ac75783dd23669c1010"
+    "revision": "4efedcaeb07c8d0f842ec9163686a828"
   },
   {
     "url": "signin/demo.js",
@@ -277,20 +277,20 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "signin/reauth.html",
-    "revision": "395903a7b89a4af380c9f8ee97750d71"
+    "revision": "445f89651673ee72f75d9406cea29995"
   },
   {
     "url": "signout.html",
-    "revision": "02fea246975ffe0cbc5fa896b89ade6b"
+    "revision": "53cf99b5bab6841905b9bd88eed6987d"
   },
   {
     "url": "static/changelog/full.html",
-    "revision": "3f56fabd05474aaf306e2c0c0e12614b"
+    "revision": "738ffaa45d9b485d57ca3da2ea95abb0"
   }
 ]);
 workbox.precaching.precacheAndRoute([{
   url: '/dashboard?app=1', 
-  revision: '1603239212'
+  revision: '1634534390'
 }], {
   ignoreURLParametersMatching: [/.*/]
 });

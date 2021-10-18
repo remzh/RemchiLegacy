@@ -1,5 +1,5 @@
 // StudentVUE Function Library
-// (C) 2020 Ryan Zhang. All Rights Reserved. 
+// (C) 2021 Ryan Zhang. All Rights Reserved. 
 // 
 // Helper functions for SVUE (parsing, manipulation, server communication)
 
@@ -98,8 +98,15 @@ window.addEventListener('error', function(event) {
   } else {
     $('#li-error-msg').text(`${rlib.errorStack.length} Errors`); 
   }
-  rlib.errorStack.push({event: event.error, time: Date.now()});   
-  $('#modal-errorStack-data').append(`<span class='bw red-text'>[${rlib.errorStack.length}] [Window] ${moment().format('MM/DD/YY hh:mm:ss A')}</span>\n<span class='bw yellow-text'>${event.error.message}</span>\n<span class='bw orange-text'>${event.error.stack}</span>\n`);
+  let errorDetails = event.error; 
+  if (!errorDetails) {
+    errorDetails = {
+      message: 'Cross-origin script error.', 
+      stack: 'Must open browser console to view details.'
+    }; 
+  }
+  rlib.errorStack.push({event: errorDetails, time: Date.now()});   
+  $('#modal-errorStack-data').append(`<span class='bw red-text'>[${rlib.errorStack.length}] [Window] ${moment().format('MM/DD/YY hh:mm:ss A')}</span>\n<span class='bw yellow-text'>${errorDetails.message}</span>\n<span class='bw orange-text'>${errorDetails.stack}</span>\n`);
   if(rlib.isMobile){
     rlib.toast.error('OpenVUE has encountered an error. Open your sidebar for more details.');
   }

@@ -1,5 +1,5 @@
 // notifier.js
-// (C) 2020 Ryan Zhang. Some Rights Reserved. 
+// (C) 2021 Ryan Zhang. Some Rights Reserved. 
 // 
 // Handles sending text notifications to users who opt-in. 
 // Requires: svuelib.js, svcore.js
