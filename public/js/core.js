@@ -6,7 +6,7 @@
  * @requires moment (moment.js ~2.24)
  */
 
-// Single object rather than modules as OVUE wasn't build around modules, so this is easier for maintainability while keeping global namespace pollution down
+// Single object rather than modules as Remchi wasn't build around modules, so this is easier for maintainability while keeping global namespace pollution down
 // Yes, this design makes _(varname) variables not actually private, but redesigning the entire code to be fully up-to-standard and modular is a task that requires far too much time for little to no benefit. 
 const svcore = {
   /** @private Metadata, formatted as {user: (string), domain: (string), school: (string), name: (string), schools: (array)} */
@@ -18,7 +18,7 @@ const svcore = {
   /** @private Specifies how to fetch grades. 0 (default) = cache first, update from network if cache is older than 15 minutes, 1 = update from network, 2 = cache only */
   _fetchMode: 0, 
   /**
-   * Throws a warning out to whichever channels are setup. In OVUE, this function is configured to a) throw a warning out to the browser console, and b) throw a warning out to a user-accessible location (on the right side of the courseList header)
+   * Throws a warning out to whichever channels are setup. In Remchi, this function is configured to a) throw a warning out to the browser console, and b) throw a warning out to a user-accessible location (on the right side of the courseList header)
    * @param {*} msg - Message to throw out
    */
   warn: function (msg) {
@@ -93,7 +93,7 @@ const svcore = {
       this.updateItemHist(res.itemHist); 
       if (res.svUUID) {
         if (!this._metadata.svUUID || this._metadata.svUUID !== res.svUUID) {
-          this._metadata.svUUID = res.svUUID; // unique user id associated with each OVUE account
+          this._metadata.svUUID = res.svUUID; // unique user id associated with each Remchi account
         }
       }
 
@@ -112,7 +112,7 @@ const svcore = {
     }
   },
   /**
-   * Takes raw data from OVUE server and formats it into a cache-ready object, removing unnecessary properties and reformating non-uniform properties
+   * Takes raw data from Remchi server and formats it into a cache-ready object, removing unnecessary properties and reformating non-uniform properties
    * @private - Internal function used only by @function _fetchCacheFirst
    * @param {object} data - raw data returned from the /data/gradebook endpoint
    * @param {string} [school="h"] - GUID of school, blank/"h" for home school
@@ -456,7 +456,7 @@ const svcore = {
     return this._itemHist; 
   }, 
   /**
-   * Returns the UUID of the account (for OpenVUE, NOT for Synergy/StudentVUE), or false if the user does not have one (i.e., not logged in, using a demo account, etc.)
+   * Returns the UUID of the account (for Remchi, NOT for Synergy/StudentVUE), or false if the user does not have one (i.e., not logged in, using a demo account, etc.)
    * @returns {String|Boolean} - UUID String, or false. 
    */
   getUUID: function () {

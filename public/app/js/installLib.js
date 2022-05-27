@@ -17,7 +17,7 @@ function checkRes(v){
   if(v === 0){ // Not all requirements were met
     $('#div-msg').show(); 
     $('#msg-icon').addClass('red-text fa-exclamation-triangle'); 
-    $('#msg-txt').text(`Your browser is too old to support the OpenVUE Web App.`);
+    $('#msg-txt').text(`Your browser is too old to support the Remchi Web App.`);
     $('#div-minRequirements').show();
   }  
   else if(v === 1){
@@ -43,7 +43,7 @@ function checkRes(v){
   else if(v === 3){
     $('#div-msg').show(); 
     $('#msg-icon').html(`'<i class='fas fa-info-circle blue-text'></i>`)
-    $('#msg-txt').text(`You're already in the OpenVUE App!`);
+    $('#msg-txt').text(`You're already in the Remchi App!`);
   }
 }
 
@@ -79,14 +79,14 @@ function runChecks(){
         if(localStorage.app_installed === '1'){
           $('#div-msg').show(); 
           $('#msg-icon').html(`<i class='fas fa-check green-text'></i>`)
-          $('#msg-txt').text(`It looks like you've already installed the OpenVUE app.`);
+          $('#msg-txt').text(`It looks like you've already installed the Remchi app.`);
         }
         else{
           setTimeout(function(){ // may take ~5s before everything gets installed and ready
             if(!pwaPrompt){
               $('#div-msg').show(); 
               $('#msg-icon').html(`'<i class='fas fa-exclamation-triangle orange-text'></i>`)
-              $('#msg-txt').text(`Your browser does not appear to support installing OpenVUE.`);
+              $('#msg-txt').text(`Your browser does not appear to support installing Remchi.`);
               $('#div-minRequirements').show(); 
             }
           }, 7500); 

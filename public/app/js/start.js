@@ -45,7 +45,7 @@ async function fetchGB(cacheTimestamp){
   $('#div-msg-opts').hide(); 
   $('#div-msg').show();
   $('#div-pb').show(); 
-  $('#div-msg-text').text('Connecting to OpenVUE...');
+  $('#div-msg-text').text('Connecting to Remchi...');
 
   let cached = await svcore.fetchCurrentGB(2); 
 
@@ -86,7 +86,7 @@ function installSW(){
         //   newWorker.addEventListener('statechange', () => {
         //     if(newWorker.state === 'installed'){
         //       $('#div-upd').show(); 
-        //       rlib.toast.success('OpenVUE is updating...');
+        //       rlib.toast.success('Remchi is updating...');
         //     }
         //   })
         // })
@@ -130,7 +130,7 @@ window.onload = function(){
   navigator.serviceWorker.getRegistrations().then(res => {
     if(res.length === 0){
       $('#div-msg').show(); 
-      $('#div-msg-text').html(`Installing the latest OpenVUE...</i>`);
+      $('#div-msg-text').html(`Installing the latest Remchi...</i>`);
       installSW().then(r => {
         if(!r){ // installSW returns 0 if successful
           $('#div-msg').hide(); 
@@ -147,7 +147,7 @@ window.onload = function(){
       sw.addEventListener('updatefound', () => {
         updating = true; 
         $('#div-msg').show(); 
-        $('#div-msg-text').html(`Updating OpenVUE...`);
+        $('#div-msg-text').html(`Updating Remchi...`);
         console.log(sw); 
         const newWorker = sw.installing; 
         console.log(newWorker); 
@@ -155,10 +155,10 @@ window.onload = function(){
           console.log(newWorker.state); 
           if(newWorker.state === 'activated' || newWorker.state === 'redundant'){
             if(newWorker.state === 'redundant'){
-              rlib.toast.warn('Update failed. OpenVUE will retry again in the future.')}
-            else{rlib.toast.success('OpenVUE has been updated.')}
+              rlib.toast.warn('Update failed. Remchi will retry again in the future.')}
+            else{rlib.toast.success('Remchi has been updated.')}
             if(updating === 2){ // gradebook ready to open, was waiting for updates
-              $('#div-msg-text').html(`Starting OpenVUE...`);
+              $('#div-msg-text').html(`Starting Remchi...`);
               updating = false; 
               setTimeout(openGB, 1000); 
               return }
@@ -166,11 +166,11 @@ window.onload = function(){
           }
         }); 
       }); 
-      initStart(); // Immediately start loading GB, OVUE will update files in the background if needed
+      initStart(); // Immediately start loading GB, Remchi will update files in the background if needed
     }
   });
   navigator.serviceWorker.addEventListener('message', function(event){
-    $('#div-msg-text').html(`OpenVUE has finished updating!`);
+    $('#div-msg-text').html(`Remchi has finished updating!`);
   }); 
 }
 

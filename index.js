@@ -831,7 +831,7 @@ app.post('/data/updateHistory', function(req, res){
       return}
     dbf.query({user: req.session.auth.user, domain: req.session.auth.domain}).then((r) => {
       if(!r){
-        res.status(500).json({type: 'error', error: 19, msg: 'Your OVUE account is missing. Contact us for assistance.'}); return}
+        res.status(500).json({type: 'error', error: 19, msg: 'Your Remchi account is missing. Contact us for assistance.'}); return}
       if(r.items[course]){
         dbf[mode?'addItems':'remItems'](req.session.auth, course, data).then((r, e) => {
           res.json({type: 'success', response: r, error: e});
@@ -866,7 +866,7 @@ app.get('/data/gradebook', gbLimiter, function(req, res){
     if(typeof r.Gradebook !== 'undefined'){ // All good
       auditRequest(req.session.auth, req, 'gradebook', true, req.query.reportingPeriod?{reportingPeriod: req.query.reportingPeriod}:!1);
       dbf.query({user: req.session.auth.user, domain: req.session.auth.domain}).then((acc) => {
-        if(!acc){res.status(500).json({type: 'error', error: 50, msg: 'Your OVUE account is missing (19).', desc: 'Signing out and signing back in may fix this problem. If that doesn\'t fix the problem, contact us for assistance.'}); return}
+        if(!acc){res.status(500).json({type: 'error', error: 50, msg: 'Your Remchi account is missing (19).', desc: 'Signing out and signing back in may fix this problem. If that doesn\'t fix the problem, contact us for assistance.'}); return}
         userdb.findOneAndUpdate({
           domain: req.session.auth.domain, 
           user: req.session.auth.user
@@ -1185,7 +1185,7 @@ app.get('/data/:type', gbLimiter, function(req, res){
     if(typeof r[reqCode[1]] !== 'undefined'){ // All good
       auditRequest(req.session.auth, req, req.params.type, true); 
       dbf.query({user: req.session.auth.user, domain: req.session.auth.domain}).then((acc) => {
-        if(!acc){res.status(500).json({type: 'error', error: 50, msg: 'Your OVUE account is missing (19).', desc: 'Signing out and signing back in may fix this problem. If that doesn\'t fix the problem, contact us for assistance.'}); return}
+        if(!acc){res.status(500).json({type: 'error', error: 50, msg: 'Your Remchi account is missing (19).', desc: 'Signing out and signing back in may fix this problem. If that doesn\'t fix the problem, contact us for assistance.'}); return}
         res.json({
           type: 'success', 
           user: {name: req.session.auth.name, fullName: req.session.auth.fullName, school: req.session.auth.school}, 
@@ -1344,7 +1344,7 @@ app.get('/notifier/status', function(req, res){
   else{
     dbf.query({user: req.session.auth.user, domain: req.session.auth.domain}).then(r => {
       if(!r){
-        res.status(500).json({type: 'error', error: 19, msg: 'Your OVUE account is missing. Contact us for assistance.'}); return}
+        res.status(500).json({type: 'error', error: 19, msg: 'Your Remchi account is missing. Contact us for assistance.'}); return}
       if(!r.notifier.config){
         if(!r.notifier.whitelisted){
           res.json({type: 'success', whitelisted: false})
@@ -1423,7 +1423,7 @@ app.post('/notifier/config', function(req, res){
   else{
     dbf.query({user: req.session.auth.user, domain: req.session.auth.domain}).then(r => {
       if(!r){
-        res.status(500).json({type: 'error', error: 19, msg: 'Your OVUE account is missing. Contact us for assistance.'}); return}
+        res.status(500).json({type: 'error', error: 19, msg: 'Your Remchi account is missing. Contact us for assistance.'}); return}
       else if(!r.notifier){
         res.status(400).json({type: 'error', error: 19, msg: 'Notifier is not set up.'}); return
       }
@@ -1485,7 +1485,7 @@ app.post('/notifier/new', function(req, res){
               code: verCode
             }); 
           }); // Remove all previously pending text notifications
-          notifier.sendText(number, req.body.carrier, `Your OpenVUE verification code is ${verCode}.`).then((resp) => {
+          notifier.sendText(number, req.body.carrier, `Your Remchi verification code is ${verCode}.`).then((resp) => {
             console.log(resp); 
             if(!res.err){
               res.json({type: 'success', number: rlib.formatPhoneNumber(number)});
@@ -1675,7 +1675,7 @@ fs.readFile(path.join('public', 'js', 'ver.js'), 'utf8', (e, r) => {
   r = r.replace(/(['"])?([a-z0-9A-Z_]+)(['"])?:/g, '"$2": ').replace(/\'/g,'"'); // turn version into proper JSON
   r = JSON.parse(r); // parse JSON
   logger.info('----------------------------------------'); 
-  logger.info('OpenVUE'); 
+  logger.info('Remchi'); 
   logger.info('(C) 2021 Ryan Zhang. All Rights Reserved.')
   logger.info(`Version ${r.str} [${r.stage}]`);
   logger.info(`⮡ Build ${r.build} (${r.date})`);

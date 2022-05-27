@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
-  <title>OpenVUE</title>
+  <title>Remchi</title>
   <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0'>
   <link href='../favicon.ico' rel='icon' type='icon/ico'>
   <link rel='stylesheet' href='https://use.typekit.net/dda5vdo.css' crossorigin='anonymous'>
@@ -76,14 +76,14 @@
         }
       }
     </style>
-    <h2 style='font-weight: 400; font-family: "zen-new", -apple-system, "Roboto", "Segoe UI", sans-serif'>OpenVUE</h2>
+    <h2 style='font-weight: 400; font-family: "zen-new", -apple-system, "Roboto", "Segoe UI", sans-serif'>Remchi</h2>
     <div id='ld-outerPB'><div id='ld-innerPB'></div></div>
-    <p id='loadingDiv-p1'>Initializing OpenVUE Dashboard... (1/3)</p>
+    <p id='loadingDiv-p1'>Initializing Remchi Dashboard... (1/3)</p>
     <p id='loadingDiv-p2'>Loading JS packages... (2/3)</p>
     <p id='loadingDiv-p3'>Loading CSS + Icons... (3/3)</p>
     <p>If you see this message for an extended period of time (more than a few seconds), then it's likely that something went wrong. </p>
-    <noscript><p><b>It appears that JavaScript may be disabled, which is required to run OpenVUE.</b></p></noscript>
-    <p><a href='#' style='color: #aaf' onclick='location.reload()'>Reload OpenVUE</a></p>
+    <noscript><p><b>It appears that JavaScript may be disabled, which is required to run Remchi.</b></p></noscript>
+    <p><a href='#' style='color: #aaf' onclick='location.reload()'>Reload Remchi</a></p>
     <p style='position: fixed; bottom: 0px; color: #ccf'>&copy; 2021 Ryan Zhang. All Rights Reserved.</p>
   </div>
   <div class='navbar-fixed'>
@@ -91,7 +91,7 @@
       <a href='#' data-target='slide-out' class='sidenav-trigger' title='Open side navigation bar'>
         <i class='fa fa-bars nav-comp' style='float: left; margin-left: 16px; font-size: 20px'></i></a>
       <div class='snav-wrapper'>
-        <a class='brand-logo'>OpenVUE</a>
+        <a class='brand-logo'>Remchi</a>
         <ul id='nav-mobile' class='right hide-on-med-and-down'>
           <li><a href='#' data-target='navbar-drop' class='waves-effect dropdown-trigger'><i class='fas fa-user-circle'></i> <span class='sp-fullName'>(...)</span> <i class='fa fa-caret-down'></i></a></li>
         </ul>
@@ -138,7 +138,7 @@
   </ul>
   <ul id='slide-out' class='sidenav sidenav-fixed'>
     <li class='bold'>
-      <span style='padding: 0 32px; font-size: 24px' class='bw cf hide-on-large-only'><img alt='' src='images/icon-sm.png' style='height: 30px; vertical-align: text-bottom'/> OpenVUE <a href='#' class='btn-dismiss waves-effect sidenav-close' style='font-size: 14px' tabindex='0'><i class='fas fa-times'></i></a></span>
+      <span style='padding: 0 32px; font-size: 24px' class='bw cf hide-on-large-only'><img alt='' src='images/icon-sm.png' style='height: 30px; vertical-align: text-bottom'/> Remchi <a href='#' class='btn-dismiss waves-effect sidenav-close' style='font-size: 14px' tabindex='0'><i class='fas fa-times'></i></a></span>
     </li>
     <li id='sn-gradebook' class='bold sidenav-hl'>
       <a href='#' onclick='pageNav("gradebook", this)' class='waves-effect sidenav-close'><i class='fas fa-fw fa-book'></i> Gradebook</a></li>
@@ -179,8 +179,13 @@
             <span v-on:click='banner.messages.splice(index, 1)' v-on:keyup.enter='banner.messages.splice(index, 1)' class='waves-effect btn-dismiss' tabindex='0'><i class='fas fa-times'></i></span>
           </li>
           <li v-if='banner.update' class='collection-header ch-animated bk-green' v-bind:key='-1'>
-            <i class='fas fa-fw fa-bullhorn'></i> OpenVUE has been updated to <b>r2.0.0</b>!
+            <i class='fas fa-fw fa-bullhorn'></i> Remchi has been updated to <b>r2.0.0</b>!
             <span class='right'><a href='#' class='pointer' v-on:click='cbList.showChangelog()' tabindex='0'>See what's new</a> • <a href='#' class='pointer' v-on:click='cbList.dismissChangelog()' tabindex='0'>Dismiss</a></span>
+          </li>
+          <li v-if='banner.survey' class='collection-header ch-animated bk-orange' v-bind:key='-1'>
+            <i class='fas fa-fw fa-bullhorn'></i> Got a few minutes? We're looking for feedback, <a href='#' onclick='survey.opt(0)'>take the survey</a> to help shape Remchi's future!
+            <br/>
+            <span><a href='#' class='pointer' onclick='survey.opt(1)' tabindex='0'>Remind Me Later</a> • <a href='#' class='pointer' onclick='survey.opt(2)' tabindex='0'>Don't Show Again</a></span>
           </li>
         </transition-group>
         <transition name='anim-msg'>
@@ -255,7 +260,7 @@
         <li id='bell-now-outer' class='collection-header hidden'>
           <span class='bw'><i class='fas fa-clock'></i> <b>Now</b>: <span id='bell-now'></span> <span id='bell-timeLeft-outer' class='bw green-text'>(<span id='bell-timeLeft'></span>m left)</span></span>
         </li> 
-        <li id='bell-unavailable' class='collection-item hl-i3'><i class='fas fa-exclamation-triangle'></i> OpenVUE does not have a bell schedule for your school. As of now, Bell Schedule is only available to students in Fossil Ridge High School.</li>
+        <li id='bell-unavailable' class='collection-item hl-i3'><i class='fas fa-exclamation-triangle'></i> Remchi does not have a bell schedule for your school. As of now, Bell Schedule is only available to students in Fossil Ridge High School.</li>
         <li :id='`bell-li-`+index' class='collection-item hidden bell-hidden' v-for='(course, index) in schedule'>
           <span class='lg bw'>{{course.name}}</span>
           <span class='right lg bw'>{{course.time}}</span>
@@ -961,7 +966,7 @@
               <br/>
               <button onclick='$(`#fileSelect`).click()' class='btn blue config-imgBtn waves-effect'><i class='fas fa-image'></i> Change Image</button>
               <br class='smOnly'/>
-              <a id='bkImg-export' download='OVUE Custom Background'><button class='btn teal config-imgBtn waves-effect'><i class='fas fa-download'></i> Export Image</button></a>
+              <a id='bkImg-export' download='Remchi Custom Background'><button class='btn teal config-imgBtn waves-effect'><i class='fas fa-download'></i> Export Image</button></a>
               <br class='smOnly'/>
               <button v-on:click='$_removeImg()' class='btn red config-imgBtn waves-effect'><i class='fas fa-trash'></i> Remove Image</button>
               <br/><br/>
@@ -1016,7 +1021,7 @@
         </div>
         <div id='settings-about' class='col s12 imgbk'>
           <h2>About</h2>
-          <h3><img src='images/icon-sm.png' style='height: 32px; vertical-align: text-bottom'/> OpenVUE</h3>
+          <h3><img src='images/icon-sm.png' style='height: 32px; vertical-align: text-bottom'/> Remchi</h3>
           <p>Currently logged in as <b id='sp-fullNameActual'>...</b>. <a class='nw' href='account'>Account Details</a>.</p>
           <p><b id='ver-build'>build: n/a</b><br><span id='ver-str'></span></p>
           <p id='ver-web' class='green-text bw'></p>
@@ -1027,7 +1032,7 @@
             <li>
               <div class='collapsible-header'><i class='fas fa-image fa-fw collapsible-icon'></i> Photos and Backgrounds</div>
               <div class='collapsible-body'>
-                All photos used in OpenVUE are either courtesy of Unsplash contributors, under the <a rel='noreferrer' href='https://unsplash.com/license' target='_blank'>Unsplash License</a>. Photos and background images used in demo screenshots and videos (that aren't otherwise found in OpenVUE) are taken by me (Ryan Zhang).<br/><i class='fas fa-caret-right'></i> View the <a rel='noopener' href='https://itsryan.page.link/svue-photos' target='_blank'>OpenVUE Photo Collection</a>
+                All photos used in Remchi are either courtesy of Unsplash contributors, under the <a rel='noreferrer' href='https://unsplash.com/license' target='_blank'>Unsplash License</a>. Photos and background images used in demo screenshots and videos (that aren't otherwise found in Remchi) are taken by me (Ryan Zhang).<br/><i class='fas fa-caret-right'></i> View the <a rel='noopener' href='https://itsryan.page.link/svue-photos' target='_blank'>Remchi Photo Collection</a>
               </div>
             </li>
             <li>
@@ -1047,9 +1052,9 @@
     <div class='modal-content'>
       <h3>Notifier Service</h3>
       <p>As of the 2019-20 school year, Notifier is no longer generally available to the public. This is due to the potential security concerns associated with Notifier -- most school districts are not keen on having a third party storing educational records, much less user credential data. While we only use credential data to occasionally check grades (in the same way a service like EarlyScores only uses your credentials to check AP scores on your behalf), there isn't really a way to "prove" we're not doing anything else. Therefore, the safest way to prevent issues is to not offer such functionality to the general public in the first place.</p>
-      <p>OpenVUE by default does not store any personally identifiable information (including your grades) other than the bare mininum outlined in the privacy policy. However, this is not possible if you want OpenVUE to notify you on new tests / assignments. Thus, using Notifier requires a greater scope on the amount of data collected (and thus, additional consent).</p>
-      <p class='yellow-text bw'>Due to this, out of an abundance of caution, any new users to OpenVUE by default <b>will not be able to opt-in to the notifier service</b>.</p>
-      <p>If you joined OpenVUE during its open beta period, <b>you are automatically whitelisted</b>. Otherwise, if you would like access and do not currently have access, contact <b class='light-blue-text bw'>svuelegal [at] itsryan.org</b> or me in person. A form with written and signed consent may be required.</p>
+      <p>Remchi by default does not store any personally identifiable information (including your grades) other than the bare mininum outlined in the privacy policy. However, this is not possible if you want Remchi to notify you on new tests / assignments. Thus, using Notifier requires a greater scope on the amount of data collected (and thus, additional consent).</p>
+      <p class='yellow-text bw'>Due to this, out of an abundance of caution, any new users to Remchi by default <b>will not be able to opt-in to the notifier service</b>.</p>
+      <p>If you joined Remchi during its open beta period, <b>you are automatically whitelisted</b>. Otherwise, if you would like access and do not currently have access, contact <b class='light-blue-text bw'>svuelegal [at] itsryan.org</b> or me in person. A form with written and signed consent may be required.</p>
     </div>
     <div class='modal-footer'>
       <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
@@ -1058,7 +1063,7 @@
   <div id='modal-chInfo' class='modal modal-fixed-footer md-scroll'>
     <div class='modal-content'>
       <h3>Loading GPA/Course History</h3>
-      <p><b>Why will it take a while to load?</b><br/>If you've used the official StudentVUE mobile app, you may have noticed that course history is missing from it. That's because the endpoint that the mobile app uses doesn't support course history, and is the same endpoint OpenVUE normally uses.<br/><br/>So how do we work around this limitation? When you select "Load Course History", the OpenVUE server will open up the StudentVUE web interface, sign in as you, and extract the course history data before finally signing you out and discarding your session token. While this works (and works reliably), it's a three-step process (fetch login page, login, fetch course history page) which means it'll take a while to complete. It also means that when you select "Load Course History", you'll see a new entry under "Login History" on the official website - that's the server.<br/><br/>Fortunately, this process only has to be done once on each device you use, because your device will save it locally after it gets the data. (It's not ever stored server-side to avoid legal trouble - course history is considered a sensitive educational record!)</p>
+      <p><b>Why will it take a while to load?</b><br/>If you've used the official StudentVUE mobile app, you may have noticed that course history is missing from it. That's because the endpoint that the mobile app uses doesn't support course history, and is the same endpoint Remchi normally uses.<br/><br/>So how do we work around this limitation? When you select "Load Course History", the Remchi server will open up the StudentVUE web interface, sign in as you, and extract the course history data before finally signing you out and discarding your session token. While this works (and works reliably), it's a three-step process (fetch login page, login, fetch course history page) which means it'll take a while to complete. It also means that when you select "Load Course History", you'll see a new entry under "Login History" on the official website - that's the server.<br/><br/>Fortunately, this process only has to be done once on each device you use, because your device will save it locally after it gets the data. (It's not ever stored server-side to avoid legal trouble - course history is considered a sensitive educational record!)</p>
     </div>
     <div class='modal-footer'>
       <a href='#' class='modal-close green white-text waves-effect waves btn-flat'>Done</a>
@@ -1089,7 +1094,7 @@
   <div id='modal-attInfo' class='modal modal-fixed-footer'>
     <div class='modal-content'>
       <h4>Attendance Module / Icon Legends</h4>
-      <p>The attendance icons used in OpenVUE are designed to be similar to the ones used in standard StudentVUE for better consistency. Note that you can also hover over (on desktop) an icon to see what it means.<br>
+      <p>The attendance icons used in Remchi are designed to be similar to the ones used in standard StudentVUE for better consistency. Note that you can also hover over (on desktop) an icon to see what it means.<br>
         <br><span class='green-text bw'><i class='fas fa-flag'></i> Activity</span>: School excused activity. Differs from standard "excused" in that this mark only applies to school-sponsored activities. 
         <br><span class='light-blue-text bw'><i class='fas fa-dot-circle'></i> Not Included</span>: Attendance is not tracked/included for this course.  
         <br><span class='green-text bw'><i class='fas fa-check-circle'></i> Excused</span>: School excused. Generally has no negative impact.  
@@ -1200,7 +1205,7 @@
         </div>
         <div id='wel-landing' class='carousel-item cf'>
           <img src='images/icon.png' style='height: 80px; width: 80px'/>
-          <h2>Welcome to OpenVUE</h2>
+          <h2>Welcome to Remchi</h2>
           <p>The modern, responsive Gradebook.</p>
           <p>We're glad you're here.</p>
         </div>
@@ -1240,19 +1245,19 @@
         </div>
         <div id='wel-more' class='carousel-item bw'>
           <h2>And More!</h2>
-          <p>OpenVUE is more than just a gradebook.<br/>Here's some of its other features:</p>
+          <p>Remchi is more than just a gradebook.<br/>Here's some of its other features:</p>
           <button class='btn-flat waves-effect amber darken-2' data-name='Data Export' data-desc='Want a printable spreadsheet of your assignments? Data export is here for you.' data-tip='You can also export the raw XML files if you want everything.'><i class='fas fa-share-alt'></i></button>
           <button class='btn-flat waves-effect deep-orange darken-1' data-name='GPA/Course History' data-desc="View your GPA, class rank (if enabled), and every course you've ever taken." data-tip='You can also copy/paste these tables into any spreadsheet editor!'><i class='fas fa-graduation-cap'></i></button>
           <button class='btn-flat waves-effect red darken-2' data-name='Customizations' data-desc='Under settings, you can change colors, backgrounds, and more - just like the demo images!' data-tip='Not a fan of the numerous animations? Turn on "Reduced Motion" under settings.'><i class='fas fa-image'></i></button>
-          <button class='btn-flat waves-effect purple darken-1' data-name='Security Keys' data-desc='Did you know you can sign in to OpenVUE with your fingerprint/face?' data-tip='You can set this up under your account page.'><i class='fas fa-key'></i></button>
-          <button class='btn-flat waves-effect brown accent-2' data-name='Privacy' data-desc="Notice how OpenVUE even works offline? That's because your data is cached on your device, not our servers." data-tip='Our privacy policy lists full details on exactly what we do store server-side. (Hint: not a lot!)'><i class='fas fa-shield-alt'></i></button>
+          <button class='btn-flat waves-effect purple darken-1' data-name='Security Keys' data-desc='Did you know you can sign in to Remchi with your fingerprint/face?' data-tip='You can set this up under your account page.'><i class='fas fa-key'></i></button>
+          <button class='btn-flat waves-effect brown accent-2' data-name='Privacy' data-desc="Notice how Remchi even works offline? That's because your data is cached on your device, not our servers." data-tip='Our privacy policy lists full details on exactly what we do store server-side. (Hint: not a lot!)'><i class='fas fa-shield-alt'></i></button>
           <p id='wel-more-desc'>
             <span class='green-text bw'>Once again, select a button to learn more about that feature.</span>
           </p>
         </div>
         <div id='wel-final' class='carousel-item bw' style='display: none'>
           <h2>Ready to Go?</h2>
-          <p>This short tour isn't nearly enough to cover everything, so you're encouraged to play around and discover what else OpenVUE has to offer!</p>
+          <p>This short tour isn't nearly enough to cover everything, so you're encouraged to play around and discover what else Remchi has to offer!</p>
           <p>Feedback? Use the "Send Feedback" tool under "More Actions". You can also email me at <span class='light-blue-text bw'>ryan [at] itsryan.org</span>.</p>
         </div>
       </div>
@@ -1264,10 +1269,10 @@
       <p><b>Release 2.0.0</b>&nbsp;• Build 1233 • October 20, 2020<br/><i>Missed a release? <a href='changelog'>See Previous and/or Full Changelog</a></i></p>
       <p><b class='green-text text-accent-bw'>New Things!</b></p>
       <ul class='browser-default selectable'>
-        <li>OpenVUE is now <b>open source</b>! Named OpenVUE, you can find the <a target='_blank' href='https://github.com/Ryan778/OpenVUE'>full source code on GitHub</a>.</li>
-        <li>Complete refactoring of the OpenVUE core:</li>
+        <li>Remchi is now <b>open source</b>! Named OpenVUE, you can find the <a target='_blank' href='https://github.com/Ryan778/OpenVUE'>full source code on GitHub</a>.</li>
+        <li>Complete refactoring of the Remchi core:</li>
         <ul class='browser-default'>
-          <li>This is the portion OpenVUE uses to communicate with Synergy, and it has been slowly accumulating bugs ever since its rocky start back in February 2019.</li>
+          <li>This is the portion Remchi uses to communicate with Synergy, and it has been slowly accumulating bugs ever since its rocky start back in February 2019.</li>
           <li>By redoing it from scratch using modern APIs, it now <b>fully supports concurrent enrollment schools</b>, has <b>better caching and more detailed errors</b>, and is <b>significantly less prone to bugs</b>.</li>
         </ul>
         <li>Redesigned dashboard:</li>
@@ -1278,7 +1283,7 @@
         </ul>
         <li>Significantly better accessibility:</li>
         <ul class='browser-default'>
-          <li>Almost all of OpenVUE can now be navigated with just a keyboard!</li>
+          <li>Almost all of Remchi can now be navigated with just a keyboard!</li>
           <li>Better "Reduced Motion" setting removes even more optional animations</li>
         </ul>
         <li>Data Exporting:</li>
@@ -1307,7 +1312,7 @@
           <li>Reintroduce text notifications to the general public if possible?</li>
           <li>Plans to greatly improve stability and customization options</li>
         </ul>
-        <li><b class='light-blue-text bw'>You tell me!</b> We're always looking for suggestions on how OpenVUE can be further improved.</li>
+        <li><b class='light-blue-text bw'>You tell me!</b> We're always looking for suggestions on how Remchi can be further improved.</li>
       </ul>
     </div>
     <div class='modal-footer'>

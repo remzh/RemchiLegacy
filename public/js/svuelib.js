@@ -108,7 +108,7 @@ window.addEventListener('error', function(event) {
   rlib.errorStack.push({event: errorDetails, time: Date.now()});   
   $('#modal-errorStack-data').append(`<span class='bw red-text'>[${rlib.errorStack.length}] [Window] ${moment().format('MM/DD/YY hh:mm:ss A')}</span>\n<span class='bw yellow-text'>${errorDetails.message}</span>\n<span class='bw orange-text'>${errorDetails.stack}</span>\n`);
   if(rlib.isMobile){
-    rlib.toast.error('OpenVUE has encountered an error. Open your sidebar for more details.');
+    rlib.toast.error('Remchi has encountered an error. Open your sidebar for more details.');
   }
 })
 
@@ -123,7 +123,7 @@ if (typeof Vue !== 'undefined') {
     rlib.errorStack.push({event: error, time: Date.now()});   
     $('#modal-errorStack-data').append(`<span class='bw red-text'>[${rlib.errorStack.length}] [Vue: ${info}] ${moment().format('MM/DD/YY hh:mm:ss A')}</span>\n<span class='bw yellow-text'>${error.message}</span>\n<span class='bw orange-text'>${error.stack}</span>\n`);
     if(rlib.isMobile){
-      rlib.toast.error('OpenVUE has encountered an error. Open your sidebar for more details.');
+      rlib.toast.error('Remchi has encountered an error. Open your sidebar for more details.');
     }
   }
 }

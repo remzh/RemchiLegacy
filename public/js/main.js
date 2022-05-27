@@ -1379,10 +1379,10 @@ $('.config-input').on('change', (e) => {
     }, (error) => {
       switch (error.code) {
         case error.PERMISSION_DENIED: 
-          rlib.toast.error('OVUE was denied access to your location.');
+          rlib.toast.error('Remchi was denied access to your location.');
           break; 
         case error.POSITION_UNAVAILABLE: 
-          rlib.toast.error('OVUE was unable to retrieve your location.');
+          rlib.toast.error('Remchi was unable to retrieve your location.');
           break;
         default: 
           rlib.toast.error('An error occured while atteping to retrieve your location.'); 
@@ -1435,7 +1435,7 @@ function initApp(userData){
   if(navigator.onLine && userData){
     nt.update() }
   else if(!navigator.onLine){
-    rlib.toast.warn(`You're using OpenVUE offline. Some modules will be unavailable.`) }
+    rlib.toast.warn(`You're using Remchi offline. Some modules will be unavailable.`) }
   cbList.cl.banner.loading = false; 
 
   if (svcore.getUUID()) {
@@ -1833,8 +1833,49 @@ const intervalScript = {
   }
 }
 
+const survey = {
+  opt: (r) => {
+    if (r === 0) {
+      delete cbList.cl.banner.survey;  
+      cbList.pushMessage({icon: 'c', bk: 'c', text: 'Thank you!'}); 
+      localStorage.setItem('svp-surveyComp', '1'); 
+      window.open('https://itsryan.page.link/svue-survey-f21', '_blank'); 
+      gtag('event', 'survey_open', {
+        'event_category': 'engagement', 
+        'event_label': 'F21 Survey'
+      }); 
+    } else if (r === 1) {
+      delete cbList.cl.banner.survey; 
+      cbList.cl.$forceUpdate(); 
+      gtag('event', 'survey_dismiss', {
+        'event_category': 'engagement', 
+        'event_label': 'F21 Survey'
+      }); 
+    } else if (r === 2) {
+      delete cbList.cl.banner.survey; 
+      cbList.cl.$forceUpdate(); 
+      localStorage.setItem('svp-surveyComp', '1'); 
+      gtag('event', 'survey_decline', {
+        'event_category': 'engagement', 
+        'event_label': 'F21 Survey'
+      }); 
+    }
+  }, 
+  init: () => {
+    if (localStorage.getItem('svp-surveyComp') !== '1' && Date.now() < 1640217540000) {
+      cbList.cl.banner.survey = true; 
+      gtag('event', 'survey_view', {
+        'event_category': 'engagement', 
+        'event_label': 'F21 Survey'
+      }); 
+    }
+  }
+}
+
 window.addEventListener('load', function(){
   intervalScript.init(); // call scheduled intervals
+
+  survey.init(); 
 
   if(config.reduceMotion) $('#loadingDiv').remove(); 
   else {
@@ -1849,7 +1890,7 @@ window.addEventListener('load', function(){
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.addEventListener('message', function(event) {
     if(event.data.code === 200){ // successful update
-      rlib.toast.success('OpenVUE was updated in the background. ', 10000); 
+      rlib.toast.success('Remchi was updated in the background. ', 10000); 
       rlib.toast.info('<a href="#" class="light-blue-text text-lighten-4" onclick="location.reload()">Reload the page</a>&nbsp;to see changes.', 10000)
     }
     else{ // other message

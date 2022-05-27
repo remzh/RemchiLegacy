@@ -225,7 +225,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/main.js",
-    "revision": "044eb7b009a8b1fd5e77a36696bb953b"
+    "revision": "609e537955d32d528adb6cd1ef9f2e51"
   },
   {
     "url": "js/notifier.js",
@@ -290,7 +290,7 @@ workbox.precaching.precacheAndRoute([
 ]);
 workbox.precaching.precacheAndRoute([{
   url: '/dashboard?app=1', 
-  revision: '1634534390'
+  revision: '1653618173'
 }], {
   ignoreURLParametersMatching: [/.*/]
 });
@@ -330,7 +330,7 @@ self.addEventListener('activate', event => {
   self.clients.claim().then(r => {
     self.clients.matchAll().then(function(clients) {
       clients.forEach(function(client) {
-        client.postMessage({msg: 'The OpenVUE SW was updated.', code: 200});
+        client.postMessage({msg: 'The Remchi SW was updated.', code: 200});
       });
     });
   }); 

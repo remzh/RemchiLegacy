@@ -74,7 +74,7 @@ window.onload = function() {
     }
     // Security keys
     if (r.waKeys.length > 0) {
-      $('#keys-count').html(`You currently have <b class='light-green-text bw'>${r.waKeys.length}</b> security key${r.waKeys.length===1?'':'s'} registered with OpenVUE.`)
+      $('#keys-count').html(`You currently have <b class='light-green-text bw'>${r.waKeys.length}</b> security key${r.waKeys.length===1?'':'s'} registered with Remchi.`)
       $('#tb_keys').html(r.waKeys.reduce((c, r) => c+`<tr><td>${r.name?r.name:'<i>No Friendly Name</i>'}</td><td title="${r.keyId}">${(r.keyId).slice(0,12)}...</td><td>${moment(r.lastUsed).format('ddd M/D h:mm A')}</td></tr>`, '')); 
     } else {
       $('#keys-table').hide(); 

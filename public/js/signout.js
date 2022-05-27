@@ -29,7 +29,7 @@ window.onload = function(){
       $('#so').html(`Your session information couldn\'t be completely removed. Try reloading the page.<br><br><span style="font-weight:300">Error Info: ${r.error}</span>`)
     }
     else{
-      $('#so').html('You have successfully signed out. <br><span style="font-weight:300">If you haven\'t already, consider closing any other open windows of OpenVUE.</span><br/><br/>Preferences are kept by default in case you sign in again. <br><span style="font-weight:300">If you would also like to delete your preferences, <a href="#" onclick="clearPrefs()">click/tap here</a>.</span>')
+      $('#so').html('You have successfully signed out. <br><span style="font-weight:300">If you haven\'t already, consider closing any other open windows of Remchi.</span><br/><br/>Preferences are kept by default in case you sign in again. <br><span style="font-weight:300">If you would also like to delete your preferences, <a href="#" onclick="clearPrefs()">click/tap here</a>.</span>')
     }
   })
 }

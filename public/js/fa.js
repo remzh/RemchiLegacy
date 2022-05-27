@@ -1,4 +1,4 @@
-// fa.js - modified version of Font Awesome Free v5.7.2 (https://use.fontawesome.com/releases/v5.7.2/js/all.js) to only include the subset of icons necessary for OVUE (464kb w/ gzip --> 98kb)
+// fa.js - modified version of Font Awesome Free v5.7.2 (https://use.fontawesome.com/releases/v5.7.2/js/all.js) to only include the subset of icons necessary for Remchi (464kb w/ gzip --> 98kb)
 !function() {
     "use strict";
     var c = {}

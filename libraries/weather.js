@@ -107,6 +107,11 @@ function getCurrentWeather(coords, units) {
           }
           full = detailed.resp; 
 
+          if (full.cod === 429) {
+            resolve ({ok: false, error: 'API quota exceeded'}); 
+            return;
+          }
+
           let diff = full.daily[1].temp.eve - full.daily[0].temp.eve; 
   
           resolve ({ok: true, resp: {
